@@ -4,14 +4,15 @@ public class Client {
 
     private Context context;
 
-    public Client()
-    {
-        this.context = new Context();
-    }
+    private Tokenizer tokenizer;
+    private Parser parser;
+
+    public Client(){}
 
     public void tokenize(String file)
     {
-        
+        this.tokenizer = new Tokenizer();
+        tokenizer.tokenize(file);   
     }
     
 }

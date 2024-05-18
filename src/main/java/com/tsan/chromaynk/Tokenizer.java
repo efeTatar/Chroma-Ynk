@@ -108,9 +108,6 @@
                         
                 }
 
-                for(Token t : tokens)
-                    System.out.println(t);
-
                 scanner.close();
 
             }
