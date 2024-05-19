@@ -1,5 +1,8 @@
 package main.java.com.tsan.chromaynk;
 
+import main.java.com.tsan.chromaynk.tokenizer.Tokenizer;
+import main.java.com.tsan.chromaynk.parser.Parser;
+
 public class Client {
 
     private Context context;
@@ -13,6 +16,11 @@ public class Client {
     {
         this.tokenizer = new Tokenizer();
         tokenizer.tokenize(file);   
+    }
+
+    public void display()
+    {
+        tokenizer.display();
     }
     
 }

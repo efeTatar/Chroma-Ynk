@@ -1,4 +1,4 @@
-    package main.java.com.tsan.chromaynk;
+    package main.java.com.tsan.chromaynk.tokenizer;
 
     import java.util.List;
     import java.io.File;
@@ -15,10 +15,20 @@
             this.tokens = new ArrayList<Token>(); 
         }
         
+        /*
+         * 
+         */
+        public void display()
+        {
+            for(Token t : tokens)
+                System.out.println(t);
+        }
+
+        /*
+         * 
+         */
         public void tokenize(String file)
         {
-            // ( ) { } " = + - / * == != < <= > >= !
-
             try
             {
                 Scanner scanner = new Scanner(new File(file));

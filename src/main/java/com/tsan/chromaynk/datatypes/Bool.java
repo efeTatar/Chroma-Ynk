@@ -1,12 +1,12 @@
 package main.java.com.tsan.chromaynk.datatypes;
 
-public class Num extends Variable{
+public class Bool extends Variable{
+    
+    private boolean value;
 
-    private Double value = 0.0;
+    public Bool(){}
 
-    public Num(){}
-
-    public Num(double value)
+    public Bool(boolean value)
     {
         this.value = value;
     }
@@ -17,7 +17,7 @@ public class Num extends Variable{
         return String.valueOf(value);
     }
 
-    private Double getValue()
+    private boolean getValue()
     {
         return this.value;
     }
@@ -26,9 +26,9 @@ public class Num extends Variable{
     public void setValue(Variable value)
     {
         if(value instanceof Num)
-            this.value = ((Num)value).getValue();
+            this.value = ((Bool)value).getValue();
         
         // throw exception !!
     }
-    
+
 }

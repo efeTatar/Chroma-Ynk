@@ -1,0 +1,23 @@
+NUM cursor = 1;
+CURSOR(cursor);
+SELECT(cursor);
+15 16
+
+DEF square(NUM height){
+    MOV(height, 0);
+    MOV(0, height);
+    MOV(-height, 0);
+    MOV(0, -height);
+}
+
+POS(0, 0);
+NUM i = 0;
+WHILE(i < 50)
+{
+    if(i > 25)
+    {
+        COLOR(#FFFFFF);
+    }
+    square(5);
+    i = i + 1;
+} 

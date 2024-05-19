@@ -11,3 +11,9 @@ IF(a != 6){func();}
 SELECT(a);.5
 MOV(5,6);
 func();
+
+IF(a != 5)
+{
+	PRINT(a);
+	MOV(5,6);
+}

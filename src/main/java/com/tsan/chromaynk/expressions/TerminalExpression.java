@@ -1,5 +1,5 @@
 package main.java.com.tsan.chromaynk.expressions;
 
-public class TerminalExpression extends Expression{
+public abstract class TerminalExpression extends Expression{
     
 }
