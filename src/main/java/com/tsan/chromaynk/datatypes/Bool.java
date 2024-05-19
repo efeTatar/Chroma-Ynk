@@ -17,6 +17,13 @@ public class Bool extends Variable{
         return String.valueOf(value);
     }
 
+    @Override
+    public boolean equals(Object o)
+    {
+        if( o == null | !(o instanceof Bool) ) return false;
+        return (this.value == ((Bool)o).value);
+    }
+
     private boolean getValue()
     {
         return this.value;
@@ -29,6 +36,12 @@ public class Bool extends Variable{
             this.value = ((Bool)value).getValue();
         
         // throw exception !!
+    }
+
+    @Override
+    public boolean isTrue()
+    {
+        return value;
     }
 
 }

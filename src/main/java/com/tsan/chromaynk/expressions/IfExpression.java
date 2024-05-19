@@ -9,12 +9,19 @@ public class IfExpression extends NonTerminalExpression{
      * if the condition cannot be checked due to a parsing error,
      * a run time error is met
      */
-    private Expression condition;
+    private Assignable condition;
     private Expression body;
+
+    public IfExpression(Assignable condition, Expression body)
+    {
+        this.condition = condition;
+        this.body = body;
+    }
 
     public void execute(Context context)
     {
-        //if(condition.isTrue())
+        if(condition.getValue(context).isTrue())
+            body.execute(context);
     }
 
 }

@@ -23,11 +23,25 @@ public class Str extends Variable{
     }
 
     @Override
+    public boolean equals(Object o)
+    {
+        if( o == null | !(o instanceof Str) ) return false;
+        return ( this.value.equals( ((Str)o).value ) );
+    }
+
+    @Override
     public void setValue(Variable value)
     {
         if(value instanceof Str)
             this.value = ((Str)value).getValue();
         
         // throw exception !!
+    }
+
+    @Override
+    public boolean isTrue()
+    {
+        // throw error
+        return false;
     }
 }

@@ -17,7 +17,14 @@ public class Num extends Variable{
         return String.valueOf(value);
     }
 
-    private Double getValue()
+    @Override
+    public boolean equals(Object o)
+    {
+        if( o == null | !(o instanceof Num) ) return false;
+        return (this.value == ((Num)o).value);
+    }
+
+    public Double getValue()
     {
         return this.value;
     }
@@ -29,6 +36,12 @@ public class Num extends Variable{
             this.value = ((Num)value).getValue();
         
         // throw exception !!
+    }
+
+    @Override
+    public boolean isTrue()
+    {
+        return (value != 0);
     }
     
 }

@@ -1,34 +1,29 @@
 package main.java.com.tsan.chromaynk.expressions;
 
 import main.java.com.tsan.chromaynk.Context;
-import main.java.com.tsan.chromaynk.datatypes.Num;
+import main.java.com.tsan.chromaynk.Operation;
 import main.java.com.tsan.chromaynk.datatypes.Variable;
 
 public class OperationExpression extends NonTerminalExpression implements Assignable{
 
-    public enum op{
-        PLUS, MIN, MULT, DIV, EQ, NEQ, NOT, INF, INFEQ, SUP, SUPEQ, AND, OR
-    }
+    private Assignable x, y;
+    private Operation op;
     
-    public OperationExpression(op type)
-    {
-        
+    public OperationExpression(Assignable x, Assignable y, Operation op){
+        this.x = x;
+        this.y = y;
+        this. op = op;
     }
 
     @Override
     public Variable getValue(Context context)
     {
-        return new Num();
+        return op.eval(x.getValue(context), y.getValue(context));
     }
 
     public void execute(Context context)
     {
         return;
-    }
-
-    public Variable compute()
-    {
-        return new Num(2.5);
     }
 
 }
