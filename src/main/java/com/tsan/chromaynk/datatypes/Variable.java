@@ -2,6 +2,8 @@ package main.java.com.tsan.chromaynk.datatypes;
 
 public abstract class Variable{
 
+    public enum type{num, bool, str}
+
     @Override
     abstract public String toString();
 

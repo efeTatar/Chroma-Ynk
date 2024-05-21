@@ -22,8 +22,8 @@ public class PrintExpression extends TerminalExpression{
     public void execute(Context context)
     {
         Variable var = context.getVariable(name);
-        if(var == null) System.out.println("Variable not found: " + name + "\n");
-        else System.out.println("Variable " + name + " = " + var + "\n");
+        if(var == null) System.out.println("Variable not found: " + name);
+        else System.out.println("Variable " + name + " = " + var);
     }
 
 }

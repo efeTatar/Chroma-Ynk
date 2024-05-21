@@ -20,8 +20,9 @@ public class Num extends Variable{
     @Override
     public boolean equals(Object o)
     {
-        if( o == null | !(o instanceof Num) ) return false;
-        return (this.value == ((Num)o).value);
+        if( o == null | o instanceof Str ) return false;
+        if(o instanceof Bool) return (this.isTrue() & ((Variable)o).isTrue());
+        return Math.abs(this.getValue() - ((Num)o).getValue()) < 0.00001;
     }
 
     public Double getValue()

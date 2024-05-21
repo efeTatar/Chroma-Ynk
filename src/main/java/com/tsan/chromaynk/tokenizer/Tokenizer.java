@@ -14,6 +14,14 @@
         {
             this.tokens = new ArrayList<Token>(); 
         }
+
+        /*
+         * returns token iterator for parsing
+         */
+        public TokenIterator getTokenList()
+        {
+            return new TokenIterator(tokens);
+        }
         
         /*
          * 
@@ -66,14 +74,14 @@
                                 }
                                 else
                                 {
-                                    tokens.add( new Token(Token._token.VALUE, s.substring(i, j+1)) );
+                                    tokens.add( new Token(Token.tokenType.VALUE, s.substring(i, j+1)) );
                                     i = j;
                                     break;
                                 }
                             }
                             if(j+1 == s.length())
                             {
-                                tokens.add( new Token(Token._token.VALUE, s.substring(i, j+1)) );
+                                tokens.add( new Token(Token.tokenType.VALUE, s.substring(i, j+1)) );
                                 i = j;
                             }
                         }
@@ -91,8 +99,8 @@
                                 else
                                 {
                                     String sub = s.substring(i, j+1);
-                                    if(isWord(sub)) tokens.add( new Token(Token._token.WORD, sub));
-                                    else tokens.add( new Token(Token._token.NAME, sub));
+                                    if(isWord(sub)) tokens.add( new Token(Token.tokenType.WORD, sub));
+                                    else tokens.add( new Token(Token.tokenType.NAME, sub));
                                     i = j;
                                     break;
                                 }
@@ -103,11 +111,11 @@
                         {
                             if(i+1 < s.length() && s.charAt(i+1) == '=')
                             {
-                                this.tokens.add(new Token(Token._token.OP, String.valueOf(c) + "="));
+                                this.tokens.add(new Token(Token.tokenType.OP, String.valueOf(c) + "="));
                                 i++;
                             }
                             else
-                                this.tokens.add(new Token(Token._token.OP, String.valueOf(c) ));
+                                this.tokens.add(new Token(Token.tokenType.OP, String.valueOf(c) ));
                             
                             continue;
                         }
@@ -147,31 +155,31 @@
         {
             switch (c) {
                 case '{':
-                    this.tokens.add(new Token(Token._token.LBRACK));
+                    this.tokens.add(new Token(Token.tokenType.LBRACK));
                     return true;
                 case '}':
-                    this.tokens.add(new Token(Token._token.RBRACK));
+                    this.tokens.add(new Token(Token.tokenType.RBRACK));
                     return true;
                 case '(':
-                    this.tokens.add(new Token(Token._token.LPAREN));
+                    this.tokens.add(new Token(Token.tokenType.LPAREN));
                     return true;
                 case ')':
-                    this.tokens.add(new Token(Token._token.RPAREN));
+                    this.tokens.add(new Token(Token.tokenType.RPAREN));
                     return true;
                 case '"':
-                    this.tokens.add(new Token(Token._token.QUOTE));
+                    this.tokens.add(new Token(Token.tokenType.QUOTE));
                     return true;
                 case ';':
-                    this.tokens.add(new Token(Token._token.SEMICOL));
+                    this.tokens.add(new Token(Token.tokenType.SEMICOL));
                     return true;
                 case ',':
-                    this.tokens.add(new Token(Token._token.COMA));
+                    this.tokens.add(new Token(Token.tokenType.COMA));
                     return true;
                 case '+':
                 case '-':
                 case '*':
                 case '/':
-                    this.tokens.add(new Token(Token._token.OP, String.valueOf(c)));
+                    this.tokens.add(new Token(Token.tokenType.OP, String.valueOf(c)));
                     return true;
             
                 default:

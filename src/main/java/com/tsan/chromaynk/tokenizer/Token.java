@@ -3,18 +3,28 @@ package main.java.com.tsan.chromaynk.tokenizer;
 public class Token {
 
     private String value;
-    private _token token;
+    private tokenType token;
 
-    public Token(_token token, String value)
+    public Token(tokenType token, String value)
     {
         this.token = token;
         this.value = value;
     }
 
-    public Token(_token token)
+    public Token(tokenType token)
     {
         this.token = token;
         this.value = null;
+    }
+
+    public String getValue()
+    {
+        return this.value;
+    }
+
+    public tokenType getType()
+    {
+        return this.token;
     }
 
     @Override
@@ -66,7 +76,7 @@ public class Token {
         return s + " \t" + value;
     }
 
-    public static enum _token
+    public static enum tokenType
     {
         WORD, NAME, VALUE, OP, LPAREN, RPAREN, LBRACK, RBRACK, SEMICOL, QUOTE, COMA
     }

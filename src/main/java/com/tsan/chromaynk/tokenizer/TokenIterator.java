@@ -17,26 +17,23 @@ public class TokenIterator {
 
     public Token next()
     {
-        if(index+1 >= list.size()) return null;
-        return list.get(index+1);
-    }
-
-    public Token previous()
-    {
-        if(index-1 <= 0) return null;
-        return list.get(index-1);
+        index++;
+        try{
+            return list.get(index);
+        }
+        catch(IndexOutOfBoundsException e){
+            return null;
+        }
     }
 
     public Token current()
     {
-        if(index >= list.size()) return null;
-        return list.get(index);
+        try{
+            return list.get(index);
+        }
+        catch(IndexOutOfBoundsException e){
+            return null;
+        }
     }
 
-    public Token iterate()
-    {
-        index++;
-        if(index >= list.size()) return null;
-        return list.get(index);
-    }
 }

@@ -16,7 +16,10 @@ public class WhileExpression extends NonTerminalExpression{
     public void execute(Context context)
     {
         while(condition.getValue(context).isTrue())
+        {
+            if(context.returned()) return;
             body.execute(context);
+        }
     }
 
 }

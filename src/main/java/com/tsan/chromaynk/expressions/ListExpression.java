@@ -19,7 +19,10 @@ public class ListExpression extends NonTerminalExpression{
 
     public void execute(Context context)
     {
-        for(Expression exp : list) exp.execute(context);
+        for(Expression exp : list){
+            if(context.returned()) return;
+            exp.execute(context);
+        }
     }
     
 }
