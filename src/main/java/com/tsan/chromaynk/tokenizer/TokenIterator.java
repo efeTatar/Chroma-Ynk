@@ -36,4 +36,15 @@ public class TokenIterator {
         }
     }
 
+    public Token previous()
+    {
+        index--;
+        try{
+            return list.get(index);
+        }
+        catch(IndexOutOfBoundsException e){
+            return null;
+        }
+    }
+
 }

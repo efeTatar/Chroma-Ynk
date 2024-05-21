@@ -1,5 +1,12 @@
-NUM a = 1;
+NUM a = 2;
+a = 3;
 PRINT(a);
-NUM nathan = 69;PRINT(efe);
-
-PRINT(nathan);
+a = 4.3;
+NUM b;
+PRINT(b);
+PRINT(c);
+WHILE(b){PRINT(a)}
+IF(b)
+{
+    PRINT(a);
+}
