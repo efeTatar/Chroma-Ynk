@@ -93,6 +93,14 @@ public class Context {
         return true;
     }
 
+    public boolean deleteVariable(String name)
+    {
+        if(!variable.keySet().contains(name)) return false;
+        
+        variable.remove(name);
+        return true;
+    }
+
     public Variable getVariable(String variableName)
     {
         if(!variable.keySet().contains(variableName)) return null;

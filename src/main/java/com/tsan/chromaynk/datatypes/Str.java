@@ -41,7 +41,6 @@ public class Str extends Variable{
     @Override
     public boolean isTrue()
     {
-        // throw error
         return false;
     }
 }

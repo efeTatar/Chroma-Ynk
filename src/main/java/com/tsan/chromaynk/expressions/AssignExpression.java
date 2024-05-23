@@ -1,6 +1,9 @@
 package main.java.com.tsan.chromaynk.expressions;
 
 import main.java.com.tsan.chromaynk.Context;
+import main.java.com.tsan.chromaynk.datatypes.Bool;
+import main.java.com.tsan.chromaynk.datatypes.Str;
+import main.java.com.tsan.chromaynk.datatypes.Num;
 import main.java.com.tsan.chromaynk.datatypes.Variable;
 
 public class AssignExpression extends NonTerminalExpression{
@@ -20,10 +23,40 @@ public class AssignExpression extends NonTerminalExpression{
     public void execute(Context context)
     {
         Variable var = context.getVariable(variableName);
-        // exception ?
-        if(var == null) return;
-        
-        var.setValue(value.getValue(context));
+        if(var == null)
+        {
+            System.out.println("Warning: failed to retrieve variable in assign expression");
+            System.out.println("Warning: assignment aborted");
+            return;
+        }
+
+        Variable assign = value.getValue(context);
+        if(assign == null)
+        {
+            System.out.println("Warning: failed to retrieve value in assign expression");
+            System.out.println("Warning: assignment aborted");
+            return;
+        }
+
+        if(var instanceof Bool)
+        {
+            if(assign instanceof Str){
+                System.out.println("Warning: BOOL <- STR");
+                System.out.println("Warning: assignment aborted");
+                return;
+            }
+            var.setValue( new Bool(assign.isTrue()) );
+        }
+
+        if(var instanceof Num)
+        {
+            if(assign instanceof Str){
+                System.out.println("Warning: BOOL <- STR");
+                System.out.println("Warning: assignment aborted");
+                return;
+            }
+            var.setValue(value.getValue(context));
+        }
     }
 
 }

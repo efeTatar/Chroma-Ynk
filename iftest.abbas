@@ -1,9 +1,9 @@
 NUM nathan = -2;
 NUM francois = 6.3;
 NUM efe1 = 0;
-BOOL a;
+BOOL a = 1;
 NUM res = nathan + (-1 + francois) / (efe1+1);
-
+DEL(res);
 PRINT(res);
 
 
@@ -11,6 +11,7 @@ NUM i = 1;
 
 NUM exp = 1;
 NUM x = 5;
+x = res;
 NUM fact = 1;
 
 NUM s = 1;
@@ -20,6 +21,11 @@ WHILE(i < 100){
     fact = fact * i;
     exp = exp + s / fact;
     i = i + 1;
+}
+
+IF(-2 == nathan)
+{
+    PRINT(a);
 }
 
 PRINT(exp);

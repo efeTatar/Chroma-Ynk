@@ -33,10 +33,7 @@ public class Bool extends Variable{
     @Override
     public void setValue(Variable value)
     {
-        if(value instanceof Num)
-            this.value = ((Bool)value).getValue();
-        
-        // throw exception !!
+        this.value = value.isTrue();
     }
 
     @Override

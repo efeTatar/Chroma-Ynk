@@ -149,7 +149,7 @@
         */
         private boolean isWord(String s)
         {
-            if (s.equals("DEF") || s.equals("NUM") || s.equals("BOOL") || s.equals("STR") || s.equals("IF") || s.equals("FOR") || s.equals("WHILE") || s.equals("MIMIC") || s.equals("MIRROR") || s.equals("RETURN") || s.equals("DEL")) {
+            if (s.equals("DEF") || s.equals("NUM") || s.equals("BOOL") || s.equals("STR") || s.equals("IF") || s.equals("FOR") || s.equals("WHILE") || s.equals("MIMIC") || s.equals("MIRROR") || s.equals("RETURN")) {
                 //tokens.add(new Token(Token._token.WORD, s));
                 return true;
             }
@@ -188,6 +188,9 @@
                 case '-':
                 case '*':
                 case '/':
+                case '&':
+                case '|':
+                case '!':
                     this.tokens.add(new Token(Token.tokenType.OP, String.valueOf(c)));
                     return true;
             

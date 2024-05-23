@@ -34,9 +34,20 @@ public class Num extends Variable{
     public void setValue(Variable value)
     {
         if(value instanceof Num)
+        {
             this.value = ((Num)value).getValue();
+            return;
+        }
+            
         
-        // throw exception !!
+        if(value instanceof Bool)
+        {
+            if(value.isTrue()) this.value = 1.0;
+            else this.value = 0.0;
+            return;
+        }
+        System.out.println("Warning: NUM <- STR");
+        System.out.println("Warning: assignment aborted");
     }
 
     @Override

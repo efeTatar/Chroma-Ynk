@@ -111,6 +111,9 @@ public class Parser {
                 case "PRINT":
                     return parsePrint(iterator);
                 
+                case "DEL":
+                    return parseVariableDeletion(iterator);
+                
                 default:
                     if(iterator.next().getType() == Token.tokenType.LPAREN) return null;
                     iterator.previous();
@@ -172,6 +175,27 @@ public class Parser {
 
         return null;
         
+    }
+
+    private Expression parseVariableDeletion(TokenIterator iterator) throws SyntaxErrorException
+    {
+        System.out.println("Parsing: variable deletion");
+        iterator.next(); // (
+        
+        if(iterator.current().getType() != Token.tokenType.LPAREN) throw new SyntaxErrorException("Parsing error occured in variable deletion: variable name must be between parentheses");
+        iterator.next(); // variable
+        
+        if(iterator.current().getType() != Token.tokenType.NAME) throw new SyntaxErrorException("Parsing error occured in variable deletion: variable name missing");
+        Expression node = new DeletionExpression(iterator.current().getValue());
+        iterator.next(); // )
+        
+        if(iterator.current().getType() != Token.tokenType.RPAREN) throw new SyntaxErrorException("Parsing error occured in variable deletion: variable name must be between parentheses");
+        iterator.next(); // ;
+
+        if(iterator.current().getType() != Token.tokenType.SEMICOL) throw new SyntaxErrorException("Parsing error occured in variable deletion: statement must end with ';'");
+        iterator.next();
+
+        return node;
     }
 
     /**
