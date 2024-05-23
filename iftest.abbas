@@ -1,1 +1,15 @@
-5+3*(2-3)+6/efe;
+NUM nathan = 2;
+NUM francois = 6.3;
+NUM efe = 0;
+NUM res = nathan + francois / (efe+1);
+
+NUM a = 5;
+WHILE(a>0){
+    PRINT(a);
+    IF(1){
+    PRINT(res);
+}
+    a = a - 1;
+}
+
+PRINT(res);

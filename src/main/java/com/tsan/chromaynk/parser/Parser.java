@@ -4,14 +4,16 @@ import main.java.com.tsan.chromaynk.datatypes.Num;
 import main.java.com.tsan.chromaynk.datatypes.Variable;
 import main.java.com.tsan.chromaynk.exceptions.ParsingFailedException;
 import main.java.com.tsan.chromaynk.exceptions.SyntaxErrorException;
+import main.java.com.tsan.chromaynk.exceptions.UnexistingOperatorException;
 import main.java.com.tsan.chromaynk.expressions.*;
 import main.java.com.tsan.chromaynk.Context;
 import main.java.com.tsan.chromaynk.tokenizer.TokenIterator;
+import main.java.com.tsan.chromaynk.tokenizer.Token.tokenType;
+import main.java.com.tsan.chromaynk.Operation;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Stack;
-import java.time.zone.ZoneOffsetTransitionRule.TimeDefinition;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -47,7 +49,7 @@ public class Parser {
                         break;
                 
                     case RBRACK:
-                        iterator.next();
+                        //iterator.next();
                         return new ListExpression(list);
 
                     default:
@@ -227,6 +229,11 @@ public class Parser {
             e.display();
             throw new ParsingFailedException("parsing failed");
         }
+        catch(SyntaxErrorException e)
+        {
+            e.display();
+            throw new ParsingFailedException("parsing failed");
+        }
         
         if(iterator.current().getType() != Token.tokenType.SEMICOL) throw new SyntaxErrorException("Value assignement must be followed by ';'");
         iterator.next();
@@ -241,12 +248,13 @@ public class Parser {
         try{
             System.out.println("if parse method");
             iterator.next();
-            iterator.next();
             Assignable condition = parseOperation(iterator);
-            iterator.next(); // right paren
-            System.out.println(iterator.current().getType());
-            iterator.next(); // left bracket
-            return new IfExpression(condition, parse(iterator));
+            if(iterator.current().getType() != Token.tokenType.LBRACK) throw new ParsingFailedException("if bug l brack");
+            iterator.next();
+            Expression body = parse(iterator);
+            if(iterator.current().getType() != Token.tokenType.RBRACK) throw new ParsingFailedException("if bug r brack");
+            iterator.next();
+            return new IfExpression(condition, body);
         }
         catch(ParsingFailedException e){
             e.display();
@@ -265,14 +273,15 @@ public class Parser {
     private Expression parseWhileBlock(TokenIterator iterator) throws ParsingFailedException
     {
         try{
-            System.out.println("if parse method");
-            iterator.next();
+            System.out.println("while parse method");
             iterator.next();
             Assignable condition = parseOperation(iterator);
-            iterator.next(); // right paren
-            System.out.println(iterator.current().getType());
-            iterator.next(); // left bracket
-            return new WhileExpression(condition, parse(iterator));
+            if(iterator.current().getType() != Token.tokenType.LBRACK) throw new ParsingFailedException("while bug l brack");
+            iterator.next();
+            Expression body = parse(iterator);
+            if(iterator.current().getType() != Token.tokenType.RBRACK) throw new ParsingFailedException("while bug r brack");
+            iterator.next();
+            return new WhileExpression(condition, body);
         }
         catch(ParsingFailedException e){
             e.display();
@@ -344,6 +353,7 @@ public class Parser {
                         (properties.get(stack.peek().getValue())[0] == properties.get(current.getValue())[0] & properties.get(current.getValue())[0] == 0) ) )
                 {
                     queue.add(stack.pop());
+                    if(stack.isEmpty()) break;
                 }
                 stack.add(current);
             }
@@ -373,10 +383,84 @@ public class Parser {
 
         // the second part of the algorithm builds the tree from the RPN format
 
-        for(Token t : queue)
-            System.out.println(t.getValue());
+        List<Assignable> assignableList = new ArrayList<Assignable>();
 
-        return new ValueExpression(new Num(1));
+        try{
+            for(Token t : queue)
+            {
+                System.out.println(t.getValue());
+                if(t.getType() == Token.tokenType.VALUE)
+                {
+                    assignableList.add(new ValueExpression(new Num( Double.parseDouble(t.getValue()) )));
+                    continue;
+                }
+                if(t.getType() == Token.tokenType.NAME)
+                {
+                    assignableList.add(new VariableExpression(t.getValue()));
+                    continue;
+                }
+                if(t.getType() == Token.tokenType.OP){
+                    assignableList.add(new OperationExpression(null, null, createOp(t.getValue())));
+                    continue;
+                }
+                throw new SyntaxErrorException("Operation cannot be parsed: unrelated token");
+            }
+        }
+        catch(UnexistingOperatorException e){
+            e.display();
+            throw new SyntaxErrorException("Operation cannot be parsed: unnkown operator");
+        }
+        
+        int index = 0;
+        while(assignableList.size() > 1)
+        {
+            if(index >=  assignableList.size()) return null;
+            Assignable node = assignableList.get(index);
+            if(node instanceof ValueExpression | node instanceof VariableExpression)
+            {
+                index++;
+                continue;
+            }
+            if(node instanceof OperationExpression)
+            {
+                if( ((OperationExpression)node).isNotOp() )
+                {
+                    if(index-1 < 0) throw new SyntaxErrorException("Operation cannot be parsed: no operand for NOT operation");
+                    ((OperationExpression)node).setParameter(assignableList.remove(index-1), null);
+                    continue;
+                }
+                if(index-2 < 0) throw new SyntaxErrorException("Operation cannot be parsed: not enogh operands for operation with two parameters");
+                ((OperationExpression)node).setParameter(assignableList.remove(index-2), assignableList.remove(index-2));
+                index--;
+                continue;
+            }
+            throw new SyntaxErrorException("Operation cannot be parsed");
+        }
+
+        return assignableList.get(0);
+    }
+
+    /*
+     * 
+     */
+    public Operation createOp(String operator) throws UnexistingOperatorException
+    {
+        switch (operator) {
+            case "+": return Operation.PLUS;
+            case "-": return Operation.MINUS;
+            case "*": return Operation.MULT;
+            case "/": return Operation.DIV;
+            case "&": return Operation.AND;
+            case "|": return Operation.OR;
+            case "==": return Operation.EQ;
+            case "!=": return Operation.NEQ;
+            case "!": return Operation.NOT;
+            case "<": return Operation.INF;
+            case "<=": return Operation.INFEQ;
+            case ">": return Operation.SUP;
+            case ">=": return Operation.SUPEQ;
+            default: throw new UnexistingOperatorException("Operator cannot be read: " + operator);
+        }
     }
 
 }

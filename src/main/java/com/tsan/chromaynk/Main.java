@@ -19,11 +19,11 @@ public class Main {
         client.tokenize("iftest.abbas");
         client.display();
         System.out.println();
-        //client.parse();
-        //System.out.println();
-        //client.execute();
+        client.parse();
+        System.out.println();
+        client.execute();
 
-        client.test();
+        //client.test();
 
     }
 

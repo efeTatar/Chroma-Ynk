@@ -18,6 +18,17 @@ public class OperationExpression extends NonTerminalExpression implements Assign
         this. op = op;
     }
 
+    public boolean isNotOp()
+    {
+        return (op == Operation.NOT);
+    }
+
+    public void setParameter(Assignable x, Assignable y)
+    {
+        this.x = x;
+        this.y = y;
+    }
+
     @Override
     public Variable getValue(Context context)
     {

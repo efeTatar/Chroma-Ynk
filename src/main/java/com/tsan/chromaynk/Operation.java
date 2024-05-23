@@ -5,6 +5,7 @@ import main.java.com.tsan.chromaynk.datatypes.Num;
 import main.java.com.tsan.chromaynk.datatypes.Str;
 import main.java.com.tsan.chromaynk.datatypes.Variable;
 import main.java.com.tsan.chromaynk.exceptions.DoubleDivisionByZeroException;
+import main.java.com.tsan.chromaynk.exceptions.UnexistingOperatorException;
 import main.java.com.tsan.chromaynk.exceptions.VariableMissingException;
 import main.java.com.tsan.chromaynk.exceptions.VariableTypeMismatchException;
 
@@ -16,7 +17,6 @@ public enum Operation {
         {
             if(x == null | y == null) throw new VariableMissingException("Addition: "+x+" "+y);
             if(!(x instanceof Num & y instanceof Num)) throw new VariableTypeMismatchException("Addition: "+x+" "+y);
-            System.out.println(x + " + " + y + " " + (((Num)x).getValue() + ((Num)y).getValue()));
             return new Num( ((Num)x).getValue() + ((Num)y).getValue() );
         }
     },
@@ -45,7 +45,7 @@ public enum Operation {
             if(x == null | y == null) throw new VariableMissingException("Division: "+x+" "+y);
             if(!(x instanceof Num & y instanceof Num)) throw new VariableTypeMismatchException("Division: "+x+" "+y);
             Double val = ((Num)y).getValue();
-            if(val == 0) throw new DoubleDivisionByZeroException("Division: "+x+" "+y);
+            if(Math.abs(val) < 0.00001) throw new DoubleDivisionByZeroException("runtime error: division by zero: "+x+" "+y);
             return new Num( ((Num)x).getValue() / val );
         }
     },
