@@ -1,12 +1,1 @@
-NUM a = 2;
-a = 3;
-PRINT(a);
-a = 4.3;
-NUM b;
-PRINT(b);
-PRINT(c);
-WHILE(b){PRINT(a)}
-IF(b)
-{
-    PRINT(a);
-}
+5+3*(2-3)+6/efe;

@@ -14,7 +14,9 @@ public class Token {
     public Token(tokenType token)
     {
         this.token = token;
-        this.value = null;
+        if(token == tokenType.LPAREN) this.value = "(";
+        else if(token == tokenType.RPAREN) this.value = ")";
+        else this.value = null;
     }
 
     public String getValue()

@@ -15,6 +15,11 @@ public class TokenIterator {
         this.list = list;
     }
 
+    public boolean ended()
+    {
+        return(index >= list.size());
+    }
+
     public Token next()
     {
         index++;
