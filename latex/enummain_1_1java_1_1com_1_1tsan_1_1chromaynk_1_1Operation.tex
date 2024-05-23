@@ -1,0 +1,295 @@
+\hypertarget{enummain_1_1java_1_1com_1_1tsan_1_1chromaynk_1_1Operation}{}\doxysection{main.\+java.\+com.\+tsan.\+chromaynk.\+Operation Enum Reference}
+\label{enummain_1_1java_1_1com_1_1tsan_1_1chromaynk_1_1Operation}\index{main.java.com.tsan.chromaynk.Operation@{main.java.com.tsan.chromaynk.Operation}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{enummain_1_1java_1_1com_1_1tsan_1_1chromaynk_1_1Operation_a26e1950aa0a33d52b5781f3342d52a76}\label{enummain_1_1java_1_1com_1_1tsan_1_1chromaynk_1_1Operation_a26e1950aa0a33d52b5781f3342d52a76}} 
+abstract \mbox{\hyperlink{classmain_1_1java_1_1com_1_1tsan_1_1chromaynk_1_1datatypes_1_1Variable}{Variable}} {\bfseries eval} (\mbox{\hyperlink{classmain_1_1java_1_1com_1_1tsan_1_1chromaynk_1_1datatypes_1_1Variable}{Variable}} x, \mbox{\hyperlink{classmain_1_1java_1_1com_1_1tsan_1_1chromaynk_1_1datatypes_1_1Variable}{Variable}} y)  throws Variable\+Type\+Mismatch\+Exception, Variable\+Missing\+Exception, Double\+Division\+By\+Zero\+Exception
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries PLUS}
+\item 
+{\bfseries MINUS}
+\item 
+{\bfseries MULT}
+\item 
+{\bfseries DIV}
+\item 
+{\bfseries EQ}
+\item 
+{\bfseries NEQ}
+\item 
+{\bfseries INF}
+\item 
+{\bfseries INFEQ}
+\item 
+{\bfseries SUP}
+\item 
+{\bfseries SUPEQ}
+\item 
+{\bfseries AND}
+\item 
+{\bfseries OR}
+\item 
+{\bfseries NOT}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{enummain_1_1java_1_1com_1_1tsan_1_1chromaynk_1_1Operation_a001b1357de0a01d75e1aedbe5485525f}\label{enummain_1_1java_1_1com_1_1tsan_1_1chromaynk_1_1Operation_a001b1357de0a01d75e1aedbe5485525f}} 
+\index{main.java.com.tsan.chromaynk.Operation@{main.java.com.tsan.chromaynk.Operation}!AND@{AND}}
+\index{AND@{AND}!main.java.com.tsan.chromaynk.Operation@{main.java.com.tsan.chromaynk.Operation}}
+\doxysubsubsection{\texorpdfstring{AND}{AND}}
+{\footnotesize\ttfamily main.\+java.\+com.\+tsan.\+chromaynk.\+Operation.\+AND}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=(\textcolor{stringliteral}{"{}\&"{}})\{}
+\DoxyCodeLine{        @Override}
+\DoxyCodeLine{        \textcolor{keyword}{public} Variable eval(Variable x, Variable y) \textcolor{keywordflow}{throws} VariableTypeMismatchException, VariableMissingException}
+\DoxyCodeLine{        \{}
+\DoxyCodeLine{            \textcolor{keywordflow}{if}(x == \textcolor{keyword}{null} | y == \textcolor{keyword}{null}) \textcolor{keywordflow}{throw} \textcolor{keyword}{new} VariableMissingException(\textcolor{stringliteral}{"{}And operator: "{}}+x+\textcolor{stringliteral}{"{} "{}}+y);}
+\DoxyCodeLine{            \textcolor{keywordflow}{if}(!(x instanceof Num \& y instanceof Num)) \textcolor{keywordflow}{return} \textcolor{keyword}{null};}
+\DoxyCodeLine{            \textcolor{keywordflow}{return} \textcolor{keyword}{new} Bool( x.isTrue() \& y.isTrue() );}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{    \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{enummain_1_1java_1_1com_1_1tsan_1_1chromaynk_1_1Operation_abfcd7c13164b1933920519029290ff5e}\label{enummain_1_1java_1_1com_1_1tsan_1_1chromaynk_1_1Operation_abfcd7c13164b1933920519029290ff5e}} 
+\index{main.java.com.tsan.chromaynk.Operation@{main.java.com.tsan.chromaynk.Operation}!DIV@{DIV}}
+\index{DIV@{DIV}!main.java.com.tsan.chromaynk.Operation@{main.java.com.tsan.chromaynk.Operation}}
+\doxysubsubsection{\texorpdfstring{DIV}{DIV}}
+{\footnotesize\ttfamily main.\+java.\+com.\+tsan.\+chromaynk.\+Operation.\+DIV}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=(\textcolor{stringliteral}{"{}/"{}})\{}
+\DoxyCodeLine{        @Override}
+\DoxyCodeLine{        \textcolor{keyword}{public} Variable eval(Variable x, Variable y) \textcolor{keywordflow}{throws} VariableTypeMismatchException, VariableMissingException, DoubleDivisionByZeroException}
+\DoxyCodeLine{        \{}
+\DoxyCodeLine{            \textcolor{keywordflow}{if}(x == \textcolor{keyword}{null} | y == \textcolor{keyword}{null}) \textcolor{keywordflow}{throw} \textcolor{keyword}{new} VariableMissingException(\textcolor{stringliteral}{"{}Division: "{}}+x+\textcolor{stringliteral}{"{} "{}}+y);}
+\DoxyCodeLine{            \textcolor{keywordflow}{if}(!(x instanceof Num \& y instanceof Num)) \textcolor{keywordflow}{throw} \textcolor{keyword}{new} VariableTypeMismatchException(\textcolor{stringliteral}{"{}Division: "{}}+x+\textcolor{stringliteral}{"{} "{}}+y);}
+\DoxyCodeLine{            Double val = ((Num)y).getValue();}
+\DoxyCodeLine{            \textcolor{keywordflow}{if}(Math.abs(val) < 0.00001) \textcolor{keywordflow}{throw} \textcolor{keyword}{new} DoubleDivisionByZeroException(\textcolor{stringliteral}{"{}runtime error: division by zero: "{}}+x+\textcolor{stringliteral}{"{} "{}}+y);}
+\DoxyCodeLine{            \textcolor{keywordflow}{return} \textcolor{keyword}{new} Num( ((Num)x).getValue() / val );}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{    \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{enummain_1_1java_1_1com_1_1tsan_1_1chromaynk_1_1Operation_a07efb4ccbf45f26b73210fed96544e94}\label{enummain_1_1java_1_1com_1_1tsan_1_1chromaynk_1_1Operation_a07efb4ccbf45f26b73210fed96544e94}} 
+\index{main.java.com.tsan.chromaynk.Operation@{main.java.com.tsan.chromaynk.Operation}!EQ@{EQ}}
+\index{EQ@{EQ}!main.java.com.tsan.chromaynk.Operation@{main.java.com.tsan.chromaynk.Operation}}
+\doxysubsubsection{\texorpdfstring{EQ}{EQ}}
+{\footnotesize\ttfamily main.\+java.\+com.\+tsan.\+chromaynk.\+Operation.\+EQ}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=(\textcolor{stringliteral}{"{}=="{}})\{}
+\DoxyCodeLine{        @Override}
+\DoxyCodeLine{        \textcolor{keyword}{public} Variable eval(Variable x, Variable y) \textcolor{keywordflow}{throws} VariableTypeMismatchException, VariableMissingException}
+\DoxyCodeLine{        \{}
+\DoxyCodeLine{            }
+\DoxyCodeLine{            \textcolor{keywordflow}{if}(x == \textcolor{keyword}{null} | y == \textcolor{keyword}{null}) \textcolor{keywordflow}{throw} \textcolor{keyword}{new} VariableMissingException(\textcolor{stringliteral}{"{}Equals operator: "{}}+x+\textcolor{stringliteral}{"{} "{}}+y);}
+\DoxyCodeLine{            \textcolor{keywordflow}{return} \textcolor{keyword}{new} Bool(x.equals(y));}
+\DoxyCodeLine{            }
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{    \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{enummain_1_1java_1_1com_1_1tsan_1_1chromaynk_1_1Operation_af3ea961aefe678cc7d28e2609bac2a4c}\label{enummain_1_1java_1_1com_1_1tsan_1_1chromaynk_1_1Operation_af3ea961aefe678cc7d28e2609bac2a4c}} 
+\index{main.java.com.tsan.chromaynk.Operation@{main.java.com.tsan.chromaynk.Operation}!INF@{INF}}
+\index{INF@{INF}!main.java.com.tsan.chromaynk.Operation@{main.java.com.tsan.chromaynk.Operation}}
+\doxysubsubsection{\texorpdfstring{INF}{INF}}
+{\footnotesize\ttfamily main.\+java.\+com.\+tsan.\+chromaynk.\+Operation.\+INF}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=(\textcolor{stringliteral}{"{}<"{}})\{}
+\DoxyCodeLine{        @Override}
+\DoxyCodeLine{        \textcolor{keyword}{public} Variable eval(Variable x, Variable y) \textcolor{keywordflow}{throws} VariableTypeMismatchException, VariableMissingException}
+\DoxyCodeLine{        \{}
+\DoxyCodeLine{            \textcolor{keywordflow}{if}(x == \textcolor{keyword}{null} | y == \textcolor{keyword}{null}) \textcolor{keywordflow}{throw} \textcolor{keyword}{new} VariableMissingException(\textcolor{stringliteral}{"{}Inferior operator: "{}}+x+\textcolor{stringliteral}{"{} "{}}+y);}
+\DoxyCodeLine{            \textcolor{keywordflow}{if}(!(x instanceof Num \& y instanceof Num)) \textcolor{keywordflow}{return} \textcolor{keyword}{null};}
+\DoxyCodeLine{            \textcolor{keywordflow}{return} \textcolor{keyword}{new} Bool( ((Num)x).getValue() < ((Num)y).getValue() );}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{    \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{enummain_1_1java_1_1com_1_1tsan_1_1chromaynk_1_1Operation_a53dc9c10b3f52501bd8b6e9974ed44cd}\label{enummain_1_1java_1_1com_1_1tsan_1_1chromaynk_1_1Operation_a53dc9c10b3f52501bd8b6e9974ed44cd}} 
+\index{main.java.com.tsan.chromaynk.Operation@{main.java.com.tsan.chromaynk.Operation}!INFEQ@{INFEQ}}
+\index{INFEQ@{INFEQ}!main.java.com.tsan.chromaynk.Operation@{main.java.com.tsan.chromaynk.Operation}}
+\doxysubsubsection{\texorpdfstring{INFEQ}{INFEQ}}
+{\footnotesize\ttfamily main.\+java.\+com.\+tsan.\+chromaynk.\+Operation.\+INFEQ}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=(\textcolor{stringliteral}{"{}<="{}})\{}
+\DoxyCodeLine{        @Override}
+\DoxyCodeLine{        \textcolor{keyword}{public} Variable eval(Variable x, Variable y) \textcolor{keywordflow}{throws} VariableTypeMismatchException, VariableMissingException}
+\DoxyCodeLine{        \{}
+\DoxyCodeLine{            \textcolor{keywordflow}{if}(x == \textcolor{keyword}{null} | y == \textcolor{keyword}{null}) \textcolor{keywordflow}{throw} \textcolor{keyword}{new} VariableMissingException(\textcolor{stringliteral}{"{}Inf or equal operator: "{}}+x+\textcolor{stringliteral}{"{} "{}}+y);}
+\DoxyCodeLine{            \textcolor{keywordflow}{if}(!(x instanceof Num \& y instanceof Num)) \textcolor{keywordflow}{return} \textcolor{keyword}{null};}
+\DoxyCodeLine{            \textcolor{keywordflow}{return} \textcolor{keyword}{new} Bool( ((Num)x).getValue() <= ((Num)y).getValue() );}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{    \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{enummain_1_1java_1_1com_1_1tsan_1_1chromaynk_1_1Operation_a66d41b5a64cc08835b0df35f43ecd22d}\label{enummain_1_1java_1_1com_1_1tsan_1_1chromaynk_1_1Operation_a66d41b5a64cc08835b0df35f43ecd22d}} 
+\index{main.java.com.tsan.chromaynk.Operation@{main.java.com.tsan.chromaynk.Operation}!MINUS@{MINUS}}
+\index{MINUS@{MINUS}!main.java.com.tsan.chromaynk.Operation@{main.java.com.tsan.chromaynk.Operation}}
+\doxysubsubsection{\texorpdfstring{MINUS}{MINUS}}
+{\footnotesize\ttfamily main.\+java.\+com.\+tsan.\+chromaynk.\+Operation.\+MINUS}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=(\textcolor{stringliteral}{"{}-\/"{}})\{}
+\DoxyCodeLine{        @Override}
+\DoxyCodeLine{        \textcolor{keyword}{public} Variable eval(Variable x, Variable y) \textcolor{keywordflow}{throws} VariableTypeMismatchException, VariableMissingException}
+\DoxyCodeLine{        \{}
+\DoxyCodeLine{            \textcolor{keywordflow}{if}(x == \textcolor{keyword}{null} | y == \textcolor{keyword}{null}) \textcolor{keywordflow}{throw} \textcolor{keyword}{new} VariableMissingException(\textcolor{stringliteral}{"{}Substraction: "{}}+x+\textcolor{stringliteral}{"{} "{}}+y);}
+\DoxyCodeLine{            \textcolor{keywordflow}{if}(!(x instanceof Num \& y instanceof Num)) \textcolor{keywordflow}{throw} \textcolor{keyword}{new} VariableTypeMismatchException(\textcolor{stringliteral}{"{}Substraction: "{}}+x+\textcolor{stringliteral}{"{} "{}}+y);}
+\DoxyCodeLine{            \textcolor{keywordflow}{return} \textcolor{keyword}{new} Num( ((Num)x).getValue() -\/ ((Num)y).getValue() );}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{    \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{enummain_1_1java_1_1com_1_1tsan_1_1chromaynk_1_1Operation_aea845de97f6c4486eb1dda962e94806e}\label{enummain_1_1java_1_1com_1_1tsan_1_1chromaynk_1_1Operation_aea845de97f6c4486eb1dda962e94806e}} 
+\index{main.java.com.tsan.chromaynk.Operation@{main.java.com.tsan.chromaynk.Operation}!MULT@{MULT}}
+\index{MULT@{MULT}!main.java.com.tsan.chromaynk.Operation@{main.java.com.tsan.chromaynk.Operation}}
+\doxysubsubsection{\texorpdfstring{MULT}{MULT}}
+{\footnotesize\ttfamily main.\+java.\+com.\+tsan.\+chromaynk.\+Operation.\+MULT}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=(\textcolor{stringliteral}{"{}*"{}})\{}
+\DoxyCodeLine{        @Override}
+\DoxyCodeLine{        \textcolor{keyword}{public} Variable eval(Variable x, Variable y) \textcolor{keywordflow}{throws} VariableTypeMismatchException, VariableMissingException}
+\DoxyCodeLine{        \{}
+\DoxyCodeLine{            \textcolor{keywordflow}{if}(x == \textcolor{keyword}{null} | y == \textcolor{keyword}{null}) \textcolor{keywordflow}{throw} \textcolor{keyword}{new} VariableMissingException(\textcolor{stringliteral}{"{}Multiplication: "{}}+x+\textcolor{stringliteral}{"{} "{}}+y);}
+\DoxyCodeLine{            \textcolor{keywordflow}{if}(!(x instanceof Num \& y instanceof Num)) \textcolor{keywordflow}{throw} \textcolor{keyword}{new} VariableTypeMismatchException(\textcolor{stringliteral}{"{}Multiplication: "{}}+x+\textcolor{stringliteral}{"{} "{}}+y);}
+\DoxyCodeLine{            \textcolor{keywordflow}{return} \textcolor{keyword}{new} Num( ((Num)x).getValue() * ((Num)y).getValue() );}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{    \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{enummain_1_1java_1_1com_1_1tsan_1_1chromaynk_1_1Operation_a9699b7e691de504896f383cedf040586}\label{enummain_1_1java_1_1com_1_1tsan_1_1chromaynk_1_1Operation_a9699b7e691de504896f383cedf040586}} 
+\index{main.java.com.tsan.chromaynk.Operation@{main.java.com.tsan.chromaynk.Operation}!NEQ@{NEQ}}
+\index{NEQ@{NEQ}!main.java.com.tsan.chromaynk.Operation@{main.java.com.tsan.chromaynk.Operation}}
+\doxysubsubsection{\texorpdfstring{NEQ}{NEQ}}
+{\footnotesize\ttfamily main.\+java.\+com.\+tsan.\+chromaynk.\+Operation.\+NEQ}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=(\textcolor{stringliteral}{"{}!="{}})\{}
+\DoxyCodeLine{        @Override}
+\DoxyCodeLine{        \textcolor{keyword}{public} Variable eval(Variable x, Variable y) \textcolor{keywordflow}{throws} VariableTypeMismatchException, VariableMissingException}
+\DoxyCodeLine{        \{}
+\DoxyCodeLine{            \textcolor{keywordflow}{if}(x == \textcolor{keyword}{null} | y == \textcolor{keyword}{null}) \textcolor{keywordflow}{throw} \textcolor{keyword}{new} VariableMissingException(\textcolor{stringliteral}{"{}Not equals operator: "{}}+x+\textcolor{stringliteral}{"{} "{}}+y);}
+\DoxyCodeLine{            \textcolor{keywordflow}{return} \textcolor{keyword}{new} Bool( !x.equals(y) );}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{    \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{enummain_1_1java_1_1com_1_1tsan_1_1chromaynk_1_1Operation_a0d04a8cb9d1ca69be9fc9751a8ea0764}\label{enummain_1_1java_1_1com_1_1tsan_1_1chromaynk_1_1Operation_a0d04a8cb9d1ca69be9fc9751a8ea0764}} 
+\index{main.java.com.tsan.chromaynk.Operation@{main.java.com.tsan.chromaynk.Operation}!NOT@{NOT}}
+\index{NOT@{NOT}!main.java.com.tsan.chromaynk.Operation@{main.java.com.tsan.chromaynk.Operation}}
+\doxysubsubsection{\texorpdfstring{NOT}{NOT}}
+{\footnotesize\ttfamily main.\+java.\+com.\+tsan.\+chromaynk.\+Operation.\+NOT}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=(\textcolor{stringliteral}{"{}!"{}})\{}
+\DoxyCodeLine{        @Override}
+\DoxyCodeLine{        \textcolor{keyword}{public} Variable eval(Variable x, Variable y) \textcolor{keywordflow}{throws} VariableTypeMismatchException, VariableMissingException}
+\DoxyCodeLine{        \{}
+\DoxyCodeLine{            \textcolor{keywordflow}{if}(x == \textcolor{keyword}{null}) \textcolor{keywordflow}{throw} \textcolor{keyword}{new} VariableMissingException(\textcolor{stringliteral}{"{}Not operator: "{}}+x);}
+\DoxyCodeLine{            \textcolor{keywordflow}{if}(!(x instanceof Num \& y instanceof Num)) \textcolor{keywordflow}{return} \textcolor{keyword}{null};}
+\DoxyCodeLine{            \textcolor{keywordflow}{return} \textcolor{keyword}{new} Bool( !x.isTrue() );}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{    \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{enummain_1_1java_1_1com_1_1tsan_1_1chromaynk_1_1Operation_ad65265a85b281b62f22cd6eab26e6d3b}\label{enummain_1_1java_1_1com_1_1tsan_1_1chromaynk_1_1Operation_ad65265a85b281b62f22cd6eab26e6d3b}} 
+\index{main.java.com.tsan.chromaynk.Operation@{main.java.com.tsan.chromaynk.Operation}!OR@{OR}}
+\index{OR@{OR}!main.java.com.tsan.chromaynk.Operation@{main.java.com.tsan.chromaynk.Operation}}
+\doxysubsubsection{\texorpdfstring{OR}{OR}}
+{\footnotesize\ttfamily main.\+java.\+com.\+tsan.\+chromaynk.\+Operation.\+OR}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=(\textcolor{stringliteral}{"{}|"{}})\{}
+\DoxyCodeLine{        @Override}
+\DoxyCodeLine{        \textcolor{keyword}{public} Variable eval(Variable x, Variable y) \textcolor{keywordflow}{throws} VariableTypeMismatchException, VariableMissingException}
+\DoxyCodeLine{        \{}
+\DoxyCodeLine{            }
+\DoxyCodeLine{            \textcolor{keywordflow}{if}(x == \textcolor{keyword}{null} | y == \textcolor{keyword}{null}) \textcolor{keywordflow}{throw} \textcolor{keyword}{new} VariableMissingException(\textcolor{stringliteral}{"{}Or operator: "{}}+x+\textcolor{stringliteral}{"{} "{}}+y);}
+\DoxyCodeLine{            \textcolor{keywordflow}{if}((x instanceof Str | y instanceof Str)) \textcolor{keywordflow}{throw} \textcolor{keyword}{new} VariableTypeMismatchException(\textcolor{stringliteral}{"{}Or operator: "{}}+x+\textcolor{stringliteral}{"{} "{}}+y);}
+\DoxyCodeLine{            \textcolor{keywordflow}{return} \textcolor{keyword}{new} Bool( x.isTrue() | y.isTrue() );}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{    \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{enummain_1_1java_1_1com_1_1tsan_1_1chromaynk_1_1Operation_a50a6efdae559aedb62f056ecbe3215db}\label{enummain_1_1java_1_1com_1_1tsan_1_1chromaynk_1_1Operation_a50a6efdae559aedb62f056ecbe3215db}} 
+\index{main.java.com.tsan.chromaynk.Operation@{main.java.com.tsan.chromaynk.Operation}!PLUS@{PLUS}}
+\index{PLUS@{PLUS}!main.java.com.tsan.chromaynk.Operation@{main.java.com.tsan.chromaynk.Operation}}
+\doxysubsubsection{\texorpdfstring{PLUS}{PLUS}}
+{\footnotesize\ttfamily main.\+java.\+com.\+tsan.\+chromaynk.\+Operation.\+PLUS}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=(\textcolor{stringliteral}{"{}+"{}})\{}
+\DoxyCodeLine{        @Override}
+\DoxyCodeLine{        \textcolor{keyword}{public} Variable eval(Variable x, Variable y) \textcolor{keywordflow}{throws} VariableTypeMismatchException, VariableMissingException}
+\DoxyCodeLine{        \{}
+\DoxyCodeLine{            \textcolor{keywordflow}{if}(x == \textcolor{keyword}{null} | y == \textcolor{keyword}{null}) \textcolor{keywordflow}{throw} \textcolor{keyword}{new} VariableMissingException(\textcolor{stringliteral}{"{}Addition: "{}}+x+\textcolor{stringliteral}{"{} "{}}+y);}
+\DoxyCodeLine{            \textcolor{keywordflow}{if}(!(x instanceof Num \& y instanceof Num)) \textcolor{keywordflow}{throw} \textcolor{keyword}{new} VariableTypeMismatchException(\textcolor{stringliteral}{"{}Addition: "{}}+x+\textcolor{stringliteral}{"{} "{}}+y);}
+\DoxyCodeLine{            \textcolor{keywordflow}{return} \textcolor{keyword}{new} Num( ((Num)x).getValue() + ((Num)y).getValue() );}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{    \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{enummain_1_1java_1_1com_1_1tsan_1_1chromaynk_1_1Operation_a660220045569919e57aefc8ab2f39749}\label{enummain_1_1java_1_1com_1_1tsan_1_1chromaynk_1_1Operation_a660220045569919e57aefc8ab2f39749}} 
+\index{main.java.com.tsan.chromaynk.Operation@{main.java.com.tsan.chromaynk.Operation}!SUP@{SUP}}
+\index{SUP@{SUP}!main.java.com.tsan.chromaynk.Operation@{main.java.com.tsan.chromaynk.Operation}}
+\doxysubsubsection{\texorpdfstring{SUP}{SUP}}
+{\footnotesize\ttfamily main.\+java.\+com.\+tsan.\+chromaynk.\+Operation.\+SUP}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=(\textcolor{stringliteral}{"{}>"{}})\{}
+\DoxyCodeLine{        @Override}
+\DoxyCodeLine{        \textcolor{keyword}{public} Variable eval(Variable x, Variable y) \textcolor{keywordflow}{throws} VariableTypeMismatchException, VariableMissingException}
+\DoxyCodeLine{        \{}
+\DoxyCodeLine{            \textcolor{keywordflow}{if}(x == \textcolor{keyword}{null} | y == \textcolor{keyword}{null}) \textcolor{keywordflow}{throw} \textcolor{keyword}{new} VariableMissingException(\textcolor{stringliteral}{"{}Superior operator: "{}}+x+\textcolor{stringliteral}{"{} "{}}+y);}
+\DoxyCodeLine{            \textcolor{keywordflow}{if}(!(x instanceof Num \& y instanceof Num)) \textcolor{keywordflow}{return} \textcolor{keyword}{null};}
+\DoxyCodeLine{            \textcolor{keywordflow}{return} \textcolor{keyword}{new} Bool( ((Num)x).getValue() > ((Num)y).getValue() );}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{    \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{enummain_1_1java_1_1com_1_1tsan_1_1chromaynk_1_1Operation_a3c34d62d8d9a2ee69459247d065e67f4}\label{enummain_1_1java_1_1com_1_1tsan_1_1chromaynk_1_1Operation_a3c34d62d8d9a2ee69459247d065e67f4}} 
+\index{main.java.com.tsan.chromaynk.Operation@{main.java.com.tsan.chromaynk.Operation}!SUPEQ@{SUPEQ}}
+\index{SUPEQ@{SUPEQ}!main.java.com.tsan.chromaynk.Operation@{main.java.com.tsan.chromaynk.Operation}}
+\doxysubsubsection{\texorpdfstring{SUPEQ}{SUPEQ}}
+{\footnotesize\ttfamily main.\+java.\+com.\+tsan.\+chromaynk.\+Operation.\+SUPEQ}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=(\textcolor{stringliteral}{"{}>="{}})\{}
+\DoxyCodeLine{        @Override}
+\DoxyCodeLine{        \textcolor{keyword}{public} Variable eval(Variable x, Variable y) \textcolor{keywordflow}{throws} VariableTypeMismatchException, VariableMissingException}
+\DoxyCodeLine{        \{}
+\DoxyCodeLine{            \textcolor{keywordflow}{if}(x == \textcolor{keyword}{null} | y == \textcolor{keyword}{null}) \textcolor{keywordflow}{throw} \textcolor{keyword}{new} VariableMissingException(\textcolor{stringliteral}{"{}Sup or equal operator: "{}}+x+\textcolor{stringliteral}{"{} "{}}+y);}
+\DoxyCodeLine{            \textcolor{keywordflow}{if}(!(x instanceof Num \& y instanceof Num)) \textcolor{keywordflow}{return} \textcolor{keyword}{null};}
+\DoxyCodeLine{            \textcolor{keywordflow}{return} \textcolor{keyword}{new} Bool( ((Num)x).getValue() >= ((Num)y).getValue() );}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{    \}}
+
+\end{DoxyCode}
+
+
+The documentation for this enum was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/com/tsan/chromaynk/Operation.\+java\end{DoxyCompactItemize}

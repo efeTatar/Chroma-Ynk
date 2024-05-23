@@ -28,12 +28,12 @@
          */
         public void display()
         {
-            for(Token t : tokens)
-                System.out.println(t);
+            for(Token t : tokens) System.out.println(t);
         }
 
-        /*
+        /**
          * 
+         * @param file
          */
         public void tokenize(String file)
         {
@@ -49,6 +49,13 @@
                     {
                         char c = s.charAt(i);
 
+                        // skip comment line
+                        if(s.length() >= 2)
+                        {
+                            if(c == '/' & s.charAt(1) == '/') break;
+                        }
+
+                        // skip blankspace
                         if(c == ' ' || c == '\t') continue;
 
                         if(Character.isDigit(c))
@@ -86,12 +93,14 @@
                             }
                         }
 
+                        // Variable names may only begin with an alphabetical character
+                        // but may contain numerical characters
                         if(Character.isAlphabetic(c))
                         {
                             int j = i;
                             while(j+1 < s.length())
                             {
-                                if(Character.isAlphabetic(s.charAt(j+1)))
+                                if(Character.isAlphabetic(s.charAt(j+1)) | Character.isDigit(s.charAt(j+1)))
                                 {
                                     j++;
                                     continue;
@@ -140,7 +149,7 @@
         */
         private boolean isWord(String s)
         {
-            if (s.equals("DEF") || s.equals("NUM") || s.equals("BOOl") || s.equals("STR") || s.equals("IF") || s.equals("FOR") || s.equals("WHILE") || s.equals("MIMIC") || s.equals("MIRROR")) {
+            if (s.equals("DEF") || s.equals("NUM") || s.equals("BOOL") || s.equals("STR") || s.equals("IF") || s.equals("FOR") || s.equals("WHILE") || s.equals("MIMIC") || s.equals("MIRROR") || s.equals("RETURN") || s.equals("DEL")) {
                 //tokens.add(new Token(Token._token.WORD, s));
                 return true;
             }

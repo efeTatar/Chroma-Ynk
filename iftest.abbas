@@ -1,15 +1,25 @@
-NUM nathan = 2;
+NUM nathan = -2;
 NUM francois = 6.3;
-NUM efe = 0;
-NUM res = nathan + francois / (efe+1);
-
-NUM a = 5;
-WHILE(a>0){
-    PRINT(a);
-    IF(1){
-    PRINT(res);
-}
-    a = a - 1;
-}
+NUM efe1 = 0;
+BOOL a;
+NUM res = nathan + (-1 + francois) / (efe1+1);
 
 PRINT(res);
+
+
+NUM i = 1;
+
+NUM exp = 1;
+NUM x = 5;
+NUM fact = 1;
+
+NUM s = 1;
+
+WHILE(i < 100){
+    s = s * x;
+    fact = fact * i;
+    exp = exp + s / fact;
+    i = i + 1;
+}
+
+PRINT(exp);

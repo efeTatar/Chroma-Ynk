@@ -14,23 +14,31 @@ import main.java.com.tsan.chromaynk.Operation;
 import java.util.List;
 import java.util.Map;
 import java.util.Stack;
+
+import javax.swing.text.html.HTMLDocument.Iterator;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
 import main.java.com.tsan.chromaynk.tokenizer.Token;
 
-
 public class Parser {
+
 
     public Parser(){}
 
-    /*
+    /**
+     * This is the main parse method, it redirects tokens to corresponding methods<br>
+     * It is used to parse bodies
      * 
+     * @param iterator
+     * @return
+     * @throws ParsingFailedException
      */
     public Expression parse(TokenIterator iterator) throws ParsingFailedException
     {
-        System.out.println("main parse method");
+        System.out.println("Parsing: body");
         List<Expression> list = new ArrayList<Expression>(); 
         
         try
@@ -66,12 +74,14 @@ public class Parser {
         return new ListExpression(list);
     }
 
-    /*
+    /**
      * 
+     * @param iterator
+     * @return
      */
     public Expression parsePrint(TokenIterator iterator)
     {
-        System.out.println("print parse method");
+        System.out.println("Parsing: print");
         iterator.next();
         Expression print = new PrintExpression(iterator.next().getValue());
         iterator.next();
@@ -80,13 +90,18 @@ public class Parser {
         return print;
     }
 
-    /*
-     * method parses tokens relating to name
-     * such as variables, instructions and functions
+    /**
+     * This method redirects token to corresponding method<br>
+     * Parses value assignments, function calls, etc...
+     * 
+     * @param iterator
+     * @return
+     * @throws SyntaxErrorException
+     * @throws ParsingFailedException
      */
     public Expression parseName(TokenIterator iterator) throws SyntaxErrorException, ParsingFailedException
     {
-        System.out.println("name parse method");
+        System.out.println("Parsing: name");
         String name = iterator.current().getValue();
 
         try
@@ -95,8 +110,7 @@ public class Parser {
 
                 case "PRINT":
                     return parsePrint(iterator);
-            
-                // throw exception
+                
                 default:
                     if(iterator.next().getType() == Token.tokenType.LPAREN) return null;
                     iterator.previous();
@@ -116,12 +130,17 @@ public class Parser {
 
     }
 
-    /*
-     * method dictates the purpose of given word and redirects to corresponding method 
+    /**
+     * This method redirects token to corresponding method<br>
+     * Parses all keywords
+     * 
+     * @param iterator
+     * @return
+     * @throws ParsingFailedException
      */
     public Expression parseWord(TokenIterator iterator) throws ParsingFailedException
     {
-        System.out.println("word parse method");
+        System.out.println("Parsing: word");
         try{
 
             switch (iterator.current().getValue()) {
@@ -144,24 +163,29 @@ public class Parser {
         }
         catch(SyntaxErrorException e){
             e.display();
-            throw new ParsingFailedException("a parsing error has occured during: parseWord");
+            throw new ParsingFailedException("Parsing error occured during WORD parsing: syntax error");
         }
         catch(ParsingFailedException e){
             e.display();
-            throw new ParsingFailedException("parsing error");
+            throw new ParsingFailedException("Parsing error occured during WORD parsing: parsing failed");
         }
 
         return null;
         
     }
 
-    /*
-     * Method parses tokens related to variable creation
-     * method parses initialisation process if any
+    /**
+     * This method parses variable creation processes
+     * redo method
+     * 
+     * @param iterator
+     * @return
+     * @throws SyntaxErrorException
+     * @throws ParsingFailedException
      */
     private Expression parseVariableCreation(TokenIterator iterator) throws SyntaxErrorException, ParsingFailedException
     {
-        System.out.println("variable creation parse method");
+        System.out.println("Parsing: variable creation");
         List<Expression> list = new ArrayList<Expression>();
         String VariableType = iterator.current().getValue();
         if(iterator.next().getType() != Token.tokenType.NAME) throw new SyntaxErrorException(VariableType + "statement must be followed by a variable name");
@@ -201,10 +225,13 @@ public class Parser {
             try{ value = parseOperation(iterator); }
             catch(ParsingFailedException e){
                 e.display();
-                throw new ParsingFailedException("parsing failed in parseVariableCreation");
+                throw new ParsingFailedException("Parsing error occured in variable creation");
+            }
+            catch(SyntaxErrorException e){
+                throw new ParsingFailedException("Parsing error occured in variable creation: syntax error");
             }
 
-            if(iterator.current().getType() != Token.tokenType.SEMICOL) throw new SyntaxErrorException("Variable declaration must be followed by ';' to end the statement");
+            if(iterator.current().getType() != Token.tokenType.SEMICOL) throw new SyntaxErrorException("Parsing error occured in variable creation: variable declaration must be followed by ';' to end the statement");
             iterator.next();
             Expression assign = new AssignExpression(variableName, value);
             list.add(assign);
@@ -212,13 +239,21 @@ public class Parser {
             return new ListExpression(list);
         }
 
-        throw new SyntaxErrorException("Variable declaration must be followed by ';' to end the statement\nor '=' to initialise the variable with a value");
+        throw new SyntaxErrorException("Parsing error occured in variable creation: Variable declaration must be followed by ';' or '='");
 
     }
 
+    /**
+     * This method parses value assignment processes
+     * 
+     * @param iterator
+     * @return
+     * @throws SyntaxErrorException
+     * @throws ParsingFailedException
+     */
     private Expression parseAssignement(TokenIterator iterator) throws SyntaxErrorException, ParsingFailedException
     {
-        System.out.println("assigement parse method");
+        System.out.println("Parsing: value assignement");
         String name = iterator.current().getValue();
         iterator.next(); // token: = sign
         iterator.next(); // start of operation
@@ -227,78 +262,93 @@ public class Parser {
         try{ value = parseOperation(iterator); }
         catch(ParsingFailedException e){
             e.display();
-            throw new ParsingFailedException("parsing failed");
+            throw new ParsingFailedException("Parsing error occured in while block");
         }
         catch(SyntaxErrorException e)
         {
             e.display();
-            throw new ParsingFailedException("parsing failed");
+            throw new ParsingFailedException("Parsing error occured in while block: syntax error");
         }
         
-        if(iterator.current().getType() != Token.tokenType.SEMICOL) throw new SyntaxErrorException("Value assignement must be followed by ';'");
+        if(iterator.current().getType() != Token.tokenType.SEMICOL) throw new SyntaxErrorException("Parsing error occured in value assignment: value must be followed by ';'");
         iterator.next();
         return new AssignExpression(name, value);
     }
 
-    /*
-     * rewrite method when operation parsing is done !!!
+    /**
+     * This method parses if blocks
+     * 
+     * @param iterator
+     * @return
+     * @throws ParsingFailedException
      */
     private Expression parseIfBlock(TokenIterator iterator) throws ParsingFailedException
     {
         try{
-            System.out.println("if parse method");
+            System.out.println("Parsing: if");
             iterator.next();
             Assignable condition = parseOperation(iterator);
-            if(iterator.current().getType() != Token.tokenType.LBRACK) throw new ParsingFailedException("if bug l brack");
+            if(iterator.current().getType() != Token.tokenType.LBRACK) throw new ParsingFailedException("Parsing error occured in if block: left bracket must follow condition");
             iterator.next();
             Expression body = parse(iterator);
-            if(iterator.current().getType() != Token.tokenType.RBRACK) throw new ParsingFailedException("if bug r brack");
+            if(iterator.current().getType() != Token.tokenType.RBRACK) throw new ParsingFailedException("Parsing error occured in if block: body must end with '{'");
             iterator.next();
             return new IfExpression(condition, body);
         }
         catch(ParsingFailedException e){
             e.display();
-            throw new ParsingFailedException("parsing failed in: parseIfBlock");
+            throw new ParsingFailedException("Parsing error occured in if block");
         }
         catch(SyntaxErrorException e){
             e.display();
-            throw new ParsingFailedException("parsing failed in: parseWhileBlock");
+            throw new ParsingFailedException("Parsing error occured in if block: syntax error");
         }
         
     }
 
-    /*
-     * rewrite method when operation parsing is done !!!
+    /**
+     * This method parses while blocks
+     * 
+     * @param iterator
+     * @return
+     * @throws ParsingFailedException
      */
     private Expression parseWhileBlock(TokenIterator iterator) throws ParsingFailedException
     {
         try{
-            System.out.println("while parse method");
+            System.out.println("Parsing: while");
             iterator.next();
             Assignable condition = parseOperation(iterator);
-            if(iterator.current().getType() != Token.tokenType.LBRACK) throw new ParsingFailedException("while bug l brack");
+            if(iterator.current().getType() != Token.tokenType.LBRACK) throw new ParsingFailedException("Parsing error occured in while block: left bracket must follow condition");
             iterator.next();
             Expression body = parse(iterator);
-            if(iterator.current().getType() != Token.tokenType.RBRACK) throw new ParsingFailedException("while bug r brack");
+            if(iterator.current().getType() != Token.tokenType.RBRACK) throw new ParsingFailedException("Parsing error occured in while block: body must end with '{'");
             iterator.next();
             return new WhileExpression(condition, body);
         }
         catch(ParsingFailedException e){
             e.display();
-            throw new ParsingFailedException("parsing failed in: parseWhileBlock");
+            throw new ParsingFailedException("Parsing error occured in while block");
         }
         catch(SyntaxErrorException e){
             e.display();
-            throw new ParsingFailedException("parsing failed in: parseWhileBlock");
+            throw new ParsingFailedException("Parsing error occured in while block: syntax error");
         }
         
     }
 
-    /*
-     * this method is an implementation of the Shunting yard algorithm
+    /**
+     * This method is a direct implementation of the Shunting yard algorithm by Dijkstra<br>
+     * Once tokens are listed in RPN format, they are parsed
+     * 
+     * @param iterator
+     * @return
+     * @throws ParsingFailedException
+     * @throws SyntaxErrorException
      */
     public Assignable parseOperation(TokenIterator iterator) throws ParsingFailedException, SyntaxErrorException
     {
+        System.out.println("Parsing: operation");
         // list of token types relating to operations
         List<Token.tokenType> operationTokens = Arrays.asList(new Token.tokenType[]{
                 Token.tokenType.OP,
@@ -331,11 +381,28 @@ public class Parser {
 
         // bug ???
         // and statements do not act lazy in while conditions
+        // edit: not a bug, && and & discern in meaning
 
-        while(!iterator.ended() & operationTokens.contains(iterator.current().getType()))
+        // This is a direct implementation of the Shunting yard algorithm
+        // For more information, look up the Shunting yard algorithn by Dijkstra
+        while(!iterator.ended() && operationTokens.contains(iterator.current().getType()))
         {
             Token current = iterator.current();
-            //System.out.println(current.getValue());
+
+            if(current.getType() == Token.tokenType.OP && current.getValue().equals("-") && iterator.next().getType() == Token.tokenType.VALUE)
+            {
+                System.out.println("test");
+                iterator.previous();
+                Token previousToken = iterator.previous();
+                iterator.next();
+                if(previousToken.getType() == Token.tokenType.LPAREN || previousToken.getType() == Token.tokenType.OP || previousToken.getValue().equals("="))
+                {
+                    Token value = iterator.next();
+                    value.setValue( String.valueOf( -Double.parseDouble(value.getValue()) ) );
+                    current = value;
+                }
+            }
+
             if(current.getType() == Token.tokenType.VALUE)
                 queue.add(current);
             
@@ -345,12 +412,12 @@ public class Parser {
             else if(current.getType() == Token.tokenType.OP)
             {
                 if(current.getValue().equals("="))
-                    throw new SyntaxErrorException("an error has occured during operation parsing: '=' operator can't be parsed");
+                    throw new SyntaxErrorException("Parsing error occured during operation parsing, '=' operator is not valid");
                 
                 if(!stack.isEmpty())
-                while ( (!stack.isEmpty()) & (!stack.isEmpty() & stack.peek().getType() != Token.tokenType.LPAREN) &
-                        ( properties.get(stack.peek().getValue())[0] > properties.get(current.getValue())[0] |
-                        (properties.get(stack.peek().getValue())[0] == properties.get(current.getValue())[0] & properties.get(current.getValue())[0] == 0) ) )
+                while ( (!stack.isEmpty()) && (!stack.isEmpty() && stack.peek().getType() != Token.tokenType.LPAREN) &&
+                        ( properties.get(stack.peek().getValue())[0] > properties.get(current.getValue())[0] ||
+                        (properties.get(stack.peek().getValue())[0] == properties.get(current.getValue())[0] && properties.get(current.getValue())[0] == 0) ) )
                 {
                     queue.add(stack.pop());
                     if(stack.isEmpty()) break;
@@ -363,12 +430,12 @@ public class Parser {
             
             else if(current.getType() == Token.tokenType.RPAREN)
             {
-                if(stack.isEmpty()) throw new SyntaxErrorException("an error has occured during operation parsing: parentheses are not consistent");
-                while(!stack.isEmpty() & stack.peek().getType() != Token.tokenType.LPAREN) {
+                if(stack.isEmpty()) throw new SyntaxErrorException("Parsing error occured during operation parsing: parentheses are not consistent");
+                while(!stack.isEmpty() && stack.peek().getType() != Token.tokenType.LPAREN) {
                     queue.add(stack.pop());
                 }
                 if(stack.peek().getType() != Token.tokenType.LPAREN | stack.isEmpty())
-                    throw new SyntaxErrorException("an error has occured during operation parsing: parentheses are not consistant");
+                    throw new SyntaxErrorException("Parsing error occured during operation parsing: parentheses are not consistent");
                 
                 stack.pop();
             }
@@ -440,8 +507,11 @@ public class Parser {
         return assignableList.get(0);
     }
 
-    /*
+    /**
      * 
+     * @param operator
+     * @return
+     * @throws UnexistingOperatorException
      */
     public Operation createOp(String operator) throws UnexistingOperatorException
     {
@@ -459,7 +529,7 @@ public class Parser {
             case "<=": return Operation.INFEQ;
             case ">": return Operation.SUP;
             case ">=": return Operation.SUPEQ;
-            default: throw new UnexistingOperatorException("Operator cannot be read: " + operator);
+            default: throw new UnexistingOperatorException("Parsing error occured during operator treatment, unnkown operator: "+operator);
         }
     }
 

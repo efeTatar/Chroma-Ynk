@@ -19,6 +19,11 @@ public class Token {
         else this.value = null;
     }
 
+    public void setValue(String value)
+    {
+        this.value = value;
+    }
+
     public String getValue()
     {
         return this.value;

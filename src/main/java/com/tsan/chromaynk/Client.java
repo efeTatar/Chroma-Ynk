@@ -56,6 +56,11 @@ public class Client {
     public void execute()
     {
         System.out.println("executing");
+        if(main == null)
+        {
+            System.out.println("Execution halted: main function missing");
+            return;
+        }
         main.execute(context);
     }
 
