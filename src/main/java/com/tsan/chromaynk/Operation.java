@@ -126,7 +126,6 @@ public enum Operation {
         public Variable eval(Variable x, Variable y) throws VariableTypeMismatchException, VariableMissingException
         {
             if(x == null) throw new VariableMissingException("Not operator: "+x);
-            if(!(x instanceof Num & y instanceof Num)) return null;
             return new Bool( !x.isTrue() );
         }
     };

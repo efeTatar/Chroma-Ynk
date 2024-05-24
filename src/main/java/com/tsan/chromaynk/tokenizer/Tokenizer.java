@@ -50,9 +50,9 @@
                         char c = s.charAt(i);
 
                         // skip comment line
-                        if(s.length() >= 2)
+                        if(s.length() > i+1)
                         {
-                            if(c == '/' & s.charAt(1) == '/') break;
+                            if(c == '/' && s.charAt(i+1) == '/') break;
                         }
 
                         // skip blankspace
@@ -164,25 +164,25 @@
         {
             switch (c) {
                 case '{':
-                    this.tokens.add(new Token(Token.tokenType.LBRACK));
+                    this.tokens.add(new Token(Token.tokenType.LBRACK, "{"));
                     return true;
                 case '}':
-                    this.tokens.add(new Token(Token.tokenType.RBRACK));
+                    this.tokens.add(new Token(Token.tokenType.RBRACK, "}"));
                     return true;
                 case '(':
-                    this.tokens.add(new Token(Token.tokenType.LPAREN));
+                    this.tokens.add(new Token(Token.tokenType.LPAREN, "("));
                     return true;
                 case ')':
-                    this.tokens.add(new Token(Token.tokenType.RPAREN));
+                    this.tokens.add(new Token(Token.tokenType.RPAREN, ")"));
                     return true;
                 case '"':
-                    this.tokens.add(new Token(Token.tokenType.QUOTE));
+                    this.tokens.add(new Token(Token.tokenType.QUOTE, "'"));
                     return true;
                 case ';':
-                    this.tokens.add(new Token(Token.tokenType.SEMICOL));
+                    this.tokens.add(new Token(Token.tokenType.SEMICOL, ";"));
                     return true;
                 case ',':
-                    this.tokens.add(new Token(Token.tokenType.COMA));
+                    this.tokens.add(new Token(Token.tokenType.COMA, ","));
                     return true;
                 case '+':
                 case '-':

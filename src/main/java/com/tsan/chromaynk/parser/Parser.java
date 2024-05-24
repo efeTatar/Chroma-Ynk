@@ -15,8 +15,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Stack;
 
-import javax.swing.text.html.HTMLDocument.Iterator;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -158,9 +156,12 @@ public class Parser {
 
                 case "WHILE":
                     return parseWhileBlock(iterator);
+                
+                case "DEF":
+                    return parseFunctionCreation(iterator);
 
                 default:
-                    break;
+                    throw new ParsingFailedException("Parsing error occured during WORD parsing: unnkown word, "+iterator.current().getValue());
             }
 
         }
@@ -172,9 +173,27 @@ public class Parser {
             e.display();
             throw new ParsingFailedException("Parsing error occured during WORD parsing: parsing failed");
         }
-
-        return null;
         
+    }
+
+    private Expression parseFunctionCreation(TokenIterator iterator) throws ParsingFailedException, SyntaxErrorException
+    {
+        System.out.println("Parsing: function creation");
+        if(iterator.next().getType() != Token.tokenType.NAME) throw new SyntaxErrorException("Parsing error occured in function creation: DEF must be followed by name");
+        String name = iterator.current().getValue();
+        if(iterator.next().getType() != Token.tokenType.LBRACK) throw new SyntaxErrorException("Parsing error occured in function creation: function body starts with bracket");
+        iterator.next();
+        Expression body;
+        try{
+            body = parse(iterator);
+        }
+        catch(ParsingFailedException e){
+            e.display();
+            throw new ParsingFailedException("Parsing error occured in function creation: body cannot be parsed");
+        }
+        if(iterator.current().getType() != Token.tokenType.RBRACK) throw new SyntaxErrorException("Parsing error occured in function creation: function body ends with bracket");
+        iterator.next();
+        return new FunctionCreateExpression(name, body);
     }
 
     private Expression parseVariableDeletion(TokenIterator iterator) throws SyntaxErrorException
@@ -419,7 +438,7 @@ public class Parser {
                 iterator.previous();
                 Token previousToken = iterator.previous();
                 iterator.next();
-                if(previousToken.getType() == Token.tokenType.LPAREN || previousToken.getType() == Token.tokenType.OP || previousToken.getValue().equals("="))
+                if(previousToken.getType() == Token.tokenType.LPAREN || previousToken.getType() == Token.tokenType.OP)
                 {
                     Token value = iterator.next();
                     value.setValue( String.valueOf( -Double.parseDouble(value.getValue()) ) );

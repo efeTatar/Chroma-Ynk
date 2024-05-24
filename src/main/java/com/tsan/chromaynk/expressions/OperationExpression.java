@@ -34,6 +34,8 @@ public class OperationExpression extends NonTerminalExpression implements Assign
     {
         try 
         {
+            // if x or y null throw exception
+            if(y == null) return op.eval(x.getValue(context), null);
             Variable ret = op.eval(x.getValue(context), y.getValue(context));
             return ret;
         }

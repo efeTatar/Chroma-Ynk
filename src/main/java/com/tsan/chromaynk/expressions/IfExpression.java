@@ -27,6 +27,7 @@ public class IfExpression extends NonTerminalExpression{
         }
         if(condition.getValue(context) == null){
             System.out.println("condition couldnt return value in if statement");
+            return;
         }
         if(condition.getValue(context).isTrue())
         {
