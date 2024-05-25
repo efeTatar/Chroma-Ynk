@@ -57,6 +57,9 @@ public class Parser {
                     case RBRACK:
                         //iterator.next();
                         return new ListExpression(list);
+                    
+                    case EOF:
+                        return new ListExpression(list);
 
                     default:
                         break;
@@ -113,8 +116,17 @@ public class Parser {
                     return parseVariableDeletion(iterator);
                 
                 default:
-                    if(iterator.next().getType() == Token.tokenType.LPAREN) return null;
+                    // keeping bcs i dunno
+                    //if(iterator.next().getType() == Token.tokenType.LPAREN) return null;
+                    //iterator.previous();
+
+                    if(iterator.next().getType() == Token.tokenType.LPAREN)
+                    {
+                        iterator.previous();
+                        return parseFunctionCall(iterator);
+                    }
                     iterator.previous();
+
                     if(iterator.next().getType() == Token.tokenType.OP & iterator.current().getValue().equals("="))
                     {
                         iterator.previous();
@@ -176,6 +188,53 @@ public class Parser {
         
     }
 
+    /**
+     * 
+     * @param iterator
+     * @return
+     * @throws ParsingFailedException
+     * @throws SyntaxErrorException
+     */
+    private Expression parseFunctionCall(TokenIterator iterator) throws ParsingFailedException, SyntaxErrorException
+    {
+        System.out.println("Parsing: function call");
+        String name = iterator.current().getValue();
+        System.out.println(name);
+        if(iterator.next().getType() != Token.tokenType.LPAREN) throw new SyntaxErrorException("Parsing error occured in function call: function parameters must begin with '('");
+        
+        List<Assignable> list = new ArrayList<Assignable>();
+        if(iterator.next().getType() == Token.tokenType.RPAREN){
+            if(iterator.next().getType() != Token.tokenType.SEMICOL) throw new SyntaxErrorException("Parsing error occured in function call: statement must end with ';'");
+            iterator.next();
+            return new FunctionExpression(name, list);
+        }
+
+        try{
+            while(iterator.current().getType() != Token.tokenType.RPAREN)
+            {
+                list.add(parseOperation(iterator));
+            }
+        }
+        catch(SyntaxErrorException e){
+            e.display();
+            throw new ParsingFailedException("Parsing error occured in function call: syntax error");
+        }
+        catch(ParsingFailedException e){
+            e.display();
+            throw new ParsingFailedException("Parsing error occured in function call");
+        }
+        if(iterator.next().getType() != Token.tokenType.SEMICOL) throw new SyntaxErrorException("Parsing error occured in function call: statement must end with ';'");
+        iterator.next();
+        return new FunctionExpression(name, list);
+    }
+
+    /**
+     * 
+     * @param iterator
+     * @return
+     * @throws ParsingFailedException
+     * @throws SyntaxErrorException
+     */
     private Expression parseFunctionCreation(TokenIterator iterator) throws ParsingFailedException, SyntaxErrorException
     {
         System.out.println("Parsing: function creation");
@@ -196,6 +255,12 @@ public class Parser {
         return new FunctionCreateExpression(name, body);
     }
 
+    /**
+     * 
+     * @param iterator
+     * @return
+     * @throws SyntaxErrorException
+     */
     private Expression parseVariableDeletion(TokenIterator iterator) throws SyntaxErrorException
     {
         System.out.println("Parsing: variable deletion");

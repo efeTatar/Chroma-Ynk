@@ -32,7 +32,7 @@ public class FunctionExpression extends NonTerminalExpression implements Assigna
         
         context.getFunction(name).execute(functionContext);
 
-        System.out.println("arg0" + " " + arguments.get(0).getValue(context) + " returned " +functionContext.getReturnValue());
+        //System.out.println("arg0" + " " + arguments.get(0).getValue(context) + " returned " +functionContext.getReturnValue());
     }
 
     public Variable getValue(Context context)

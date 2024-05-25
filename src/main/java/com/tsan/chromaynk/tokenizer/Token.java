@@ -73,6 +73,9 @@ public class Token {
             case COMA:
                 s+="COMA";
                 break;
+            case EOF:
+                s+="EOF";
+                break;
         
             default:
                 break;
@@ -85,7 +88,7 @@ public class Token {
 
     public static enum tokenType
     {
-        WORD, NAME, VALUE, OP, LPAREN, RPAREN, LBRACK, RBRACK, SEMICOL, QUOTE, COMA
+        WORD, NAME, VALUE, OP, LPAREN, RPAREN, LBRACK, RBRACK, SEMICOL, QUOTE, COMA, EOF
     }
     
 }

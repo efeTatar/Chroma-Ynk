@@ -37,7 +37,7 @@ public class TokenIterator {
             return list.get(index);
         }
         catch(IndexOutOfBoundsException e){
-            return null;
+            return new Token(Token.tokenType.EOF, "");
         }
     }
 
