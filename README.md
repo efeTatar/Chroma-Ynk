@@ -12,6 +12,35 @@ and boolean operations. Although the language is standalone, it has additionnal 
 include managing cursors enabling the user to draw lines on a canvas. Because of the nature of the interpreter, the user can manage
 to draw smooth shapes such circles, squares, sinusoidal curves and much more.
 
+### A simple guide to the abbas language
+All files must end with the .abbas extention.<br><br>
+
+Declaring variables:<br>
+There are 3 types available: NUM, STR, BOOL<br>
+{type} {name} [ = {value} ] ;<br><br>
+
+Declaring loops:<br>
+There are 3 loops available: IF, WHILE, FOR<br>
+{type} condition { body }<br><br>
+
+Declaring functions:<br>
+DEF {name} { body }<br><br>
+
+Calling functions:<br>
+functions do not pocess strict parameters but take arguments instead.
+Let exp be a function, in order to call exp, one must:<br>
+exp(operation, operation, operation, ...);<br>
+There parameters will be available to the user as arg0, arg1, ...<br>
+The variable argc is automatically created and stores the number of arguments<br><br>
+
+Return values<br>
+Function can return values at any given moment with the keyword RETURN<br>
+the implicit main function can infact return a value.<br><br>
+
+How to draw ?<br>
+The user has access to the following instructions
+
+
 ## Interface
 The Interface enables the user to interpret .abbas files and visualise outputs. The user can choose to visualise the drawing process
 either step by step or in a constant speed.
