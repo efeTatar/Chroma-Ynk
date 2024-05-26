@@ -26,6 +26,7 @@ retvalue = expF(2);
 PRINT(retvalue);
 
 CURSOR 3;
+SELECT 3;
 
 RETURN 3;
 

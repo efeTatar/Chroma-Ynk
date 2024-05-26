@@ -1,6 +1,7 @@
 package com.tsan.chromaynk;
 
 import com.tsan.chromaynk.tokenizer.Tokenizer;
+import com.example.demo1.InterfaceController;
 import com.tsan.chromaynk.exceptions.ParsingFailedException;
 import com.tsan.chromaynk.exceptions.SyntaxErrorException;
 import com.tsan.chromaynk.expressions.Expression;
@@ -15,8 +16,8 @@ public class Client {
 
     private Expression main;
 
-    public Client(){
-        this.context = new Context();
+    public Client(InterfaceController controller){
+        this.context = new Context(controller);
         this.tokenizer = new Tokenizer();
         this.parser = new Parser();
     }

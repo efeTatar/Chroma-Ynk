@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.tsan.chromaynk.datatypes.Variable;
 import com.tsan.chromaynk.expressions.Expression;
+import com.example.demo1.InterfaceController;
 import com.tsan.chromaynk.datatypes.Cursor;
 
 public class Context {
@@ -20,10 +21,13 @@ public class Context {
 
     private Cursor mainCursor;
 
-    public Context()
+    private InterfaceController controller;
+
+    public Context(InterfaceController controller)
     {
         this.returnValue = null;
         this.returned = false;
+        this.controller = controller;
         this.variable = new HashMap<String, Variable>();
         this.cursor = new HashMap<Integer, Cursor>();
         this.function = new HashMap<String, Expression>();
@@ -40,13 +44,23 @@ public class Context {
 
     public Context deriveContext(Map<String, Variable> variable)
     {
-        Context c = new Context();
+        Context c = new Context(controller);
         c.returnValue = null;
         c.returned = false;
         c.variable = variable;
         c.cursor = this.cursor;
         c.function = this.function;
         return c;
+    }
+
+    public InterfaceController getController()
+    {
+        return controller;
+    }
+
+    public Cursor getMainCursor()
+    {
+        return mainCursor;
     }
 
     public boolean selectCursor(int id)
