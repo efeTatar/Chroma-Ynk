@@ -129,6 +129,12 @@
                             continue;
                         }
 
+                        if(c == '%')
+                        {
+                            this.tokens.add(new Token(Token.tokenType.PERC, String.valueOf(c) ));
+                            continue;
+                        }
+
                         if(evalSymbol(c)) continue;
 
                     }

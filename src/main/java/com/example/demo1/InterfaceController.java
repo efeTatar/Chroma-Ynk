@@ -252,7 +252,7 @@ public class InterfaceController {
             return 0;
         }
         if(percent == 1){
-             distance = Math.max(drawingPane.getPrefWidth(), drawingPane.getPrefHeight()) * distance;
+             distance = Math.max(drawingPane.getPrefWidth(), drawingPane.getPrefHeight()) * distance / 100;
         }
         double newX = c.getX() + distance * Math.cos(Math.toRadians(c.getRotation()));   // Calculates the new cursor coordinates
         double newY = c.getY() + distance * Math.sin(Math.toRadians(c.getRotation()));
@@ -267,7 +267,6 @@ public class InterfaceController {
         System.out.println("Forwarding ... "+"newX = " + newX + ", newY = " + newY);
         gc.strokeLine(c.getX(), c.getY(), newX, newY);        // Draw line from current position to new position
         System.out.println(c.getX() + " " + c.getY());
-        //gc.strokeLine(0, 0, 100, 100);
         c.setX(newX);                               // New coordinates
         c.setY(newY);
         return 1;
@@ -280,7 +279,7 @@ public class InterfaceController {
             return 0;
         }
         if(percent == 1){
-            size = Math.max(drawingPane.getPrefWidth(), drawingPane.getPrefHeight()) * size;
+            size = Math.max(drawingPane.getPrefWidth(), drawingPane.getPrefHeight()) * size / 100;
         }
         double newX = c.getX() - size * Math.cos(Math.toRadians(c.getRotation()));   // Calculates the new cursor coordinates
         double newY = c.getY() - size * Math.sin(Math.toRadians(c.getRotation()));
@@ -323,8 +322,8 @@ public class InterfaceController {
             return 0;
         }
         if(percent == 1){
-             x = drawingPane.getPrefWidth() * x;
-             y = drawingPane.getPrefHeight() * y;
+             x = drawingPane.getPrefWidth() * x / 100;
+             y = drawingPane.getPrefHeight() * y / 100;
         }
 
         x = c.getX() + x;
@@ -350,8 +349,8 @@ public class InterfaceController {
             return 0;
         }
         if(percent == 1){
-            x = drawingPane.getPrefWidth() * x;
-            y = drawingPane.getPrefHeight() * y;
+            x = drawingPane.getPrefWidth() * x / 100;
+            y = drawingPane.getPrefHeight() * y / 100;
         }
         if( x > drawingPane.getWidth() || x < 0){
             System.out.println("You are out of borders, you cannot move outside of " + drawingPane.getWidth());
@@ -383,8 +382,8 @@ public class InterfaceController {
             return 0;
         }
         if(percent == 1){
-            x = drawingPane.getPrefWidth() * x;
-            y = drawingPane.getPrefHeight() * y;
+            x = drawingPane.getPrefWidth() * x / 100;
+            y = drawingPane.getPrefHeight() * y / 100;
         }
         if(c.getX() == x && c.getY() == y){
             c.setRotation(0);

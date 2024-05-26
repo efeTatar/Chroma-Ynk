@@ -132,6 +132,7 @@ public class Parser {
                     if(iterator.next().getType() == Token.tokenType.LPAREN)
                     {
                         iterator.previous();
+                        if(isInstruction(name)) return parseInstruction(iterator);
                         return parseFunctionCall(iterator);
                     }
                     iterator.previous();
@@ -286,6 +287,7 @@ public class Parser {
     {
         System.out.println("Parsing: function call");
         String name = iterator.current().getValue();
+
         System.out.println(name);
         if(iterator.next().getType() != Token.tokenType.LPAREN) throw new SyntaxErrorException("Parsing error occured in function call: function parameters must begin with '('");
         iterator.next();
@@ -328,6 +330,76 @@ public class Parser {
 
         iterator.next();
         return new FunctionExpression(name, list);
+    }
+
+    private boolean isInstruction(String name)
+    {
+        if(name.equals("FWD") || name.equals("BWD") || name.equals("TURN") || name.equals("MOV")
+        || name.equals("POS") || name.equals("HIDE") || name.equals("SHOW") || name.equals("PRESS")
+        || name.equals("COLOR") || name.equals("THICK") || name.equals("LOOKAT")) return true;
+        return false;
+    }
+
+    private Expression parseInstruction(TokenIterator iterator) throws ParsingFailedException, SyntaxErrorException
+    {
+        System.out.println("Parsing: instruction");
+        String name = iterator.current().getValue();
+        boolean percent1 = false, percent2 = false;
+        System.out.println(name);
+        if(iterator.next().getType() != Token.tokenType.LPAREN) throw new SyntaxErrorException("Parsing error occured in function call: function parameters must begin with '('");
+        iterator.next();
+        
+        List<Assignable> list = new ArrayList<Assignable>();
+        
+        if(iterator.current().getType() == Token.tokenType.RPAREN)
+        {
+            if(iterator.next().getType() == Token.tokenType.SEMICOL){
+                iterator.next();
+                return new InstructionExpression(name, list, percent1, percent2);
+            }
+            iterator.previous();
+        }
+
+        while(iterator.current().getType() != Token.tokenType.SEMICOL)
+        {
+            List<Token> parameter = new ArrayList<Token>();
+
+            while(iterator.current().getType() != Token.tokenType.COMA)
+            {
+                if(iterator.current().getType() == Token.tokenType.PERC)
+                {
+                    if(iterator.next().getType() == Token.tokenType.RPAREN)
+                    {
+                        percent2 = true;
+                    }
+                    iterator.previous();
+                    if(iterator.next().getType() == Token.tokenType.COMA)
+                    {
+                        percent1 = true;
+                    }
+                    iterator.previous();
+                }
+                if(iterator.current().getType() == Token.tokenType.RPAREN)
+                {
+                    if(iterator.next().getType() == Token.tokenType.SEMICOL)
+                    {
+                        iterator.previous();
+                        break;
+                    }
+                    iterator.previous();
+                }
+                if(iterator.current().getType() != Token.tokenType.PERC) parameter.add(iterator.current());
+                iterator.next();
+            }
+
+            list.add(parseOperation(new TokenIterator(parameter)));
+            iterator.next();
+        }
+
+        if(iterator.current().getType() != Token.tokenType.SEMICOL) throw new SyntaxErrorException("Parsing error occured in function call: statement must end with ';'");
+
+        iterator.next();
+        return new InstructionExpression(name, list, percent1, percent2);
     }
 
     /**

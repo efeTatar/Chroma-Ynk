@@ -23,10 +23,21 @@ DEF expF{		// this function computes the taylor series for the exponential funct
 NUM retvalue;
 retvalue = expF(2);
 
-PRINT(retvalue);
+//PRINT(retvalue);
 
-CURSOR 3;
-SELECT 3;
+CURSOR 1;
+SELECT 1;
+
+POS(50%,50%);
+
+NUM i = 0;
+WHILE(i<360){
+	FWD(1);
+	TURN(1);
+	i = i+1;
+}
+
+
 
 RETURN 3;
 

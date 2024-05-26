@@ -36,7 +36,6 @@ public class SelectCursorExpression extends TerminalExpression{
             {
                 System.out.println("Cursor selected: "+id);
             }
-            context.getController().FWD(context.getMainCursor(), 100, 0);
             return;
         }
         System.out.println("ERROR in cursor selection expression");
