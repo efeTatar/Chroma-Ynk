@@ -13,11 +13,12 @@ public class Context {
 
     private Map<String, Variable> variable;
     private Map<Integer, Cursor> cursor;
-
     private Map<String, Expression> function;
 
     private Variable returnValue = null;
     private boolean returned = false;
+
+    private Cursor mainCursor;
 
     public Context()
     {
@@ -46,6 +47,35 @@ public class Context {
         c.cursor = this.cursor;
         c.function = this.function;
         return c;
+    }
+
+    public boolean selectCursor(int id)
+    {
+        Cursor c = getCursor(id);
+        if(c == null) return false;
+        mainCursor = c;
+        return true;
+    }
+
+    public boolean addCursor(int id, Cursor c)
+    {
+        if(cursor.keySet().contains(id)) return false;
+        cursor.put(id, c);
+        return true;
+    }
+
+    public Cursor getCursor(int id)
+    {
+        if(!cursor.keySet().contains(id)) return null;
+        return cursor.get(id);
+    }
+
+    public boolean removeCursor(Integer id)
+    {
+        if(!cursor.keySet().contains(id)) return false;
+        Cursor c = cursor.remove(id);
+        if(c.equals(mainCursor)) mainCursor = null;
+        return true;
     }
 
     public Expression getFunction(String name)
@@ -105,12 +135,6 @@ public class Context {
     {
         if(!variable.keySet().contains(variableName)) return null;
         return variable.get(variableName);
-    }
-
-    public boolean addCursor(Integer id)
-    {
-        cursor.put(id, new Cursor());
-        return true;
     }
 
     // private

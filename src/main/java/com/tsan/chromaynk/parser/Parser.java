@@ -115,6 +115,15 @@ public class Parser {
                 case "DEL":
                     return parseVariableDeletion(iterator);
                 
+                case "CURSOR":
+                    return parseCursorCreation(iterator);
+                
+                case "REMOVE":
+                    return parseCursorDeletion(iterator);
+                
+                case "SELECT":
+                    return parseCursorSelection(iterator);
+
                 default:
                     // keeping bcs i dunno
                     //if(iterator.next().getType() == Token.tokenType.LPAREN) return null;
@@ -192,6 +201,36 @@ public class Parser {
             throw new ParsingFailedException("Parsing error occured during WORD parsing: parsing failed");
         }
         
+    }
+
+    private Expression parseCursorSelection(TokenIterator iterator) throws ParsingFailedException, SyntaxErrorException
+    {
+        System.out.println("Parsing: cursor selection");
+        iterator.next();
+        Assignable id = parseOperation(iterator);
+        if(iterator.current().getType() != Token.tokenType.SEMICOL) throw new SyntaxErrorException("Parsing error occured in cursor selection: expression must end with ';'");
+        iterator.next();
+        return new SelectCursorExpression(id);
+    }
+
+    private Expression parseCursorDeletion(TokenIterator iterator) throws ParsingFailedException, SyntaxErrorException
+    {
+        System.out.println("Parsing: cursor deletion");
+        iterator.next();
+        Assignable id = parseOperation(iterator);
+        if(iterator.current().getType() != Token.tokenType.SEMICOL) throw new SyntaxErrorException("Parsing error occured in cursor deletion: expression must end with ';'");
+        iterator.next();
+        return new CursorDeletionExpression(id);
+    }
+
+    private Expression parseCursorCreation(TokenIterator iterator) throws ParsingFailedException, SyntaxErrorException
+    {
+        System.out.println("Parsing: cursor creation");
+        iterator.next();
+        Assignable id = parseOperation(iterator);
+        if(iterator.current().getType() != Token.tokenType.SEMICOL) throw new SyntaxErrorException("Parsing error occured in cursor creation: expression must end with ';'");
+        iterator.next();
+        return new CreateCursorExpression(id);
     }
 
     private Expression parseReturnExpression(TokenIterator iterator) throws ParsingFailedException, SyntaxErrorException

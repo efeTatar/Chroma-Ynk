@@ -7,12 +7,12 @@ NUM efe1 = 0;
 BOOL a = 0;
 NUM res = nathan + (francois - 1) / (efe1+1);
 //DEL(res);
-PRINT(res);
+//PRINT(res);
 
 // NOT OPERATOR TEST
 IF(!a)
 {
-    PRINT(a);
+    //PRINT(a);
 }
 
 // FUNCTION DECLERATION TEST
@@ -39,6 +39,12 @@ NUM retvalue;
 retvalue = expF();
 
 PRINT(retvalue);
+
+//REMOVE(retvalue);
+//CURSOR(retvalue);
+//SELECT(retvalue);
+//REMOVE(retvalue);
+//SELECT(retvalue);
 
 RETURN retvalue / 2 + 1 ;
 

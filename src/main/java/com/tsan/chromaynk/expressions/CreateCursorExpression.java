@@ -1,20 +1,40 @@
 package main.java.com.tsan.chromaynk.expressions;
 
 import main.java.com.tsan.chromaynk.Context;
+import main.java.com.tsan.chromaynk.datatypes.*;
 
 public class CreateCursorExpression extends TerminalExpression{
 
-    private Integer id;
+    private Assignable id;
 
-    public CreateCursorExpression(Integer id)
+    public CreateCursorExpression(Assignable id)
     {
         this.id = id;
     }
 
     public void execute(Context context)
     {
-        // catch exception ?
-        context.addCursor(id);
+        Variable var = id.getValue(context);
+        Integer id;
+        if(var instanceof Str)
+        {
+            System.out.println("Failed to create cursor: String cannot be converted to integer");
+            return;
+        }
+        if(var instanceof Bool)
+        {
+            System.out.println("Failed to create cursor: cannot initialise cursor id from bool");
+            return;
+        }
+        if(var instanceof Num)
+        {
+            id = ((Num)var).getValue().intValue();
+            if(context.addCursor(id, new Cursor()))
+            {
+                System.out.println("Cursor created: "+id);
+            }
+            return;
+        }
     }
     
 }
