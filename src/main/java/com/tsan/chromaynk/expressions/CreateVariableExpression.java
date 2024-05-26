@@ -1,9 +1,9 @@
-package main.java.com.tsan.chromaynk.expressions;
+package com.tsan.chromaynk.expressions;
 
-import main.java.com.tsan.chromaynk.Context;
-import main.java.com.tsan.chromaynk.datatypes.Bool;
-import main.java.com.tsan.chromaynk.datatypes.Num;
-import main.java.com.tsan.chromaynk.datatypes.Str;
+import com.tsan.chromaynk.Context;
+import com.tsan.chromaynk.datatypes.Bool;
+import com.tsan.chromaynk.datatypes.Num;
+import com.tsan.chromaynk.datatypes.Str;
 
 public class CreateVariableExpression extends TerminalExpression{
 

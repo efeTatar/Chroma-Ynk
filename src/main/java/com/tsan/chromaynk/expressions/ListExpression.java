@@ -1,8 +1,8 @@
-package main.java.com.tsan.chromaynk.expressions;
+package com.tsan.chromaynk.expressions;
 
 import java.util.ArrayList;
 import java.util.List;
-import main.java.com.tsan.chromaynk.Context;
+import com.tsan.chromaynk.Context;
 
 public class ListExpression extends NonTerminalExpression{
 

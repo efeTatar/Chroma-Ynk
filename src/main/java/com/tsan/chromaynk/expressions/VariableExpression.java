@@ -1,7 +1,7 @@
-package main.java.com.tsan.chromaynk.expressions;
+package com.tsan.chromaynk.expressions;
 
-import main.java.com.tsan.chromaynk.Context;
-import main.java.com.tsan.chromaynk.datatypes.Variable;
+import com.tsan.chromaynk.Context;
+import com.tsan.chromaynk.datatypes.Variable;
 
 public class VariableExpression extends TerminalExpression implements Assignable{
     

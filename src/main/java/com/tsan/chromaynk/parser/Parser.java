@@ -1,15 +1,15 @@
-package main.java.com.tsan.chromaynk.parser;
+package com.tsan.chromaynk.parser;
 
-import main.java.com.tsan.chromaynk.datatypes.Num;
-import main.java.com.tsan.chromaynk.datatypes.Variable;
-import main.java.com.tsan.chromaynk.exceptions.ParsingFailedException;
-import main.java.com.tsan.chromaynk.exceptions.SyntaxErrorException;
-import main.java.com.tsan.chromaynk.exceptions.UnexistingOperatorException;
-import main.java.com.tsan.chromaynk.expressions.*;
-import main.java.com.tsan.chromaynk.Context;
-import main.java.com.tsan.chromaynk.tokenizer.TokenIterator;
-import main.java.com.tsan.chromaynk.tokenizer.Token.tokenType;
-import main.java.com.tsan.chromaynk.Operation;
+import com.tsan.chromaynk.datatypes.Num;
+import com.tsan.chromaynk.datatypes.Variable;
+import com.tsan.chromaynk.exceptions.ParsingFailedException;
+import com.tsan.chromaynk.exceptions.SyntaxErrorException;
+import com.tsan.chromaynk.exceptions.UnexistingOperatorException;
+import com.tsan.chromaynk.expressions.*;
+import com.tsan.chromaynk.Context;
+import com.tsan.chromaynk.tokenizer.TokenIterator;
+import com.tsan.chromaynk.tokenizer.Token.tokenType;
+import com.tsan.chromaynk.Operation;
 
 import java.util.List;
 import java.util.Map;
@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
-import main.java.com.tsan.chromaynk.tokenizer.Token;
+import com.tsan.chromaynk.tokenizer.Token;
 
 public class Parser {
 

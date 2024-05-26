@@ -1,10 +1,10 @@
-package main.java.com.tsan.chromaynk;
+package com.tsan.chromaynk;
 
-import main.java.com.tsan.chromaynk.tokenizer.Tokenizer;
-import main.java.com.tsan.chromaynk.exceptions.ParsingFailedException;
-import main.java.com.tsan.chromaynk.exceptions.SyntaxErrorException;
-import main.java.com.tsan.chromaynk.expressions.Expression;
-import main.java.com.tsan.chromaynk.parser.Parser;
+import com.tsan.chromaynk.tokenizer.Tokenizer;
+import com.tsan.chromaynk.exceptions.ParsingFailedException;
+import com.tsan.chromaynk.exceptions.SyntaxErrorException;
+import com.tsan.chromaynk.expressions.Expression;
+import com.tsan.chromaynk.parser.Parser;
 
 public class Client {
 
@@ -23,7 +23,6 @@ public class Client {
 
     public void tokenize(String file)
     {
-        System.out.println("tokenizing");
         tokenizer.tokenize(file);   
     }
 
@@ -43,7 +42,6 @@ public class Client {
 
     public void parse()
     {
-        System.out.println("parsing");
         try{
             main = parser.parse(tokenizer.getTokenList());
         }
@@ -55,7 +53,6 @@ public class Client {
 
     public void execute()
     {
-        System.out.println("executing");
         if(main == null)
         {
             System.out.println("Execution halted: main function missing");

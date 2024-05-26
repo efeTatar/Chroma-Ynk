@@ -1,4 +1,4 @@
-    package main.java.com.tsan.chromaynk.tokenizer;
+    package com.tsan.chromaynk.tokenizer;
 
     import java.util.List;
     import java.io.File;

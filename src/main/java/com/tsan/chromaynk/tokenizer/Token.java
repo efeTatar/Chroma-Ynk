@@ -1,4 +1,4 @@
-package main.java.com.tsan.chromaynk.tokenizer;
+package com.tsan.chromaynk.tokenizer;
 
 public class Token {
 

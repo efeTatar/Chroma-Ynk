@@ -1,14 +1,14 @@
 
-DEF expF{           // this function computes the taylor series for the exponential function exp(x)
+DEF expF{		// this function computes the taylor series for the exponential function exp(x)
 
     IF(argc < 1){RETURN 0-1;}
 
-    NUM x = arg0;      // x value in exp(x)
+    NUM x = arg0;	// x value in exp(x)
 
-    NUM n = 1;      // incrementer of taylor series, first term (n = 0) already counted in
-    NUM exp = 1;    // first term (n = 0) in taylor series, n starts from 1
-    NUM fact = 1;   // factorial variable starts at one and multiplied at each incrementation
-    NUM s = 1;      // x to the power of n
+    NUM n = 1;		// incrementer of taylor series, first term (n = 0) already counted in
+    NUM exp = 1;	// first term (n = 0) in taylor series, n starts from 1
+    NUM fact = 1;	// factorial variable starts at one and multiplied at each incrementation
+    NUM s = 1;		// x to the power of n
 
     WHILE(n < 100){
         s = s * x;
@@ -17,7 +17,7 @@ DEF expF{           // this function computes the taylor series for the exponent
         n = n + 1;
     }
 
-    RETURN(exp);    // return exp(x)
+    RETURN(exp);	// return exp(x)
 }
 
 NUM retvalue;
@@ -25,7 +25,9 @@ retvalue = expF(2);
 
 PRINT(retvalue);
 
-RETURN retvalue / 2 + 1 ;
+CURSOR 3;
+
+RETURN 3;
 
 
 

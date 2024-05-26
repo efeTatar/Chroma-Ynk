@@ -1,8 +1,8 @@
-package main.java.com.tsan.chromaynk.expressions;
+package com.tsan.chromaynk.expressions;
 
-import main.java.com.tsan.chromaynk.Context;
-import main.java.com.tsan.chromaynk.datatypes.Num;
-import main.java.com.tsan.chromaynk.datatypes.Variable;
+import com.tsan.chromaynk.Context;
+import com.tsan.chromaynk.datatypes.Num;
+import com.tsan.chromaynk.datatypes.Variable;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;

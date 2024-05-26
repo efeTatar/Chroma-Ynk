@@ -1,11 +1,11 @@
-package main.java.com.tsan.chromaynk.expressions;
+package com.tsan.chromaynk.expressions;
 
-import main.java.com.tsan.chromaynk.Context;
-import main.java.com.tsan.chromaynk.Operation;
-import main.java.com.tsan.chromaynk.datatypes.Variable;
-import main.java.com.tsan.chromaynk.exceptions.DoubleDivisionByZeroException;
-import main.java.com.tsan.chromaynk.exceptions.VariableMissingException;
-import main.java.com.tsan.chromaynk.exceptions.VariableTypeMismatchException;
+import com.tsan.chromaynk.Context;
+import com.tsan.chromaynk.Operation;
+import com.tsan.chromaynk.datatypes.Variable;
+import com.tsan.chromaynk.exceptions.DoubleDivisionByZeroException;
+import com.tsan.chromaynk.exceptions.VariableMissingException;
+import com.tsan.chromaynk.exceptions.VariableTypeMismatchException;
 
 public class OperationExpression extends NonTerminalExpression implements Assignable{
 

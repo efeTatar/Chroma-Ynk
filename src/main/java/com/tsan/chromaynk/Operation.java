@@ -1,12 +1,12 @@
-package main.java.com.tsan.chromaynk;
+package com.tsan.chromaynk;
 
-import main.java.com.tsan.chromaynk.datatypes.Bool;
-import main.java.com.tsan.chromaynk.datatypes.Num;
-import main.java.com.tsan.chromaynk.datatypes.Str;
-import main.java.com.tsan.chromaynk.datatypes.Variable;
-import main.java.com.tsan.chromaynk.exceptions.DoubleDivisionByZeroException;
-import main.java.com.tsan.chromaynk.exceptions.VariableMissingException;
-import main.java.com.tsan.chromaynk.exceptions.VariableTypeMismatchException;
+import com.tsan.chromaynk.datatypes.Bool;
+import com.tsan.chromaynk.datatypes.Num;
+import com.tsan.chromaynk.datatypes.Str;
+import com.tsan.chromaynk.datatypes.Variable;
+import com.tsan.chromaynk.exceptions.DoubleDivisionByZeroException;
+import com.tsan.chromaynk.exceptions.VariableMissingException;
+import com.tsan.chromaynk.exceptions.VariableTypeMismatchException;
 
 public enum Operation {
 

@@ -1,4 +1,4 @@
-package main.java.com.tsan.chromaynk.exceptions;
+package com.tsan.chromaynk.exceptions;
 
 public class VariableTypeMismatchException extends Exception{
     

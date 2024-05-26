@@ -1,12 +1,12 @@
-package main.java.com.tsan.chromaynk;
+package com.tsan.chromaynk;
 
-import main.java.com.tsan.chromaynk.*;
-import main.java.com.tsan.chromaynk.datatypes.*;
-import main.java.com.tsan.chromaynk.exceptions.*;
-//import main.java.com.tsan.chromaynk.executer.*;
-import main.java.com.tsan.chromaynk.expressions.*;
-import main.java.com.tsan.chromaynk.parser.*;
-import main.java.com.tsan.chromaynk.tokenizer.*;
+import com.tsan.chromaynk.*;
+import com.tsan.chromaynk.datatypes.*;
+import com.tsan.chromaynk.exceptions.*;
+//import com.tsan.chromaynk.executer.*;
+import com.tsan.chromaynk.expressions.*;
+import com.tsan.chromaynk.parser.*;
+import com.tsan.chromaynk.tokenizer.*;
 
 import java.util.ArrayList;
 import java.util.List;

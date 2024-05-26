@@ -1,13 +1,13 @@
-package main.java.com.tsan.chromaynk;
+package com.tsan.chromaynk;
 
 import java.util.Map;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import main.java.com.tsan.chromaynk.datatypes.Variable;
-import main.java.com.tsan.chromaynk.expressions.Expression;
-import main.java.com.tsan.chromaynk.datatypes.Cursor;
+import com.tsan.chromaynk.datatypes.Variable;
+import com.tsan.chromaynk.expressions.Expression;
+import com.tsan.chromaynk.datatypes.Cursor;
 
 public class Context {
 

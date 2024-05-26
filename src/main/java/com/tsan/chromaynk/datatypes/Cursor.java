@@ -1,4 +1,4 @@
-package main.java.com.tsan.chromaynk.datatypes;
+package com.tsan.chromaynk.datatypes;
 
 public class Cursor {
 
