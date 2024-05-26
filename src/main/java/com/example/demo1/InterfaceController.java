@@ -107,6 +107,8 @@ public class InterfaceController {
         if (file != null) {
             loadInstructionsFromFile(file);                         // Loads instructions from the file
         }
+
+        //loadFileButton.setDisable(true);
     }
 
     // Method to load drawing instructions from a file
@@ -180,7 +182,7 @@ public class InterfaceController {
         }
         currentInstructionIndex = 0;                        // Reset current instruction index
         drawingInstructions.clear();
-        stepButton.setDisable(true);
+        //loadFileButton.setDisable(false);
         hasDrawn = false;                                   // Set flag to indicate no drawing has been done
     }
 
@@ -360,6 +362,7 @@ public class InterfaceController {
             System.out.println("You are out of borders, you cannot move outside of" + drawingPane.getHeight());
             return 0;
         }
+        gc.strokeLine(c.getX(), c.getY(), x, y);
         c.setX(x);                               // New coordinates
         c.setY(y);
         gc.moveTo(x, y);

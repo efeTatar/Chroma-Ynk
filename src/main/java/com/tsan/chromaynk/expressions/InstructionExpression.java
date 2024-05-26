@@ -55,7 +55,7 @@ public class InstructionExpression extends TerminalExpression{
             
             case "POS":
                 if(variable.size() < 2) return;
-                context.getController().POS(context.getMainCursor(), ((Num)variable.get(0)).getValue(), ((Num)variable.get(1)).getValue(), percent1&percent2 ? 1 : 0);
+                context.getController().POS(context.getMainCursor(), ((Num)variable.get(0)).getValue(), ((Num)variable.get(1)).getValue(), percent1|percent2 ? 1 : 0);
                 break;
             
             case "HIDE":

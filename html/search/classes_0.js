@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['_5ftype_45',['_type',['../enummain_1_1java_1_1com_1_1tsan_1_1chromaynk_1_1expressions_1_1CreateVariableExpression_1_1__type.html',1,'main::java::com::tsan::chromaynk::expressions::CreateVariableExpression']]]
+  ['_5ftype_52',['_type',['../enumcom_1_1tsan_1_1chromaynk_1_1expressions_1_1CreateVariableExpression_1_1__type.html',1,'com::tsan::chromaynk::expressions::CreateVariableExpression']]]
 ];

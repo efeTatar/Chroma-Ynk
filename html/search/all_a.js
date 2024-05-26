@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['nonterminalexpression_18',['NonTerminalExpression',['../classmain_1_1java_1_1com_1_1tsan_1_1chromaynk_1_1expressions_1_1NonTerminalExpression.html',1,'main::java::com::tsan::chromaynk::expressions']]],
-  ['num_19',['Num',['../classmain_1_1java_1_1com_1_1tsan_1_1chromaynk_1_1datatypes_1_1Num.html',1,'main::java::com::tsan::chromaynk::datatypes']]]
+  ['operation_25',['Operation',['../enumcom_1_1tsan_1_1chromaynk_1_1Operation.html',1,'com::tsan::chromaynk']]],
+  ['operationexpression_26',['OperationExpression',['../classcom_1_1tsan_1_1chromaynk_1_1expressions_1_1OperationExpression.html',1,'com::tsan::chromaynk::expressions']]]
 ];

@@ -1,0 +1,27 @@
+\hypertarget{classcom_1_1example_1_1demo1_1_1InterfaceApplication}{}\doxysection{com.\+example.\+demo1.\+Interface\+Application Class Reference}
+\label{classcom_1_1example_1_1demo1_1_1InterfaceApplication}\index{com.example.demo1.InterfaceApplication@{com.example.demo1.InterfaceApplication}}
+
+
+Inheritance diagram for com.\+example.\+demo1.\+Interface\+Application\+:
+% FIG 0
+
+
+Collaboration diagram for com.\+example.\+demo1.\+Interface\+Application\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classcom_1_1example_1_1demo1_1_1InterfaceApplication_a3f6bef1dd00294188548b4d7e74ccbc8}\label{classcom_1_1example_1_1demo1_1_1InterfaceApplication_a3f6bef1dd00294188548b4d7e74ccbc8}} 
+void {\bfseries start} (Stage primary\+Stage)  throws Exception 
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classcom_1_1example_1_1demo1_1_1InterfaceApplication_ad22854782e792eb9a194c6c005fac80c}\label{classcom_1_1example_1_1demo1_1_1InterfaceApplication_ad22854782e792eb9a194c6c005fac80c}} 
+static void {\bfseries main} (String\mbox{[}$\,$\mbox{]} args)
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/com/example/demo1/Interface\+Application.\+java\end{DoxyCompactItemize}

@@ -1,0 +1,150 @@
+\hypertarget{classcom_1_1tsan_1_1chromaynk_1_1parser_1_1Parser}{}\doxysection{com.\+tsan.\+chromaynk.\+parser.\+Parser Class Reference}
+\label{classcom_1_1tsan_1_1chromaynk_1_1parser_1_1Parser}\index{com.tsan.chromaynk.parser.Parser@{com.tsan.chromaynk.parser.Parser}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1expressions_1_1Expression}{Expression}} \mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1parser_1_1Parser_ab35c2e5b0566702c13050218e7436a03}{parse}} (\mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1TokenIterator}{Token\+Iterator}} iterator)  throws Parsing\+Failed\+Exception     
+\item 
+\mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1expressions_1_1Expression}{Expression}} \mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1parser_1_1Parser_ae7446f51a04827f646b961a9c9f12eca}{parse\+Print}} (\mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1TokenIterator}{Token\+Iterator}} iterator)
+\item 
+\mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1expressions_1_1Expression}{Expression}} \mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1parser_1_1Parser_a285b359dff321609b2fdfe1bc57b3530}{parse\+Name}} (\mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1TokenIterator}{Token\+Iterator}} iterator)  throws Syntax\+Error\+Exception, Parsing\+Failed\+Exception     
+\item 
+\mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1expressions_1_1Expression}{Expression}} \mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1parser_1_1Parser_aa41ddf5e952ef7def004db64a329998d}{parse\+Word}} (\mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1TokenIterator}{Token\+Iterator}} iterator)  throws Parsing\+Failed\+Exception     
+\item 
+\mbox{\hyperlink{interfacecom_1_1tsan_1_1chromaynk_1_1expressions_1_1Assignable}{Assignable}} \mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1parser_1_1Parser_aae25fea13d8afb604cde2faf22723cc8}{parse\+Operation}} (\mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1TokenIterator}{Token\+Iterator}} iterator)  throws Parsing\+Failed\+Exception, Syntax\+Error\+Exception     
+\item 
+\mbox{\hyperlink{enumcom_1_1tsan_1_1chromaynk_1_1Operation}{Operation}} \mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1parser_1_1Parser_abb7d249862cb9220e1bf3c548741cc31}{create\+Op}} (String operator)  throws Unexisting\+Operator\+Exception     
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classcom_1_1tsan_1_1chromaynk_1_1parser_1_1Parser_abb7d249862cb9220e1bf3c548741cc31}\label{classcom_1_1tsan_1_1chromaynk_1_1parser_1_1Parser_abb7d249862cb9220e1bf3c548741cc31}} 
+\index{com.tsan.chromaynk.parser.Parser@{com.tsan.chromaynk.parser.Parser}!createOp@{createOp}}
+\index{createOp@{createOp}!com.tsan.chromaynk.parser.Parser@{com.tsan.chromaynk.parser.Parser}}
+\doxysubsubsection{\texorpdfstring{createOp()}{createOp()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{enumcom_1_1tsan_1_1chromaynk_1_1Operation}{Operation}} com.\+tsan.\+chromaynk.\+parser.\+Parser.\+create\+Op (\begin{DoxyParamCaption}\item[{String}]{operator }\end{DoxyParamCaption}) throws \mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1exceptions_1_1UnexistingOperatorException}{Unexisting\+Operator\+Exception}}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em operator} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Unexisting\+Operator\+Exception} & \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{classcom_1_1tsan_1_1chromaynk_1_1parser_1_1Parser_ab35c2e5b0566702c13050218e7436a03}\label{classcom_1_1tsan_1_1chromaynk_1_1parser_1_1Parser_ab35c2e5b0566702c13050218e7436a03}} 
+\index{com.tsan.chromaynk.parser.Parser@{com.tsan.chromaynk.parser.Parser}!parse@{parse}}
+\index{parse@{parse}!com.tsan.chromaynk.parser.Parser@{com.tsan.chromaynk.parser.Parser}}
+\doxysubsubsection{\texorpdfstring{parse()}{parse()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1expressions_1_1Expression}{Expression}} com.\+tsan.\+chromaynk.\+parser.\+Parser.\+parse (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1TokenIterator}{Token\+Iterator}}}]{iterator }\end{DoxyParamCaption}) throws \mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1exceptions_1_1ParsingFailedException}{Parsing\+Failed\+Exception}}}
+
+This is the main parse method, it redirects tokens to corresponding methods~\newline
+ It is used to parse bodies
+
+
+\begin{DoxyParams}{Parameters}
+{\em iterator} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Parsing\+Failed\+Exception} & \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{classcom_1_1tsan_1_1chromaynk_1_1parser_1_1Parser_a285b359dff321609b2fdfe1bc57b3530}\label{classcom_1_1tsan_1_1chromaynk_1_1parser_1_1Parser_a285b359dff321609b2fdfe1bc57b3530}} 
+\index{com.tsan.chromaynk.parser.Parser@{com.tsan.chromaynk.parser.Parser}!parseName@{parseName}}
+\index{parseName@{parseName}!com.tsan.chromaynk.parser.Parser@{com.tsan.chromaynk.parser.Parser}}
+\doxysubsubsection{\texorpdfstring{parseName()}{parseName()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1expressions_1_1Expression}{Expression}} com.\+tsan.\+chromaynk.\+parser.\+Parser.\+parse\+Name (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1TokenIterator}{Token\+Iterator}}}]{iterator }\end{DoxyParamCaption}) throws \mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1exceptions_1_1SyntaxErrorException}{Syntax\+Error\+Exception}}, \mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1exceptions_1_1ParsingFailedException}{Parsing\+Failed\+Exception}}}
+
+This method redirects token to corresponding method~\newline
+ Parses value assignments, function calls, etc...
+
+
+\begin{DoxyParams}{Parameters}
+{\em iterator} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Syntax\+Error\+Exception} & \\
+\hline
+{\em Parsing\+Failed\+Exception} & \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{classcom_1_1tsan_1_1chromaynk_1_1parser_1_1Parser_aae25fea13d8afb604cde2faf22723cc8}\label{classcom_1_1tsan_1_1chromaynk_1_1parser_1_1Parser_aae25fea13d8afb604cde2faf22723cc8}} 
+\index{com.tsan.chromaynk.parser.Parser@{com.tsan.chromaynk.parser.Parser}!parseOperation@{parseOperation}}
+\index{parseOperation@{parseOperation}!com.tsan.chromaynk.parser.Parser@{com.tsan.chromaynk.parser.Parser}}
+\doxysubsubsection{\texorpdfstring{parseOperation()}{parseOperation()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{interfacecom_1_1tsan_1_1chromaynk_1_1expressions_1_1Assignable}{Assignable}} com.\+tsan.\+chromaynk.\+parser.\+Parser.\+parse\+Operation (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1TokenIterator}{Token\+Iterator}}}]{iterator }\end{DoxyParamCaption}) throws \mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1exceptions_1_1ParsingFailedException}{Parsing\+Failed\+Exception}}, \mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1exceptions_1_1SyntaxErrorException}{Syntax\+Error\+Exception}}}
+
+This method is a direct implementation of the Shunting yard algorithm by Dijkstra~\newline
+ Once tokens are listed in RPN format, they are parsed
+
+
+\begin{DoxyParams}{Parameters}
+{\em iterator} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Parsing\+Failed\+Exception} & \\
+\hline
+{\em Syntax\+Error\+Exception} & \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{classcom_1_1tsan_1_1chromaynk_1_1parser_1_1Parser_ae7446f51a04827f646b961a9c9f12eca}\label{classcom_1_1tsan_1_1chromaynk_1_1parser_1_1Parser_ae7446f51a04827f646b961a9c9f12eca}} 
+\index{com.tsan.chromaynk.parser.Parser@{com.tsan.chromaynk.parser.Parser}!parsePrint@{parsePrint}}
+\index{parsePrint@{parsePrint}!com.tsan.chromaynk.parser.Parser@{com.tsan.chromaynk.parser.Parser}}
+\doxysubsubsection{\texorpdfstring{parsePrint()}{parsePrint()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1expressions_1_1Expression}{Expression}} com.\+tsan.\+chromaynk.\+parser.\+Parser.\+parse\+Print (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1TokenIterator}{Token\+Iterator}}}]{iterator }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em iterator} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcom_1_1tsan_1_1chromaynk_1_1parser_1_1Parser_aa41ddf5e952ef7def004db64a329998d}\label{classcom_1_1tsan_1_1chromaynk_1_1parser_1_1Parser_aa41ddf5e952ef7def004db64a329998d}} 
+\index{com.tsan.chromaynk.parser.Parser@{com.tsan.chromaynk.parser.Parser}!parseWord@{parseWord}}
+\index{parseWord@{parseWord}!com.tsan.chromaynk.parser.Parser@{com.tsan.chromaynk.parser.Parser}}
+\doxysubsubsection{\texorpdfstring{parseWord()}{parseWord()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1expressions_1_1Expression}{Expression}} com.\+tsan.\+chromaynk.\+parser.\+Parser.\+parse\+Word (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1TokenIterator}{Token\+Iterator}}}]{iterator }\end{DoxyParamCaption}) throws \mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1exceptions_1_1ParsingFailedException}{Parsing\+Failed\+Exception}}}
+
+This method redirects token to corresponding method~\newline
+ Parses all keywords
+
+
+\begin{DoxyParams}{Parameters}
+{\em iterator} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Parsing\+Failed\+Exception} & \\
+\hline
+\end{DoxyExceptions}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/com/tsan/chromaynk/parser/Parser.\+java\end{DoxyCompactItemize}
