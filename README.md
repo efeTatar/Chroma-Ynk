@@ -38,8 +38,23 @@ Function can return values at any given moment with the keyword RETURN<br>
 the implicit main function can infact return a value.<br><br>
 
 How to draw ?<br>
-The user has access to the following instructions
-
+The user has access to the following instructions:<br>
+FWD value [%]<br>
+BWD value [%]<br>
+TURN value<br>
+MOV x [%], y [%]<br>
+POS x [%], y [%]<br>
+HIDE<br>
+SHOW<br>
+PRESS value [%]<br>
+COLOR #RRGGBB<br>
+COLOR red, green,blue<br>
+THICK value<br>
+LOOKAT cursorID<br>
+LOOKAT x [%], y [%]<br>
+CURSOR cursorID<br>
+SELECT cursorID<br>
+Note that these instruction must be called as if they were functions.<br><br>
 
 ## Interface
 The Interface enables the user to interpret .abbas files and visualise outputs. The user can choose to visualise the drawing process
