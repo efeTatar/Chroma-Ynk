@@ -5,7 +5,7 @@ NUM nathan = -2;
 NUM francois = 6.3;
 NUM efe1 = 0;
 BOOL a = 0;
-NUM res = nathan + (-1 + francois) / (efe1+1);
+NUM res = nathan + (francois - 1) / (efe1+1);
 //DEL(res);
 PRINT(res);
 
@@ -32,16 +32,15 @@ DEF expF{           // this function computes the taylor series for the exponent
         i = i + 1;
     }
 
-    PRINT(exp);
+    RETURN(exp);    // return exp(x)
 }
 
-expF();
+NUM retvalue;
+retvalue = expF();
 
-PRINT(exp);
+PRINT(retvalue);
 
-
-// FOR(name=1 ; 2 ; i=i+1)
-//{ }
+RETURN retvalue / 2 + 1 ;
 
 
 

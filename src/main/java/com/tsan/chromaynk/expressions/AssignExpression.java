@@ -55,7 +55,7 @@ public class AssignExpression extends NonTerminalExpression{
                 System.out.println("Warning: assignment aborted");
                 return;
             }
-            var.setValue(value.getValue(context));
+            var.setValue(assign);
         }
     }
 

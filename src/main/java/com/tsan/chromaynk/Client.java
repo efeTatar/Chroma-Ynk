@@ -62,6 +62,7 @@ public class Client {
             return;
         }
         main.execute(context);
+        System.out.println("exit value: " + context.getReturnValue());
     }
 
     public void display()

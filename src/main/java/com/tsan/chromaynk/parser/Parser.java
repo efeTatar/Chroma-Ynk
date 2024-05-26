@@ -169,8 +169,14 @@ public class Parser {
                 case "WHILE":
                     return parseWhileBlock(iterator);
                 
+                case "FOR":
+                    return parseForExpression(iterator);
+                
                 case "DEF":
                     return parseFunctionCreation(iterator);
+                
+                case "RETURN":
+                    return parseReturnExpression(iterator);
 
                 default:
                     throw new ParsingFailedException("Parsing error occured during WORD parsing: unnkown word, "+iterator.current().getValue());
@@ -188,6 +194,48 @@ public class Parser {
         
     }
 
+    private Expression parseReturnExpression(TokenIterator iterator) throws ParsingFailedException, SyntaxErrorException
+    {
+        System.out.println("Parsing: return expression");
+        iterator.next();
+        Assignable value = parseOperation(iterator);
+        if(iterator.current().getType() != Token.tokenType.SEMICOL) throw new SyntaxErrorException("Parsing error occured in return expression: expression must end with ';'");
+        iterator.next();
+        return new ReturnExpression(value);
+    }
+
+    private Expression parseForExpression(TokenIterator iterator) throws ParsingFailedException, SyntaxErrorException
+    {
+        System.out.println("Parsing: for loop");
+        try{
+            if(iterator.next().getType() != Token.tokenType.LPAREN) throw new SyntaxErrorException("Parsing error occured in for expression: valid format is FOR(variable, condition, action)");
+            Expression variable = parseVariableCreation(iterator);
+            Assignable condition = parseOperation(iterator);
+            List<Token> actionTokens = new ArrayList<Token>(); 
+            while(iterator.current().getType() != Token.tokenType.SEMICOL){
+                actionTokens.add(iterator.current());
+                iterator.next();
+            }
+            System.out.println(iterator.current().getValue());
+            if(iterator.next().getType() != Token.tokenType.RPAREN) throw new SyntaxErrorException("Parsing error occured in for expression: valid format is FOR(variable; condition; action;)");
+            Expression action = parse(new TokenIterator(actionTokens));
+            if(iterator.next().getType() != Token.tokenType.LBRACK) throw new SyntaxErrorException("Parsing error occured in for expression: body must start with bracket");
+            Expression body = parse(iterator);
+            if(iterator.current().getType() != Token.tokenType.RBRACK) throw new SyntaxErrorException("Parsing error occured in for expression: body must end with bracket");
+            iterator.next();
+            return new ForExpression(variable, condition, action, body);
+        }
+        catch(ParsingFailedException e){
+            e.display();
+            throw new ParsingFailedException("Parsing error occured in for expression");
+        }
+        catch(SyntaxErrorException e){
+            e.display();
+            throw new ParsingFailedException("Parsing error occured in for expression: syntax error");
+        }
+
+    }
+
     /**
      * 
      * @param iterator
@@ -195,7 +243,7 @@ public class Parser {
      * @throws ParsingFailedException
      * @throws SyntaxErrorException
      */
-    private Expression parseFunctionCall(TokenIterator iterator) throws ParsingFailedException, SyntaxErrorException
+    private FunctionExpression parseFunctionCall(TokenIterator iterator) throws ParsingFailedException, SyntaxErrorException
     {
         System.out.println("Parsing: function call");
         String name = iterator.current().getValue();
@@ -250,7 +298,7 @@ public class Parser {
             e.display();
             throw new ParsingFailedException("Parsing error occured in function creation: body cannot be parsed");
         }
-        if(iterator.current().getType() != Token.tokenType.RBRACK) throw new SyntaxErrorException("Parsing error occured in function creation: function body ends with bracket");
+        if(iterator.current().getType() != Token.tokenType.RBRACK) throw new SyntaxErrorException("Parsing error occured in function creation: function body must end with bracket");
         iterator.next();
         return new FunctionCreateExpression(name, body);
     }
@@ -318,7 +366,7 @@ public class Parser {
             default:
                 break;
         }
-
+        
         if(iterator.next().getType() == Token.tokenType.SEMICOL)
         {
             iterator.next();
@@ -327,7 +375,7 @@ public class Parser {
         
         if( iterator.current().getType() == Token.tokenType.OP & iterator.current().getValue().equals("=") )
         {
-            System.out.println("initialising value");
+            System.out.println("parsing: variable initialising");
             iterator.next();
             Assignable value;
             try{ value = parseOperation(iterator); }
@@ -366,6 +414,18 @@ public class Parser {
         iterator.next(); // token: = sign
         iterator.next(); // start of operation
         Assignable value;
+
+        if(iterator.current().getType() == Token.tokenType.NAME)
+        {
+            if(iterator.next().getType() == Token.tokenType.LPAREN)
+            {
+                iterator.previous();
+                value = parseFunctionCall(iterator);
+                //iterator.next();
+                return new AssignExpression(name, value);
+            }
+            iterator.previous();
+        }
 
         try{ value = parseOperation(iterator); }
         catch(ParsingFailedException e){

@@ -14,7 +14,6 @@ public class ReturnExpression extends TerminalExpression{
     public void execute(Context context)
     {
         context.setReturnValue(value.getValue(context));
-        System.out.println(context.getReturnValue());
         context.setReturned();
     }
 
