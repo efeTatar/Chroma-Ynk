@@ -288,29 +288,44 @@ public class Parser {
         String name = iterator.current().getValue();
         System.out.println(name);
         if(iterator.next().getType() != Token.tokenType.LPAREN) throw new SyntaxErrorException("Parsing error occured in function call: function parameters must begin with '('");
+        iterator.next();
         
         List<Assignable> list = new ArrayList<Assignable>();
-        if(iterator.next().getType() == Token.tokenType.RPAREN){
-            if(iterator.next().getType() != Token.tokenType.SEMICOL) throw new SyntaxErrorException("Parsing error occured in function call: statement must end with ';'");
-            iterator.next();
-            return new FunctionExpression(name, list);
+        
+        if(iterator.current().getType() == Token.tokenType.RPAREN)
+        {
+            if(iterator.next().getType() == Token.tokenType.SEMICOL){
+                iterator.next();
+                return new FunctionExpression(name, list);
+            }
+            iterator.previous();
         }
 
-        try{
-            while(iterator.current().getType() != Token.tokenType.RPAREN)
+        while(iterator.current().getType() != Token.tokenType.SEMICOL)
+        {
+            List<Token> parameter = new ArrayList<Token>();
+
+            while(iterator.current().getType() != Token.tokenType.COMA)
             {
-                list.add(parseOperation(iterator));
+                if(iterator.current().getType() == Token.tokenType.RPAREN)
+                {
+                    if(iterator.next().getType() == Token.tokenType.SEMICOL)
+                    {
+                        iterator.previous();
+                        break;
+                    }
+                    iterator.previous();
+                }
+                parameter.add(iterator.current());
+                iterator.next();
             }
+
+            list.add(parseOperation(new TokenIterator(parameter)));
+            iterator.next();
         }
-        catch(SyntaxErrorException e){
-            e.display();
-            throw new ParsingFailedException("Parsing error occured in function call: syntax error");
-        }
-        catch(ParsingFailedException e){
-            e.display();
-            throw new ParsingFailedException("Parsing error occured in function call");
-        }
-        if(iterator.next().getType() != Token.tokenType.SEMICOL) throw new SyntaxErrorException("Parsing error occured in function call: statement must end with ';'");
+
+        if(iterator.current().getType() != Token.tokenType.SEMICOL) throw new SyntaxErrorException("Parsing error occured in function call: statement must end with ';'");
+
         iterator.next();
         return new FunctionExpression(name, list);
     }
@@ -677,7 +692,7 @@ public class Parser {
                     assignableList.add(new OperationExpression(null, null, createOp(t.getValue())));
                     continue;
                 }
-                throw new SyntaxErrorException("Operation cannot be parsed: unrelated token");
+                throw new SyntaxErrorException("Operation cannot be parsed: unrelated token: "+t.getValue());
             }
         }
         catch(UnexistingOperatorException e){

@@ -1,6 +1,7 @@
 package main.java.com.tsan.chromaynk.expressions;
 
 import main.java.com.tsan.chromaynk.Context;
+import main.java.com.tsan.chromaynk.datatypes.Num;
 import main.java.com.tsan.chromaynk.datatypes.Variable;
 import java.util.List;
 import java.util.Map;
@@ -19,14 +20,14 @@ public class FunctionExpression extends NonTerminalExpression implements Assigna
     } 
 
     public void execute(Context context)
-    {        
+    {
         Map<String, Variable> variable = new HashMap<String, Variable>();
 
         for(int i = 0 ; i < arguments.size() ; i++)
         {
             variable.put("arg"+i, arguments.get(i).getValue(context));
-            System.out.println("arg"+i + " " + arguments.get(i).getValue(context));
         }
+        variable.put("argc", new Num(arguments.size()));
 
         functionContext = context.deriveContext(variable);
         

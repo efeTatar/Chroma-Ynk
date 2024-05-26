@@ -1,27 +1,12 @@
-// ABBAS LANGUAGE INTERPRETOR TEST FILE
-
-// OPERATION PARSING TEST
-NUM nathan = -2;
-NUM francois = 6.3;
-NUM efe1 = 0;
-BOOL a = 0;
-NUM res = nathan + (francois - 1) / (efe1+1);
-//DEL(res);
-//PRINT(res);
-
-// NOT OPERATOR TEST
-IF(!a)
-{
-    //PRINT(a);
-}
-
-// FUNCTION DECLERATION TEST
 
 DEF expF{           // this function computes the taylor series for the exponential function exp(x)
 
+    IF(argc < 1){RETURN 1;}
+
+    NUM x = arg0;      // x value in exp(x)
+
     NUM i = 1;      // incrementer of taylor series, first term (n = 0) already counted in
     NUM exp = 1;    // first term (n = 0) in taylor series, n starts from 1
-    NUM x = 5;      // x value in exp(x) 
     NUM fact = 1;   // factorial variable starts at one and multiplied at each incrementation
     NUM s = 1;      // x to the power of n
 
@@ -36,15 +21,9 @@ DEF expF{           // this function computes the taylor series for the exponent
 }
 
 NUM retvalue;
-retvalue = expF();
+retvalue = expF(2);
 
 PRINT(retvalue);
-
-//REMOVE(retvalue);
-//CURSOR(retvalue);
-//SELECT(retvalue);
-//REMOVE(retvalue);
-//SELECT(retvalue);
 
 RETURN retvalue / 2 + 1 ;
 
