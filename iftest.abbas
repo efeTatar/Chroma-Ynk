@@ -1,20 +1,20 @@
 
 DEF expF{           // this function computes the taylor series for the exponential function exp(x)
 
-    IF(argc < 1){RETURN 1;}
+    IF(argc < 1){RETURN 0-1;}
 
     NUM x = arg0;      // x value in exp(x)
 
-    NUM i = 1;      // incrementer of taylor series, first term (n = 0) already counted in
+    NUM n = 1;      // incrementer of taylor series, first term (n = 0) already counted in
     NUM exp = 1;    // first term (n = 0) in taylor series, n starts from 1
     NUM fact = 1;   // factorial variable starts at one and multiplied at each incrementation
     NUM s = 1;      // x to the power of n
 
-    WHILE(i < 100){
+    WHILE(n < 100){
         s = s * x;
-        fact = fact * i;
+        fact = fact * n;
         exp = exp + s / fact;
-        i = i + 1;
+        n = n + 1;
     }
 
     RETURN(exp);    // return exp(x)
