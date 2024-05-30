@@ -38,7 +38,6 @@ public class Num extends Variable{
             this.value = ((Num)value).getValue();
             return;
         }
-            
         
         if(value instanceof Bool)
         {
@@ -46,6 +45,7 @@ public class Num extends Variable{
             else this.value = 0.0;
             return;
         }
+
         System.out.println("Warning: NUM <- STR");
         System.out.println("Warning: assignment aborted");
     }

@@ -48,6 +48,11 @@ public class AssignExpression extends NonTerminalExpression{
             var.setValue( new Bool(assign.isTrue()) );
         }
 
+        if(var instanceof Str)
+        {
+            var.setValue(assign);
+        }
+
         if(var instanceof Num)
         {
             if(assign instanceof Str){

@@ -21,7 +21,6 @@ DEF power{
         pwr = pwr * x;
         i = i + 1;
     }
-
     RETURN(pwr);
 }
 
@@ -74,9 +73,12 @@ SELECT 1;
 NUM i = 0;
 NUM res;
 
+THICK(5);
+
 WHILE(i < 800){
     res = cos(i/10);
-    POS(i, res*20 + 100);
+    POS(i+100, 200 - res * 20);
+    
     i = i+1;
 }
 

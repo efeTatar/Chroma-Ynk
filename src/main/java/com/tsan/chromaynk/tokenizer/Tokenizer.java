@@ -6,25 +6,33 @@
     import java.util.Scanner;
     import java.util.ArrayList;
 
+    /**
+     * Tokenizer of the Abbas language interpreter
+     */
     public class Tokenizer {
 
         private List<Token> tokens;
 
+        /**
+         * Constructor to Tokenizer class
+         */
         public Tokenizer()
         {
             this.tokens = new ArrayList<Token>(); 
         }
 
-        /*
-         * returns token iterator for parsing
+        /**
+         * Returns iterator to list
+         * 
+         * @return
          */
         public TokenIterator getTokenList()
         {
             return new TokenIterator(tokens);
         }
         
-        /*
-         * 
+        /**
+         * Displays Tokens
          */
         public void display()
         {
@@ -32,6 +40,8 @@
         }
 
         /**
+         * Main function for tokenizing file<br>
+         * Tokenises line by line, skips to the next line if stumbles upon '//'
          * 
          * @param file
          */
@@ -58,6 +68,7 @@
                         // skip blankspace
                         if(c == ' ' || c == '\t') continue;
 
+                        // values
                         if(Character.isDigit(c))
                         {
                             int j = i;
@@ -116,6 +127,7 @@
                             }
                         }
                         
+                        // boolean operator and assign symbol
                         if(c == '=' || c == '!' || c == '<' || c == '>')
                         {
                             if(i+1 < s.length() && s.charAt(i+1) == '=')
@@ -129,6 +141,7 @@
                             continue;
                         }
 
+                        // percentage for instructions
                         if(c == '%')
                         {
                             this.tokens.add(new Token(Token.tokenType.PERC, String.valueOf(c) ));

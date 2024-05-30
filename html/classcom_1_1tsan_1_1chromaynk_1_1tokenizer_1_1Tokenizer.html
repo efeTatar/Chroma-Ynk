@@ -67,24 +67,104 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1Tokenizer-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">com.tsan.chromaynk.tokenizer.Tokenizer Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+<div class="dynheader">
+Collaboration diagram for com.tsan.chromaynk.tokenizer.Tokenizer:</div>
+<div class="dyncontent">
+<div class="center"><img src="classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1Tokenizer__coll__graph.png" border="0" usemap="#acom_8tsan_8chromaynk_8tokenizer_8Tokenizer_coll__map" alt="Collaboration graph"/></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a60db26b041d7842e4e5ba42de61eb5f3"><td class="memItemLeft" align="right" valign="top"><a id="a60db26b041d7842e4e5ba42de61eb5f3"></a>
-<a class="el" href="classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1TokenIterator.html">TokenIterator</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getTokenList</b> ()</td></tr>
+<tr class="memitem:aa2756906f08c074a2f718ff079a2d403"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1Tokenizer.html#aa2756906f08c074a2f718ff079a2d403">Tokenizer</a> ()</td></tr>
+<tr class="separator:aa2756906f08c074a2f718ff079a2d403"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60db26b041d7842e4e5ba42de61eb5f3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1TokenIterator.html">TokenIterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1Tokenizer.html#a60db26b041d7842e4e5ba42de61eb5f3">getTokenList</a> ()</td></tr>
 <tr class="separator:a60db26b041d7842e4e5ba42de61eb5f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a87b10b559051348aab01982723aad3f7"><td class="memItemLeft" align="right" valign="top"><a id="a87b10b559051348aab01982723aad3f7"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>display</b> ()</td></tr>
+<tr class="memitem:a87b10b559051348aab01982723aad3f7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1Tokenizer.html#a87b10b559051348aab01982723aad3f7">display</a> ()</td></tr>
 <tr class="separator:a87b10b559051348aab01982723aad3f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4525d4011ee3059ecc45797b43839568"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1Tokenizer.html#a4525d4011ee3059ecc45797b43839568">tokenize</a> (String file)</td></tr>
 <tr class="separator:a4525d4011ee3059ecc45797b43839568"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a802d61280532bc148b0730732f22da27"><td class="memItemLeft" align="right" valign="top"><a id="a802d61280532bc148b0730732f22da27"></a>
+boolean&#160;</td><td class="memItemRight" valign="bottom"><b>isWord</b> (String s)</td></tr>
+<tr class="separator:a802d61280532bc148b0730732f22da27"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d08fa94ba3b17ffe0756d8a3e581222"><td class="memItemLeft" align="right" valign="top"><a id="a9d08fa94ba3b17ffe0756d8a3e581222"></a>
+boolean&#160;</td><td class="memItemRight" valign="bottom"><b>evalSymbol</b> (char c)</td></tr>
+<tr class="separator:a9d08fa94ba3b17ffe0756d8a3e581222"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:af799211ce19d6367ee86cd57e05d8571"><td class="memItemLeft" align="right" valign="top"><a id="af799211ce19d6367ee86cd57e05d8571"></a>
+List&lt; <a class="el" href="classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1Token.html">Token</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>tokens</b></td></tr>
+<tr class="separator:af799211ce19d6367ee86cd57e05d8571"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p><a class="el" href="classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1Tokenizer.html">Tokenizer</a> of the Abbas language interpreter </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="aa2756906f08c074a2f718ff079a2d403"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa2756906f08c074a2f718ff079a2d403">&#9670;&nbsp;</a></span>Tokenizer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">com.tsan.chromaynk.tokenizer.Tokenizer.Tokenizer </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Constructor to <a class="el" href="classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1Tokenizer.html">Tokenizer</a> class </p>
+
+</div>
+</div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a87b10b559051348aab01982723aad3f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a87b10b559051348aab01982723aad3f7">&#9670;&nbsp;</a></span>display()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void com.tsan.chromaynk.tokenizer.Tokenizer.display </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Displays Tokens </p>
+
+</div>
+</div>
+<a id="a60db26b041d7842e4e5ba42de61eb5f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60db26b041d7842e4e5ba42de61eb5f3">&#9670;&nbsp;</a></span>getTokenList()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1TokenIterator.html">TokenIterator</a> com.tsan.chromaynk.tokenizer.Tokenizer.getTokenList </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Returns iterator to list</p>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+</div>
+</div>
 <a id="a4525d4011ee3059ecc45797b43839568"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4525d4011ee3059ecc45797b43839568">&#9670;&nbsp;</a></span>tokenize()</h2>
 
@@ -100,6 +180,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>display</b> ()</td></
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Main function for tokenizing file<br  />
+ Tokenises line by line, skips to the next line if stumbles upon '//'</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">file</td><td></td></tr>

@@ -33,9 +33,23 @@ public class Str extends Variable{
     public void setValue(Variable value)
     {
         if(value instanceof Str)
+        {
             this.value = ((Str)value).getValue();
-        
-        // throw exception !!
+            return;
+        }
+
+        if(value instanceof Bool)
+        {
+            if(value.isTrue()) this.value = "true";
+            else this.value = "false";
+            return;
+        }
+
+        if(value instanceof Num)
+        {
+            this.value = value.toString();
+            return;
+        }
     }
 
     @Override

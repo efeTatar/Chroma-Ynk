@@ -1,23 +1,95 @@
 \hypertarget{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1TokenIterator}{}\doxysection{com.\+tsan.\+chromaynk.\+tokenizer.\+Token\+Iterator Class Reference}
 \label{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1TokenIterator}\index{com.tsan.chromaynk.tokenizer.TokenIterator@{com.tsan.chromaynk.tokenizer.TokenIterator}}
+
+
+Collaboration diagram for com.\+tsan.\+chromaynk.\+tokenizer.\+Token\+Iterator\+:
+% FIG 0
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1TokenIterator_ae5b5651d0eb80febf58c7e356a0e74ac}\label{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1TokenIterator_ae5b5651d0eb80febf58c7e356a0e74ac}} 
-{\bfseries Token\+Iterator} (List$<$ \mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1Token}{Token}} $>$ list)
+\mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1TokenIterator_ae5b5651d0eb80febf58c7e356a0e74ac}{Token\+Iterator}} (List$<$ \mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1Token}{Token}} $>$ list)
 \item 
-\mbox{\Hypertarget{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1TokenIterator_abc3dedf2015ab96be380df56b3615746}\label{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1TokenIterator_abc3dedf2015ab96be380df56b3615746}} 
-boolean {\bfseries ended} ()
+boolean \mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1TokenIterator_abc3dedf2015ab96be380df56b3615746}{ended}} ()
 \item 
-\mbox{\Hypertarget{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1TokenIterator_ae992673a4c7fd4e9827b89a585ef560f}\label{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1TokenIterator_ae992673a4c7fd4e9827b89a585ef560f}} 
-\mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1Token}{Token}} {\bfseries next} ()
+\mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1Token}{Token}} \mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1TokenIterator_ae992673a4c7fd4e9827b89a585ef560f}{next}} ()
 \item 
-\mbox{\Hypertarget{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1TokenIterator_ac5e7f43a65f3fc1b8802488dd5413892}\label{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1TokenIterator_ac5e7f43a65f3fc1b8802488dd5413892}} 
-\mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1Token}{Token}} {\bfseries current} ()
+\mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1Token}{Token}} \mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1TokenIterator_ac5e7f43a65f3fc1b8802488dd5413892}{current}} ()
 \item 
-\mbox{\Hypertarget{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1TokenIterator_aed90543a1a67dccbf68f04e7e89472fe}\label{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1TokenIterator_aed90543a1a67dccbf68f04e7e89472fe}} 
-\mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1Token}{Token}} {\bfseries previous} ()
+\mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1Token}{Token}} \mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1TokenIterator_aed90543a1a67dccbf68f04e7e89472fe}{previous}} ()
 \end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1TokenIterator_aa9602e3f9fdf375e0eeaf101f6554576}\label{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1TokenIterator_aa9602e3f9fdf375e0eeaf101f6554576}} 
+List$<$ \mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1Token}{Token}} $>$ {\bfseries list}
+\item 
+\mbox{\Hypertarget{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1TokenIterator_a8f33016eeb4b0196ba87cb5b8168d5d5}\label{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1TokenIterator_a8f33016eeb4b0196ba87cb5b8168d5d5}} 
+int {\bfseries index}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The token iterator is an essential tool for the parser~\newline
+
+
+It can return the previous, current and next tokens in the list~\newline
+ While returning the previous and following tokens, it increments or decrements the index~\newline
+ It returns a EOF token if the index is out of range 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1TokenIterator_ae5b5651d0eb80febf58c7e356a0e74ac}\label{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1TokenIterator_ae5b5651d0eb80febf58c7e356a0e74ac}} 
+\index{com.tsan.chromaynk.tokenizer.TokenIterator@{com.tsan.chromaynk.tokenizer.TokenIterator}!TokenIterator@{TokenIterator}}
+\index{TokenIterator@{TokenIterator}!com.tsan.chromaynk.tokenizer.TokenIterator@{com.tsan.chromaynk.tokenizer.TokenIterator}}
+\doxysubsubsection{\texorpdfstring{TokenIterator()}{TokenIterator()}}
+{\footnotesize\ttfamily com.\+tsan.\+chromaynk.\+tokenizer.\+Token\+Iterator.\+Token\+Iterator (\begin{DoxyParamCaption}\item[{List$<$ \mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1Token}{Token}} $>$}]{list }\end{DoxyParamCaption})}
+
+Contructor for the \mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1TokenIterator}{Token\+Iterator}} class
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1TokenIterator_ac5e7f43a65f3fc1b8802488dd5413892}\label{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1TokenIterator_ac5e7f43a65f3fc1b8802488dd5413892}} 
+\index{com.tsan.chromaynk.tokenizer.TokenIterator@{com.tsan.chromaynk.tokenizer.TokenIterator}!current@{current}}
+\index{current@{current}!com.tsan.chromaynk.tokenizer.TokenIterator@{com.tsan.chromaynk.tokenizer.TokenIterator}}
+\doxysubsubsection{\texorpdfstring{current()}{current()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1Token}{Token}} com.\+tsan.\+chromaynk.\+tokenizer.\+Token\+Iterator.\+current (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Returns current token in list \begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1TokenIterator_abc3dedf2015ab96be380df56b3615746}\label{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1TokenIterator_abc3dedf2015ab96be380df56b3615746}} 
+\index{com.tsan.chromaynk.tokenizer.TokenIterator@{com.tsan.chromaynk.tokenizer.TokenIterator}!ended@{ended}}
+\index{ended@{ended}!com.tsan.chromaynk.tokenizer.TokenIterator@{com.tsan.chromaynk.tokenizer.TokenIterator}}
+\doxysubsubsection{\texorpdfstring{ended()}{ended()}}
+{\footnotesize\ttfamily boolean com.\+tsan.\+chromaynk.\+tokenizer.\+Token\+Iterator.\+ended (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Checks if the index is out of range~\newline
+ i.\+e. if iterator has reached the end of the token list \begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1TokenIterator_ae992673a4c7fd4e9827b89a585ef560f}\label{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1TokenIterator_ae992673a4c7fd4e9827b89a585ef560f}} 
+\index{com.tsan.chromaynk.tokenizer.TokenIterator@{com.tsan.chromaynk.tokenizer.TokenIterator}!next@{next}}
+\index{next@{next}!com.tsan.chromaynk.tokenizer.TokenIterator@{com.tsan.chromaynk.tokenizer.TokenIterator}}
+\doxysubsubsection{\texorpdfstring{next()}{next()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1Token}{Token}} com.\+tsan.\+chromaynk.\+tokenizer.\+Token\+Iterator.\+next (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Returns next token in list and increments index \begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1TokenIterator_aed90543a1a67dccbf68f04e7e89472fe}\label{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1TokenIterator_aed90543a1a67dccbf68f04e7e89472fe}} 
+\index{com.tsan.chromaynk.tokenizer.TokenIterator@{com.tsan.chromaynk.tokenizer.TokenIterator}!previous@{previous}}
+\index{previous@{previous}!com.tsan.chromaynk.tokenizer.TokenIterator@{com.tsan.chromaynk.tokenizer.TokenIterator}}
+\doxysubsubsection{\texorpdfstring{previous()}{previous()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1Token}{Token}} com.\+tsan.\+chromaynk.\+tokenizer.\+Token\+Iterator.\+previous (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Returns previous token in list and decrements index \begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

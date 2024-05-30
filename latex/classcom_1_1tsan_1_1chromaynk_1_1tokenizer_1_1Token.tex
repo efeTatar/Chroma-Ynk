@@ -1,5 +1,9 @@
 \hypertarget{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1Token}{}\doxysection{com.\+tsan.\+chromaynk.\+tokenizer.\+Token Class Reference}
 \label{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1Token}\index{com.tsan.chromaynk.tokenizer.Token@{com.tsan.chromaynk.tokenizer.Token}}
+
+
+Collaboration diagram for com.\+tsan.\+chromaynk.\+tokenizer.\+Token\+:
+% FIG 0
 \doxysubsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
@@ -8,24 +12,112 @@ enum {\bfseries token\+Type}
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1Token_a120a5811b79cea6ffe28165d827abc9d}\label{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1Token_a120a5811b79cea6ffe28165d827abc9d}} 
-{\bfseries Token} (token\+Type token, String value)
+\mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1Token_a120a5811b79cea6ffe28165d827abc9d}{Token}} (token\+Type token, String value)
 \item 
-\mbox{\Hypertarget{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1Token_aa7dd8b6e53fb1102b2217b44e5ab235a}\label{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1Token_aa7dd8b6e53fb1102b2217b44e5ab235a}} 
-{\bfseries Token} (token\+Type token)
+\mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1Token_aa7dd8b6e53fb1102b2217b44e5ab235a}{Token}} (token\+Type token)
 \item 
-\mbox{\Hypertarget{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1Token_a036afd4b47caf27e25772515f3d17ce9}\label{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1Token_a036afd4b47caf27e25772515f3d17ce9}} 
-void {\bfseries set\+Value} (String value)
+void \mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1Token_a036afd4b47caf27e25772515f3d17ce9}{set\+Value}} (String value)
 \item 
-\mbox{\Hypertarget{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1Token_a6fb06ec8da6dee2d670c8a6f9f96833f}\label{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1Token_a6fb06ec8da6dee2d670c8a6f9f96833f}} 
-String {\bfseries get\+Value} ()
+String \mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1Token_a6fb06ec8da6dee2d670c8a6f9f96833f}{get\+Value}} ()
 \item 
-\mbox{\Hypertarget{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1Token_a2c9429bd7fd8ed11f2d8cb6bbe092b96}\label{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1Token_a2c9429bd7fd8ed11f2d8cb6bbe092b96}} 
-token\+Type {\bfseries get\+Type} ()
+token\+Type \mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1Token_a2c9429bd7fd8ed11f2d8cb6bbe092b96}{get\+Type}} ()
 \item 
 \mbox{\Hypertarget{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1Token_adc2685479866ecff67d82e41444b460d}\label{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1Token_adc2685479866ecff67d82e41444b460d}} 
 String {\bfseries to\+String} ()
 \end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1Token_a6873947ad6e918c9f9b06e18a3320136}\label{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1Token_a6873947ad6e918c9f9b06e18a3320136}} 
+String {\bfseries value}
+\item 
+\mbox{\Hypertarget{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1Token_a4ace5eaae655849e516f7f29c1ccc753}\label{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1Token_a4ace5eaae655849e516f7f29c1ccc753}} 
+token\+Type {\bfseries token}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1Token}{Token}} class~\newline
+
+
+A token contains a value and a type~\newline
+ The value is a string to be interpreted by the parser~\newline
+ Types are defined in the token\+Type enumeration~\newline
+
+
+The tokenizer does not handle negative values~\newline
+ The parser handles theem during operation parsing. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1Token_a120a5811b79cea6ffe28165d827abc9d}\label{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1Token_a120a5811b79cea6ffe28165d827abc9d}} 
+\index{com.tsan.chromaynk.tokenizer.Token@{com.tsan.chromaynk.tokenizer.Token}!Token@{Token}}
+\index{Token@{Token}!com.tsan.chromaynk.tokenizer.Token@{com.tsan.chromaynk.tokenizer.Token}}
+\doxysubsubsection{\texorpdfstring{Token()}{Token()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily com.\+tsan.\+chromaynk.\+tokenizer.\+Token.\+Token (\begin{DoxyParamCaption}\item[{token\+Type}]{token,  }\item[{String}]{value }\end{DoxyParamCaption})}
+
+Constructor for \mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1Token}{Token}} class
+
+
+\begin{DoxyParams}{Parameters}
+{\em token} & \\
+\hline
+{\em value} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1Token_aa7dd8b6e53fb1102b2217b44e5ab235a}\label{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1Token_aa7dd8b6e53fb1102b2217b44e5ab235a}} 
+\index{com.tsan.chromaynk.tokenizer.Token@{com.tsan.chromaynk.tokenizer.Token}!Token@{Token}}
+\index{Token@{Token}!com.tsan.chromaynk.tokenizer.Token@{com.tsan.chromaynk.tokenizer.Token}}
+\doxysubsubsection{\texorpdfstring{Token()}{Token()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily com.\+tsan.\+chromaynk.\+tokenizer.\+Token.\+Token (\begin{DoxyParamCaption}\item[{token\+Type}]{token }\end{DoxyParamCaption})}
+
+Constructor for \mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1Token}{Token}} class
+
+
+\begin{DoxyParams}{Parameters}
+{\em token} & \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1Token_a2c9429bd7fd8ed11f2d8cb6bbe092b96}\label{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1Token_a2c9429bd7fd8ed11f2d8cb6bbe092b96}} 
+\index{com.tsan.chromaynk.tokenizer.Token@{com.tsan.chromaynk.tokenizer.Token}!getType@{getType}}
+\index{getType@{getType}!com.tsan.chromaynk.tokenizer.Token@{com.tsan.chromaynk.tokenizer.Token}}
+\doxysubsubsection{\texorpdfstring{getType()}{getType()}}
+{\footnotesize\ttfamily token\+Type com.\+tsan.\+chromaynk.\+tokenizer.\+Token.\+get\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Returns type of \mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1Token}{Token}}
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1Token_a6fb06ec8da6dee2d670c8a6f9f96833f}\label{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1Token_a6fb06ec8da6dee2d670c8a6f9f96833f}} 
+\index{com.tsan.chromaynk.tokenizer.Token@{com.tsan.chromaynk.tokenizer.Token}!getValue@{getValue}}
+\index{getValue@{getValue}!com.tsan.chromaynk.tokenizer.Token@{com.tsan.chromaynk.tokenizer.Token}}
+\doxysubsubsection{\texorpdfstring{getValue()}{getValue()}}
+{\footnotesize\ttfamily String com.\+tsan.\+chromaynk.\+tokenizer.\+Token.\+get\+Value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Returns value of \mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1Token}{Token}}
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1Token_a036afd4b47caf27e25772515f3d17ce9}\label{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1Token_a036afd4b47caf27e25772515f3d17ce9}} 
+\index{com.tsan.chromaynk.tokenizer.Token@{com.tsan.chromaynk.tokenizer.Token}!setValue@{setValue}}
+\index{setValue@{setValue}!com.tsan.chromaynk.tokenizer.Token@{com.tsan.chromaynk.tokenizer.Token}}
+\doxysubsubsection{\texorpdfstring{setValue()}{setValue()}}
+{\footnotesize\ttfamily void com.\+tsan.\+chromaynk.\+tokenizer.\+Token.\+set\+Value (\begin{DoxyParamCaption}\item[{String}]{value }\end{DoxyParamCaption})}
+
+Sets value of token~\newline
+
+
+This method shall only be called during operation parsing
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & \\
+\hline
+\end{DoxyParams}
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

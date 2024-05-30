@@ -28,13 +28,20 @@ retvalue = expF(2);
 CURSOR 1;
 SELECT 1;
 
+PRESS(0);
 POS(50%,50%);
+PRESS(1);
+
+NUM red;
+THICK(15);
 
 NUM i = 0;
 WHILE(i<360){
+    COLOR(red,0,0);
 	FWD(1);
 	TURN(1);
 	i = i+1;
+    red = red + 180 / 255;
 }
 
 

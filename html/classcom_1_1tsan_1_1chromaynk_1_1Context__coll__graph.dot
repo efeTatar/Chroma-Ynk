@@ -1,0 +1,34 @@
+digraph "com.tsan.chromaynk.Context"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="com.tsan.chromaynk.Context",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node2 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" controller" ,fontname="Helvetica"];
+  Node2 [label="com.example.demo1.Interface\lController",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classcom_1_1example_1_1demo1_1_1InterfaceController.html",tooltip=" "];
+  Node3 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" timeline" ,fontname="Helvetica"];
+  Node3 [label="Timeline",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node4 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" gc" ,fontname="Helvetica"];
+  Node4 [label="GraphicsContext",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node5 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" drawingPane" ,fontname="Helvetica"];
+  Node5 [label="Pane",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node6 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" drawingInstructions" ,fontname="Helvetica"];
+  Node6 [label="List\< String \>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node7 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" speedComboBox" ,fontname="Helvetica"];
+  Node7 [label="ComboBox\< String \>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node8 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" fastSpeedButton\nloadFileButton\nmediumSpeedButton\nslowSpeedButton\nstepButton" ,fontname="Helvetica"];
+  Node8 [label="Button",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node9 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" scene" ,fontname="Helvetica"];
+  Node9 [label="Scene",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node10 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" mainCursor" ,fontname="Helvetica"];
+  Node10 [label="com.tsan.chromaynk.datatypes.\lCursor",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classcom_1_1tsan_1_1chromaynk_1_1datatypes_1_1Cursor.html",tooltip=" "];
+  Node11 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" returnValue" ,fontname="Helvetica"];
+  Node11 [label="com.tsan.chromaynk.datatypes.\lVariable",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classcom_1_1tsan_1_1chromaynk_1_1datatypes_1_1Variable.html",tooltip=" "];
+  Node12 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" cursor" ,fontname="Helvetica"];
+  Node12 [label="Map\< Integer, com.tsan.chromaynk.datatypes.\lCursor \>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node13 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" function" ,fontname="Helvetica"];
+  Node13 [label="Map\< String, com.tsan.chromaynk.expressions.\lExpression \>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node14 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" variable" ,fontname="Helvetica"];
+  Node14 [label="Map\< String, com.tsan.chromaynk.datatypes.\lVariable \>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+}

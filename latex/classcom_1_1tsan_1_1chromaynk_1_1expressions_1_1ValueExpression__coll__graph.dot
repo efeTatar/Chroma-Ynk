@@ -11,4 +11,6 @@ digraph "com.tsan.chromaynk.expressions.ValueExpression"
   Node3 [label="com.tsan.chromaynk.expressions.\lExpression",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classcom_1_1tsan_1_1chromaynk_1_1expressions_1_1Expression.html",tooltip=" "];
   Node4 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid"];
   Node4 [label="com.tsan.chromaynk.expressions.\lAssignable",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$interfacecom_1_1tsan_1_1chromaynk_1_1expressions_1_1Assignable.html",tooltip=" "];
+  Node5 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" value" ];
+  Node5 [label="com.tsan.chromaynk.datatypes.\lVariable",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classcom_1_1tsan_1_1chromaynk_1_1datatypes_1_1Variable.html",tooltip=" "];
 }

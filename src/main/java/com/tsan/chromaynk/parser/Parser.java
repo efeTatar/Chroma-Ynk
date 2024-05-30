@@ -1,14 +1,12 @@
 package com.tsan.chromaynk.parser;
 
 import com.tsan.chromaynk.datatypes.Num;
-import com.tsan.chromaynk.datatypes.Variable;
+import com.tsan.chromaynk.datatypes.Str;
 import com.tsan.chromaynk.exceptions.ParsingFailedException;
 import com.tsan.chromaynk.exceptions.SyntaxErrorException;
 import com.tsan.chromaynk.exceptions.UnexistingOperatorException;
 import com.tsan.chromaynk.expressions.*;
-import com.tsan.chromaynk.Context;
 import com.tsan.chromaynk.tokenizer.TokenIterator;
-import com.tsan.chromaynk.tokenizer.Token.tokenType;
 import com.tsan.chromaynk.Operation;
 
 import java.util.List;
@@ -21,14 +19,25 @@ import java.util.HashMap;
 
 import com.tsan.chromaynk.tokenizer.Token;
 
+/**
+ * Parser class of this Abbas language interpreter.<br>
+ * 
+ * This parser class has the tool necessary to parse tokens<br>
+ * belonging to an abbas language program.<br>
+ * 
+ * Contained methods parse tokens according to the grammar rules<br>
+ * of the Abbas programming language
+ */
 public class Parser {
 
 
     public Parser(){}
 
     /**
-     * This is the main parse method, it redirects tokens to corresponding methods<br>
-     * It is used to parse bodies
+     * Main parsing method<br>
+     * This method parses bodies starting with the main function<br>
+     * 
+     * Builds a list expression for the body
      * 
      * @param iterator
      * @return
@@ -55,7 +64,6 @@ public class Parser {
                         break;
                 
                     case RBRACK:
-                        //iterator.next();
                         return new ListExpression(list);
                     
                     case EOF:
@@ -77,10 +85,16 @@ public class Parser {
 
     /**
      * 
+     * Prints variable<br>
+     * Cannot handle operation
+     * It may only print variables
+     * 
+     * debuggin method
+     * 
      * @param iterator
      * @return
      */
-    public Expression parsePrint(TokenIterator iterator)
+    private Expression parsePrint(TokenIterator iterator)
     {
         System.out.println("Parsing: print");
         iterator.next();
@@ -100,7 +114,7 @@ public class Parser {
      * @throws SyntaxErrorException
      * @throws ParsingFailedException
      */
-    public Expression parseName(TokenIterator iterator) throws SyntaxErrorException, ParsingFailedException
+    private Expression parseName(TokenIterator iterator) throws SyntaxErrorException, ParsingFailedException
     {
         System.out.println("Parsing: name");
         String name = iterator.current().getValue();
@@ -129,6 +143,8 @@ public class Parser {
                     //if(iterator.next().getType() == Token.tokenType.LPAREN) return null;
                     //iterator.previous();
 
+                    // name(value) will not cause multiplication according to language grammar
+                    // so must be a function call or an instruction
                     if(iterator.next().getType() == Token.tokenType.LPAREN)
                     {
                         iterator.previous();
@@ -137,6 +153,7 @@ public class Parser {
                     }
                     iterator.previous();
 
+                    // checks if instruction is value assignment
                     if(iterator.next().getType() == Token.tokenType.OP & iterator.current().getValue().equals("="))
                     {
                         iterator.previous();
@@ -161,7 +178,7 @@ public class Parser {
      * @return
      * @throws ParsingFailedException
      */
-    public Expression parseWord(TokenIterator iterator) throws ParsingFailedException
+    private Expression parseWord(TokenIterator iterator) throws ParsingFailedException
     {
         System.out.println("Parsing: word");
         try{
@@ -204,9 +221,22 @@ public class Parser {
         
     }
 
+    /**
+     * 
+     * Parses cursor selection<br>
+     * 
+     * @param iterator
+     * @return
+     * @throws ParsingFailedException
+     * @throws SyntaxErrorException
+     */
     private Expression parseCursorSelection(TokenIterator iterator) throws ParsingFailedException, SyntaxErrorException
     {
         System.out.println("Parsing: cursor selection");
+        /*
+         * param for the SELECT keywords does not require parens
+         * so can parse directly after the keyword
+         */
         iterator.next();
         Assignable id = parseOperation(iterator);
         if(iterator.current().getType() != Token.tokenType.SEMICOL) throw new SyntaxErrorException("Parsing error occured in cursor selection: expression must end with ';'");
@@ -214,69 +244,113 @@ public class Parser {
         return new SelectCursorExpression(id);
     }
 
+    /**
+     * 
+     * Parses cursor deletion<br>
+     * 
+     * This method is called when DELETE keyword is encountered<br>
+     * does not require parens so parser can parse operation right ahead
+     * 
+     * @param iterator
+     * @return
+     * @throws ParsingFailedException
+     * @throws SyntaxErrorException
+     */
     private Expression parseCursorDeletion(TokenIterator iterator) throws ParsingFailedException, SyntaxErrorException
     {
         System.out.println("Parsing: cursor deletion");
-        iterator.next();
+        iterator.next(); // start of operation
         Assignable id = parseOperation(iterator);
         if(iterator.current().getType() != Token.tokenType.SEMICOL) throw new SyntaxErrorException("Parsing error occured in cursor deletion: expression must end with ';'");
         iterator.next();
         return new CursorDeletionExpression(id);
     }
 
+    /**
+     * 
+     * Parses cursor creation
+     * 
+     * @param iterator
+     * @return
+     * @throws ParsingFailedException
+     * @throws SyntaxErrorException
+     */
     private Expression parseCursorCreation(TokenIterator iterator) throws ParsingFailedException, SyntaxErrorException
     {
         System.out.println("Parsing: cursor creation");
-        iterator.next();
+        iterator.next();    // can parse right ahead because keyword doesnt require parens.
         Assignable id = parseOperation(iterator);
         if(iterator.current().getType() != Token.tokenType.SEMICOL) throw new SyntaxErrorException("Parsing error occured in cursor creation: expression must end with ';'");
         iterator.next();
         return new CreateCursorExpression(id);
     }
 
+    /**
+     * 
+     * Parses return statement
+     * 
+     * @param iterator
+     * @return
+     * @throws ParsingFailedException
+     * @throws SyntaxErrorException
+     */
     private Expression parseReturnExpression(TokenIterator iterator) throws ParsingFailedException, SyntaxErrorException
     {
         System.out.println("Parsing: return expression");
-        iterator.next();
+        iterator.next(); // can parse right ahead because keyword does not require parens
         Assignable value = parseOperation(iterator);
         if(iterator.current().getType() != Token.tokenType.SEMICOL) throw new SyntaxErrorException("Parsing error occured in return expression: expression must end with ';'");
         iterator.next();
         return new ReturnExpression(value);
     }
 
+    /**
+     * 
+     * Parses for loop
+     * 
+     * @param iterator
+     * @return
+     * @throws ParsingFailedException
+     * @throws SyntaxErrorException
+     */
     private Expression parseForExpression(TokenIterator iterator) throws ParsingFailedException, SyntaxErrorException
     {
-        System.out.println("Parsing: for loop");
-        try{
-            if(iterator.next().getType() != Token.tokenType.LPAREN) throw new SyntaxErrorException("Parsing error occured in for expression: valid format is FOR(variable, condition, action)");
-            Expression variable = parseVariableCreation(iterator);
-            Assignable condition = parseOperation(iterator);
-            List<Token> actionTokens = new ArrayList<Token>(); 
-            while(iterator.current().getType() != Token.tokenType.SEMICOL){
-                actionTokens.add(iterator.current());
-                iterator.next();
+        // FOR ( name [= value] ; value [; value] ) {}
+        // above is the expected format
+
+        System.out.println("Parsing: for expression");
+
+        if(iterator.next().getType() != Token.tokenType.LPAREN)
+            throw new SyntaxErrorException("Parsing error occured in For loop parsing: excepted format is: FOR ( name [= value] ; value [; value] ) {}");
+        
+        if(iterator.next().getType() != Token.tokenType.NAME)
+            throw new SyntaxErrorException("Parsing error occured in For loop parsing: excepted format is: FOR ( name [= value] ; value [; value] ) {}");
+        
+        String name = iterator.current().getValue();
+        Assignable initialValue = new ValueExpression( new Num()); // initial value set to 0
+
+        // checks if variable is initialised
+        if(iterator.next().getType() == Token.tokenType.OP)
+        {
+            if(iterator.current().getValue().equals("="))
+            {
+                iterator.next(); // start of initial value
+                initialValue = parseOperation(iterator);
             }
-            System.out.println(iterator.current().getValue());
-            if(iterator.next().getType() != Token.tokenType.RPAREN) throw new SyntaxErrorException("Parsing error occured in for expression: valid format is FOR(variable; condition; action;)");
-            Expression action = parse(new TokenIterator(actionTokens));
-            if(iterator.next().getType() != Token.tokenType.LBRACK) throw new SyntaxErrorException("Parsing error occured in for expression: body must start with bracket");
-            Expression body = parse(iterator);
-            if(iterator.current().getType() != Token.tokenType.RBRACK) throw new SyntaxErrorException("Parsing error occured in for expression: body must end with bracket");
-            iterator.next();
-            return new ForExpression(variable, condition, action, body);
-        }
-        catch(ParsingFailedException e){
-            e.display();
-            throw new ParsingFailedException("Parsing error occured in for expression");
-        }
-        catch(SyntaxErrorException e){
-            e.display();
-            throw new ParsingFailedException("Parsing error occured in for expression: syntax error");
+            else throw new SyntaxErrorException("Parsing error occured in For loop parsing: variable value must be set with the '=' symbol");
         }
 
+        if(iterator.current().getType() != Token.tokenType.SEMICOL)
+        throw new SyntaxErrorException("Parsing error occured in For loop parsing: variable value must be set with the '=' symbol");
+
+        iterator.next(); // start of final value
+
+        return null;
     }
 
     /**
+     * 
+     * Parses function call
      * 
      * @param iterator
      * @return
@@ -290,12 +364,13 @@ public class Parser {
 
         System.out.println(name);
         if(iterator.next().getType() != Token.tokenType.LPAREN) throw new SyntaxErrorException("Parsing error occured in function call: function parameters must begin with '('");
-        iterator.next();
+        iterator.next(); // start of parameters
         
         List<Assignable> list = new ArrayList<Assignable>();
         
         if(iterator.current().getType() == Token.tokenType.RPAREN)
         {
+            // creates expression with no assignables
             if(iterator.next().getType() == Token.tokenType.SEMICOL){
                 iterator.next();
                 return new FunctionExpression(name, list);
@@ -303,9 +378,14 @@ public class Parser {
             iterator.previous();
         }
 
+        // parses parameters to function
         while(iterator.current().getType() != Token.tokenType.SEMICOL)
         {
             List<Token> parameter = new ArrayList<Token>();
+
+            // parameters are isolated in seperate iterators
+            // since params are inside of parens
+            // last parameter operation must not include parameter delimiting paren 
 
             while(iterator.current().getType() != Token.tokenType.COMA)
             {
@@ -322,16 +402,24 @@ public class Parser {
                 iterator.next();
             }
 
+            // parses single parameter and adds to list
             list.add(parseOperation(new TokenIterator(parameter)));
             iterator.next();
         }
 
         if(iterator.current().getType() != Token.tokenType.SEMICOL) throw new SyntaxErrorException("Parsing error occured in function call: statement must end with ';'");
 
-        iterator.next();
+        iterator.next(); // exits function call
         return new FunctionExpression(name, list);
     }
 
+    /**
+     * 
+     * Checks if NAME token is an instruction
+     * 
+     * @param name
+     * @return
+     */
     private boolean isInstruction(String name)
     {
         if(name.equals("FWD") || name.equals("BWD") || name.equals("TURN") || name.equals("MOV")
@@ -340,6 +428,15 @@ public class Parser {
         return false;
     }
 
+    /**
+     * 
+     * Parses instruction calls
+     * 
+     * @param iterator
+     * @return
+     * @throws ParsingFailedException
+     * @throws SyntaxErrorException
+     */
     private Expression parseInstruction(TokenIterator iterator) throws ParsingFailedException, SyntaxErrorException
     {
         System.out.println("Parsing: instruction");
@@ -351,6 +448,7 @@ public class Parser {
         
         List<Assignable> list = new ArrayList<Assignable>();
         
+        // calls instruction with no parameter
         if(iterator.current().getType() == Token.tokenType.RPAREN)
         {
             if(iterator.next().getType() == Token.tokenType.SEMICOL){
@@ -360,12 +458,14 @@ public class Parser {
             iterator.previous();
         }
 
+        // initialises parameters to instructions
         while(iterator.current().getType() != Token.tokenType.SEMICOL)
         {
             List<Token> parameter = new ArrayList<Token>();
 
             while(iterator.current().getType() != Token.tokenType.COMA)
             {
+                // sets percentage booleans
                 if(iterator.current().getType() == Token.tokenType.PERC)
                 {
                     if(iterator.next().getType() == Token.tokenType.RPAREN)
@@ -404,6 +504,8 @@ public class Parser {
 
     /**
      * 
+     * Parses function creation
+     * 
      * @param iterator
      * @return
      * @throws ParsingFailedException
@@ -416,6 +518,7 @@ public class Parser {
         String name = iterator.current().getValue();
         if(iterator.next().getType() != Token.tokenType.LBRACK) throw new SyntaxErrorException("Parsing error occured in function creation: function body starts with bracket");
         iterator.next();
+        // parsing body of function
         Expression body;
         try{
             body = parse(iterator);
@@ -425,11 +528,13 @@ public class Parser {
             throw new ParsingFailedException("Parsing error occured in function creation: body cannot be parsed");
         }
         if(iterator.current().getType() != Token.tokenType.RBRACK) throw new SyntaxErrorException("Parsing error occured in function creation: function body must end with bracket");
-        iterator.next();
+        iterator.next(); // exits function
         return new FunctionCreateExpression(name, body);
     }
 
     /**
+     * 
+     * Parses variable deletion
      * 
      * @param iterator
      * @return
@@ -457,8 +562,9 @@ public class Parser {
     }
 
     /**
-     * This method parses variable creation processes
-     * redo method
+     * 
+     * Parses variable creation and initial value assignment<br>
+     * First parses creation process and then initialisation process
      * 
      * @param iterator
      * @return
@@ -493,40 +599,86 @@ public class Parser {
                 break;
         }
         
+        // if iterator hits semicolon, variables keep their initial values
         if(iterator.next().getType() == Token.tokenType.SEMICOL)
         {
-            iterator.next();
+            iterator.next(); // exits instruction
             return new ListExpression(list);
         }
         
-        if( iterator.current().getType() == Token.tokenType.OP & iterator.current().getValue().equals("=") )
-        {
-            System.out.println("parsing: variable initialising");
-            iterator.next();
-            Assignable value;
-            try{ value = parseOperation(iterator); }
-            catch(ParsingFailedException e){
-                e.display();
-                throw new ParsingFailedException("Parsing error occured in variable creation");
-            }
-            catch(SyntaxErrorException e){
-                throw new ParsingFailedException("Parsing error occured in variable creation: syntax error");
-            }
+        // if = symbol not encountered, throws error
+        if( !(iterator.current().getType() == Token.tokenType.OP & iterator.current().getValue().equals("=")) )
+            throw new SyntaxErrorException("Parsing error occured in variable creation: Variable declaration must be followed by ';' or '='");
 
-            if(iterator.current().getType() != Token.tokenType.SEMICOL) throw new SyntaxErrorException("Parsing error occured in variable creation: variable declaration must be followed by ';' to end the statement");
+        // checks if value is a string
+        iterator.next();
+        if(iterator.current().getType() == Token.tokenType.QUOTE)
+        {
+            String value = getStringValue(iterator);
+            if(iterator.current().getType() != Token.tokenType.SEMICOL)
+                throw new SyntaxErrorException("Parsing error occured in variable creation: statement must end with ';'");
             iterator.next();
-            Expression assign = new AssignExpression(variableName, value);
+            Expression assign = new AssignExpression(variableName, new ValueExpression( new Str(value) ) );
             list.add(assign);
-            System.out.println("variable value initialised");
             return new ListExpression(list);
         }
+        
+        /**
+         * Parses assignment
+         */
+        System.out.println("parsing: variable initialising");
+        //iterator.next();
+        Assignable value;
+        try{ value = parseOperation(iterator); }
+        catch(ParsingFailedException e){
+            e.display();
+            throw new ParsingFailedException("Parsing error occured in variable creation");
+        }
+        catch(SyntaxErrorException e){
+            throw new ParsingFailedException("Parsing error occured in variable creation: syntax error");
+        }
 
-        throw new SyntaxErrorException("Parsing error occured in variable creation: Variable declaration must be followed by ';' or '='");
+        if(iterator.current().getType() != Token.tokenType.SEMICOL) throw new SyntaxErrorException("Parsing error occured in variable creation: variable declaration must be followed by ';' to end the statement");
+        iterator.next();
+        Expression assign = new AssignExpression(variableName, value);
+        list.add(assign);
+        return new ListExpression(list);
 
     }
 
     /**
-     * This method parses value assignment processes
+     * 
+     * Parses string.<br>
+     * Concatenated each token value from initial quote to first encountered quote.
+     * 
+     * This method must be removed:<br>
+     * The Tokenizer must handle strings as spaces will be disregarded this way.
+     * 
+     * @param iterator
+     * @return
+    */
+    private String getStringValue(TokenIterator iterator) throws SyntaxErrorException
+    {
+        System.out.println("Parsing string value");
+        if(iterator.current().getType() != Token.tokenType.QUOTE) throw new SyntaxErrorException("Parsing error occured in string parsing: string must begin with quote");
+        
+        iterator.next(); // start of string.
+        String value = "";
+        while(iterator.current().getType() != Token.tokenType.QUOTE){
+
+            if(iterator.current().getType() == Token.tokenType.EOF) throw new SyntaxErrorException("Parsing error occured in string parsing: string msut end with quote");
+
+            value += iterator.current().getValue();
+            iterator.next();
+        }
+
+        iterator.next();
+        return value;
+    }
+
+    /**
+     * Parses stand-alone value assignments<br>
+     * Value assignments during variable initialisation is unrelated to this method.
      * 
      * @param iterator
      * @return
@@ -541,13 +693,21 @@ public class Parser {
         iterator.next(); // start of operation
         Assignable value;
 
+        if(iterator.current().getType() == Token.tokenType.QUOTE)
+        {
+            String stringValue = getStringValue(iterator);
+            if(iterator.current().getType() != Token.tokenType.SEMICOL)
+                throw new SyntaxErrorException("Parsing error occured in value assignment: statement must end with ';'");
+            iterator.next();
+            return new AssignExpression(name, new ValueExpression( new Str(stringValue) ) );
+        }
+
         if(iterator.current().getType() == Token.tokenType.NAME)
         {
             if(iterator.next().getType() == Token.tokenType.LPAREN)
             {
                 iterator.previous();
                 value = parseFunctionCall(iterator);
-                //iterator.next();
                 return new AssignExpression(name, value);
             }
             iterator.previous();
@@ -565,12 +725,13 @@ public class Parser {
         }
         
         if(iterator.current().getType() != Token.tokenType.SEMICOL) throw new SyntaxErrorException("Parsing error occured in value assignment: value must be followed by ';'");
-        iterator.next();
+        iterator.next(); // exits assignment instruction
         return new AssignExpression(name, value);
     }
 
     /**
-     * This method parses if blocks
+     * Parses if blocks<br>
+     * First parses condition and then the body
      * 
      * @param iterator
      * @return
@@ -580,13 +741,15 @@ public class Parser {
     {
         try{
             System.out.println("Parsing: if");
-            iterator.next();
+            iterator.next(); // start of condition
             Assignable condition = parseOperation(iterator);
+            // iterator should reach breacket after operation
             if(iterator.current().getType() != Token.tokenType.LBRACK) throw new ParsingFailedException("Parsing error occured in if block: left bracket must follow condition");
-            iterator.next();
+            iterator.next(); // start of body
             Expression body = parse(iterator);
+            // iterator should reach bracket after parsing the body
             if(iterator.current().getType() != Token.tokenType.RBRACK) throw new ParsingFailedException("Parsing error occured in if block: body must end with '{'");
-            iterator.next();
+            iterator.next(); // exits if block
             return new IfExpression(condition, body);
         }
         catch(ParsingFailedException e){
@@ -601,7 +764,9 @@ public class Parser {
     }
 
     /**
-     * This method parses while blocks
+     * 
+     * Parses while blocks<br>
+     * Parses operation and body
      * 
      * @param iterator
      * @return
@@ -611,13 +776,15 @@ public class Parser {
     {
         try{
             System.out.println("Parsing: while");
-            iterator.next();
+            iterator.next(); // start of condition
             Assignable condition = parseOperation(iterator);
+            // iterator should reach bracket after parsing operation
             if(iterator.current().getType() != Token.tokenType.LBRACK) throw new ParsingFailedException("Parsing error occured in while block: left bracket must follow condition");
-            iterator.next();
+            iterator.next(); // start of the body
             Expression body = parse(iterator);
+            // iterator should reach bracket after parsing body
             if(iterator.current().getType() != Token.tokenType.RBRACK) throw new ParsingFailedException("Parsing error occured in while block: body must end with '{'");
-            iterator.next();
+            iterator.next(); // exits while block
             return new WhileExpression(condition, body);
         }
         catch(ParsingFailedException e){
@@ -631,16 +798,29 @@ public class Parser {
         
     }
 
+
+
     /**
-     * This method is a direct implementation of the Shunting yard algorithm by Dijkstra<br>
-     * Once tokens are listed in RPN format, they are parsed
+     * 
+     * Parses given operation up to non-operation-related token.<br>
+     * This is a direct implementation of the Shunting yard algorithm.<br>
+     * Note that method copies tokens into buffer before parsing so when parsing parameters
+     * to functions or instructions,<br> call this method with a new iterator isolating the
+     * parameter up to the closing parentheses.<br>
+     * 
+     * Initial part of method rearranges tokens disregarding parentheses so that we obtain
+     * operation in RPN form.<br> RPN form is parsed and expression tree is returned.<br> 
+     * 
+     * todos:<br>
+     * rewrite map to properties so it looks cleaner<br>
+     * very minor bugfixes requires regarding empty stack cases
      * 
      * @param iterator
      * @return
      * @throws ParsingFailedException
      * @throws SyntaxErrorException
      */
-    public Assignable parseOperation(TokenIterator iterator) throws ParsingFailedException, SyntaxErrorException
+    private Assignable parseOperation(TokenIterator iterator) throws ParsingFailedException, SyntaxErrorException
     {
         System.out.println("Parsing: operation");
         // list of token types relating to operations
@@ -655,17 +835,11 @@ public class Parser {
         Map<String, Integer[]> properties = new HashMap<String, Integer[]>();
         Integer[] parentheses = {7,0};
         properties.put("(", parentheses); properties.put(")", parentheses);
-        Integer[] not = {6, 1};
-        properties.put("!", not);
-        Integer[] mult = {5, 0};
-        properties.put("*", mult); properties.put("/", mult);
-        Integer[] plus = {4, 0};
-        properties.put("+", plus); properties.put("-", plus);
-        Integer[] ineq = {3, 0};
-        properties.put("<", ineq); properties.put("<=", ineq); properties.put(">", ineq); properties.put(">=", ineq);
-        Integer[] eq = {2, 0};
-        properties.put("==", eq); properties.put("!=", eq);
-        Integer[] and = {1, 0};
+        Integer[] not = {6, 1}; properties.put("!", not);
+        Integer[] mult = {5, 0}; properties.put("*", mult); properties.put("/", mult);
+        Integer[] plus = {4, 0}; properties.put("+", plus); properties.put("-", plus);
+        Integer[] ineq = {3, 0}; properties.put("<", ineq); properties.put("<=", ineq); properties.put(">", ineq); properties.put(">=", ineq);
+        Integer[] eq = {2, 0}; properties.put("==", eq); properties.put("!=", eq); Integer[] and = {1, 0};
         properties.put("&", and); properties.put("|", and);
 
         // this initial part of the algorithm provides the expression in the RPN format
@@ -683,18 +857,27 @@ public class Parser {
         {
             Token current = iterator.current();
 
-            if(current.getType() == Token.tokenType.OP && current.getValue().equals("-") && iterator.next().getType() == Token.tokenType.VALUE)
+            /*
+             * the interpreter handles negative values during parsing
+             * below condition checks if minus symbol corresponds to a
+             * negative connotation or an operation.
+             * Reverses following value if necessary
+             */
+            if(current.getType() == Token.tokenType.OP && current.getValue().equals("-"))
             {
-                System.out.println("test");
-                iterator.previous();
-                Token previousToken = iterator.previous();
-                iterator.next();
-                if(previousToken.getType() == Token.tokenType.LPAREN || previousToken.getType() == Token.tokenType.OP)
+                if(iterator.next().getType() == Token.tokenType.VALUE)
                 {
-                    Token value = iterator.next();
-                    value.setValue( String.valueOf( -Double.parseDouble(value.getValue()) ) );
-                    current = value;
+                    iterator.previous();
+                    Token previousToken = iterator.previous();
+                    iterator.next();
+                    if(previousToken.getType() == Token.tokenType.LPAREN || previousToken.getType() == Token.tokenType.OP)
+                    {
+                        Token value = iterator.next();
+                        value.setValue( String.valueOf( -Double.parseDouble(value.getValue()) ) );
+                        current = value;
+                    }
                 }
+                else iterator.previous();
             }
 
             if(current.getType() == Token.tokenType.VALUE)
@@ -741,11 +924,12 @@ public class Parser {
         while(!stack.isEmpty()) {
             queue.add(stack.pop());
         }
+        // end of Shunting yard algorithm
 
         // the second part of the algorithm builds the tree from the RPN format
-
         List<Assignable> assignableList = new ArrayList<Assignable>();
 
+        // tokens are transformed into expression nodes and added into array
         try{
             for(Token t : queue)
             {
@@ -772,6 +956,10 @@ public class Parser {
             throw new SyntaxErrorException("Operation cannot be parsed: unnkown operator");
         }
         
+        /*
+         * parsing RPN format and building tree
+         * throws exception if not enough operands for operation
+         */
         int index = 0;
         while(assignableList.size() > 1)
         {
@@ -803,11 +991,17 @@ public class Parser {
 
     /**
      * 
+     * A sudo-constructor for the Operation enumeration<br>
+     * no other method was found to build object belonging to Operation<br>
+     * out of token.<br>
+     * 
+     * Transfer this method into Operation enumeration if possible
+     * 
      * @param operator
      * @return
      * @throws UnexistingOperatorException
      */
-    public Operation createOp(String operator) throws UnexistingOperatorException
+    private Operation createOp(String operator) throws UnexistingOperatorException
     {
         switch (operator) {
             case "+": return Operation.PLUS;

@@ -1,26 +1,98 @@
 \hypertarget{classcom_1_1tsan_1_1chromaynk_1_1Client}{}\doxysection{com.\+tsan.\+chromaynk.\+Client Class Reference}
 \label{classcom_1_1tsan_1_1chromaynk_1_1Client}\index{com.tsan.chromaynk.Client@{com.tsan.chromaynk.Client}}
+
+
+Collaboration diagram for com.\+tsan.\+chromaynk.\+Client\+:
+% FIG 0
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classcom_1_1tsan_1_1chromaynk_1_1Client_a9f449697bdb8ee7d7691ebb6e7bce1e5}\label{classcom_1_1tsan_1_1chromaynk_1_1Client_a9f449697bdb8ee7d7691ebb6e7bce1e5}} 
-{\bfseries Client} (\mbox{\hyperlink{classcom_1_1example_1_1demo1_1_1InterfaceController}{Interface\+Controller}} controller)
+\mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1Client_a9f449697bdb8ee7d7691ebb6e7bce1e5}{Client}} (\mbox{\hyperlink{classcom_1_1example_1_1demo1_1_1InterfaceController}{Interface\+Controller}} controller)
 \item 
-\mbox{\Hypertarget{classcom_1_1tsan_1_1chromaynk_1_1Client_af60741e665443df9aac7a67c487f361e}\label{classcom_1_1tsan_1_1chromaynk_1_1Client_af60741e665443df9aac7a67c487f361e}} 
-void {\bfseries tokenize} (String file)
+void \mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1Client_af60741e665443df9aac7a67c487f361e}{tokenize}} (String file)
 \item 
-\mbox{\Hypertarget{classcom_1_1tsan_1_1chromaynk_1_1Client_a08e967fb340fa25876f587487f5810b2}\label{classcom_1_1tsan_1_1chromaynk_1_1Client_a08e967fb340fa25876f587487f5810b2}} 
-void {\bfseries test} ()
+void \mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1Client_a01f22049ae452fb575601fec51ead893}{parse}} ()
 \item 
-\mbox{\Hypertarget{classcom_1_1tsan_1_1chromaynk_1_1Client_a01f22049ae452fb575601fec51ead893}\label{classcom_1_1tsan_1_1chromaynk_1_1Client_a01f22049ae452fb575601fec51ead893}} 
-void {\bfseries parse} ()
+void \mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1Client_a995a330f7f979342e63608ada69a700c}{execute}} ()
 \item 
-\mbox{\Hypertarget{classcom_1_1tsan_1_1chromaynk_1_1Client_a995a330f7f979342e63608ada69a700c}\label{classcom_1_1tsan_1_1chromaynk_1_1Client_a995a330f7f979342e63608ada69a700c}} 
-void {\bfseries execute} ()
-\item 
-\mbox{\Hypertarget{classcom_1_1tsan_1_1chromaynk_1_1Client_abac15dddc2b5a5618d56c4fbb77d5db2}\label{classcom_1_1tsan_1_1chromaynk_1_1Client_abac15dddc2b5a5618d56c4fbb77d5db2}} 
-void {\bfseries display} ()
+void \mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1Client_abac15dddc2b5a5618d56c4fbb77d5db2}{display}} ()
 \end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classcom_1_1tsan_1_1chromaynk_1_1Client_a704af09742457847f481eeda2b64dc6d}\label{classcom_1_1tsan_1_1chromaynk_1_1Client_a704af09742457847f481eeda2b64dc6d}} 
+\mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1Context}{Context}} {\bfseries context}
+\item 
+\mbox{\Hypertarget{classcom_1_1tsan_1_1chromaynk_1_1Client_abbd0bd0188a4e19c03e5e5607ebfb854}\label{classcom_1_1tsan_1_1chromaynk_1_1Client_abbd0bd0188a4e19c03e5e5607ebfb854}} 
+\mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1Tokenizer}{Tokenizer}} {\bfseries tokenizer}
+\item 
+\mbox{\Hypertarget{classcom_1_1tsan_1_1chromaynk_1_1Client_a67367c2a272e55fc9904da9d69ffa906}\label{classcom_1_1tsan_1_1chromaynk_1_1Client_a67367c2a272e55fc9904da9d69ffa906}} 
+\mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1parser_1_1Parser}{Parser}} {\bfseries parser}
+\item 
+\mbox{\Hypertarget{classcom_1_1tsan_1_1chromaynk_1_1Client_a8531db971b3a7618cc7b6034aa95c1b8}\label{classcom_1_1tsan_1_1chromaynk_1_1Client_a8531db971b3a7618cc7b6034aa95c1b8}} 
+\mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1expressions_1_1Expression}{Expression}} {\bfseries main}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The \mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1Client}{Client}} class moderates the interpratation process~\newline
+
+
+It encompasses a tokenizer, a parser and a context for the main function.~\newline
+ The context remains so each interpretation requires a new client. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classcom_1_1tsan_1_1chromaynk_1_1Client_a9f449697bdb8ee7d7691ebb6e7bce1e5}\label{classcom_1_1tsan_1_1chromaynk_1_1Client_a9f449697bdb8ee7d7691ebb6e7bce1e5}} 
+\index{com.tsan.chromaynk.Client@{com.tsan.chromaynk.Client}!Client@{Client}}
+\index{Client@{Client}!com.tsan.chromaynk.Client@{com.tsan.chromaynk.Client}}
+\doxysubsubsection{\texorpdfstring{Client()}{Client()}}
+{\footnotesize\ttfamily com.\+tsan.\+chromaynk.\+Client.\+Client (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcom_1_1example_1_1demo1_1_1InterfaceController}{Interface\+Controller}}}]{controller }\end{DoxyParamCaption})}
+
+Constructor for \mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1Client}{Client}} class Feed in null if interpreter used with no interface
+
+
+\begin{DoxyParams}{Parameters}
+{\em controller} & \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classcom_1_1tsan_1_1chromaynk_1_1Client_abac15dddc2b5a5618d56c4fbb77d5db2}\label{classcom_1_1tsan_1_1chromaynk_1_1Client_abac15dddc2b5a5618d56c4fbb77d5db2}} 
+\index{com.tsan.chromaynk.Client@{com.tsan.chromaynk.Client}!display@{display}}
+\index{display@{display}!com.tsan.chromaynk.Client@{com.tsan.chromaynk.Client}}
+\doxysubsubsection{\texorpdfstring{display()}{display()}}
+{\footnotesize\ttfamily void com.\+tsan.\+chromaynk.\+Client.\+display (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Displays tokens~\newline
+ debugging function \mbox{\Hypertarget{classcom_1_1tsan_1_1chromaynk_1_1Client_a995a330f7f979342e63608ada69a700c}\label{classcom_1_1tsan_1_1chromaynk_1_1Client_a995a330f7f979342e63608ada69a700c}} 
+\index{com.tsan.chromaynk.Client@{com.tsan.chromaynk.Client}!execute@{execute}}
+\index{execute@{execute}!com.tsan.chromaynk.Client@{com.tsan.chromaynk.Client}}
+\doxysubsubsection{\texorpdfstring{execute()}{execute()}}
+{\footnotesize\ttfamily void com.\+tsan.\+chromaynk.\+Client.\+execute (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Executes the main function \mbox{\Hypertarget{classcom_1_1tsan_1_1chromaynk_1_1Client_a01f22049ae452fb575601fec51ead893}\label{classcom_1_1tsan_1_1chromaynk_1_1Client_a01f22049ae452fb575601fec51ead893}} 
+\index{com.tsan.chromaynk.Client@{com.tsan.chromaynk.Client}!parse@{parse}}
+\index{parse@{parse}!com.tsan.chromaynk.Client@{com.tsan.chromaynk.Client}}
+\doxysubsubsection{\texorpdfstring{parse()}{parse()}}
+{\footnotesize\ttfamily void com.\+tsan.\+chromaynk.\+Client.\+parse (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Parses tokens~\newline
+
+
+cannot parse before tokenizing \mbox{\Hypertarget{classcom_1_1tsan_1_1chromaynk_1_1Client_af60741e665443df9aac7a67c487f361e}\label{classcom_1_1tsan_1_1chromaynk_1_1Client_af60741e665443df9aac7a67c487f361e}} 
+\index{com.tsan.chromaynk.Client@{com.tsan.chromaynk.Client}!tokenize@{tokenize}}
+\index{tokenize@{tokenize}!com.tsan.chromaynk.Client@{com.tsan.chromaynk.Client}}
+\doxysubsubsection{\texorpdfstring{tokenize()}{tokenize()}}
+{\footnotesize\ttfamily void com.\+tsan.\+chromaynk.\+Client.\+tokenize (\begin{DoxyParamCaption}\item[{String}]{file }\end{DoxyParamCaption})}
+
+Tokenizez given file
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & \\
+\hline
+\end{DoxyParams}
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

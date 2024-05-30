@@ -1,15 +1,19 @@
 package com.tsan.chromaynk;
 
 import java.util.Map;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 import com.tsan.chromaynk.datatypes.Variable;
 import com.tsan.chromaynk.expressions.Expression;
 import com.example.demo1.InterfaceController;
 import com.tsan.chromaynk.datatypes.Cursor;
 
+/**
+ * The Context class acts like memory for the Abbas language interpreter<br>
+ * 
+ * It contains variables, cursors, functions and the return value.<br>
+ * It also has access to the canvas if the interpreter has to execute instructions
+ */
 public class Context {
 
     private Map<String, Variable> variable;
@@ -23,6 +27,15 @@ public class Context {
 
     private InterfaceController controller;
 
+    /**
+     * 
+     * Context constructor
+     * 
+     * must fetch in null as controller if interpreter is being<br>
+     * used independently of the interface
+     * 
+     * @param controller
+     */
     public Context(InterfaceController controller)
     {
         this.returnValue = null;
@@ -33,15 +46,15 @@ public class Context {
         this.function = new HashMap<String, Expression>();
     }
 
-    public Context(Map<String, Variable> variable)
-    {
-        this.returnValue = null;
-        this.returned = false;
-        this.variable = variable;
-        this.cursor = new HashMap<Integer, Cursor>();
-        this.function = new HashMap<String, Expression>();
-    }
-
+    /**
+     * 
+     * Derives new context from another
+     *
+     * method intended to be used for function calls
+     * 
+     * @param variable
+     * @return
+     */
     public Context deriveContext(Map<String, Variable> variable)
     {
         Context c = new Context(controller);
@@ -53,16 +66,37 @@ public class Context {
         return c;
     }
 
+    /**
+     * 
+     * Returns controller
+     * 
+     * @return
+     */
     public InterfaceController getController()
     {
         return controller;
     }
 
+    /**
+     * 
+     * Fetches main cursor
+     * 
+     * @return
+     */
     public Cursor getMainCursor()
     {
         return mainCursor;
     }
 
+    /**
+     * 
+     * Sets main cursor
+     * 
+     * returns false if fails
+     * 
+     * @param id
+     * @return
+     */
     public boolean selectCursor(int id)
     {
         Cursor c = getCursor(id);
@@ -71,6 +105,16 @@ public class Context {
         return true;
     }
 
+    /**
+     * 
+     * Adds cursor
+     * 
+     * returns false if cursor already exists
+     * 
+     * @param id
+     * @param c
+     * @return
+     */
     public boolean addCursor(int id, Cursor c)
     {
         if(cursor.keySet().contains(id)) return false;
@@ -78,12 +122,30 @@ public class Context {
         return true;
     }
 
+    /**
+     * 
+     * Fetches cursor
+     * 
+     * returns null if cursor is missing
+     * 
+     * @param id
+     * @return
+     */
     public Cursor getCursor(int id)
     {
         if(!cursor.keySet().contains(id)) return null;
         return cursor.get(id);
     }
 
+    /**
+     * 
+     * removes cursor
+     * 
+     * returns false if removal failed
+     * 
+     * @param id
+     * @return
+     */
     public boolean removeCursor(Integer id)
     {
         if(!cursor.keySet().contains(id)) return false;
@@ -92,32 +154,63 @@ public class Context {
         return true;
     }
 
+    /**
+     * 
+     * Returns function
+     * 
+     * returns null if function does not exist
+     * 
+     * @param name
+     * @return
+    */
     public Expression getFunction(String name)
     {
         if(!function.keySet().contains(name)) return null;
         return function.get(name);
     }
 
+    /**
+     * Return function state<br>
+     * 
+     * @return
+     */
     public boolean returned()
     {
         return returned;
     }
 
+    /**
+     * sets function state to returned
+     */
     public void setReturned()
     {
         returned = true;
     }
 
+    /**
+     * 
+     * @param value
+     */
     public void setReturnValue(Variable value)
     {
         returnValue = value;
     }
 
+    /**
+     * 
+     * @return
+     */
     public Variable getReturnValue()
     {
         return returnValue;
     }
 
+    /**
+     * 
+     * @param name
+     * @param body
+     * @return
+     */
     public boolean addFunction(String name, Expression body)
     {
         if(function.keySet().contains(name))
@@ -127,7 +220,12 @@ public class Context {
         return true;
     }
 
-    // throw var exists exception ?
+    /**
+     * 
+     * @param name
+     * @param var
+     * @return
+     */
     public boolean addVariable(String name, Variable var)
     {
         if(variable.keySet().contains(name))
@@ -137,6 +235,11 @@ public class Context {
         return true;
     }
 
+    /**
+     * 
+     * @param name
+     * @return
+     */
     public boolean deleteVariable(String name)
     {
         if(!variable.keySet().contains(name)) return false;
@@ -145,14 +248,15 @@ public class Context {
         return true;
     }
 
+    /**
+     * 
+     * @param variableName
+     * @return
+     */
     public Variable getVariable(String variableName)
     {
         if(!variable.keySet().contains(variableName)) return null;
         return variable.get(variableName);
     }
-
-    // private
-
-
 
 }

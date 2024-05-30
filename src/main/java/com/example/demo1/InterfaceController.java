@@ -313,7 +313,7 @@ public class InterfaceController {
 
     public int COLORRGB(double red, double green, double blue){
 
-        Color color = Color.color(red, green, blue);;  // Take the second element as a hexadecimal code or colour name
+        Color color = Color.color(red%250 / 255, green, blue);;  // Take the second element as a hexadecimal code or colour name
         gc.setStroke(color);
         return 1;
     }
@@ -355,18 +355,18 @@ public class InterfaceController {
             y = drawingPane.getPrefHeight() * y / 100;
         }
         if( x > drawingPane.getWidth() || x < 0){
-            System.out.println("You are out of borders, you cannot move outside of " + drawingPane.getWidth());
+            System.out.println("You are out of borders, you cannot move outside of " + drawingPane.getWidth() + " x: "+x);
             return 0;
         }
         if( y > drawingPane.getHeight()  || y < 0){
-            System.out.println("You are out of borders, you cannot move outside of" + drawingPane.getHeight());
+            System.out.println("You are out of borders, you cannot move outside of" + drawingPane.getHeight() + " y: "+y);
             return 0;
         }
         gc.strokeLine(c.getX(), c.getY(), x, y);
         c.setX(x);                               // New coordinates
         c.setY(y);
         gc.moveTo(x, y);
-        System.out.println("POS changed");
+        //System.out.println("POS changed");
         return 1;
     }
 

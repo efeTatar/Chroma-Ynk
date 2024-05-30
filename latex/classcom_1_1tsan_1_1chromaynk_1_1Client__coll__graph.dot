@@ -1,0 +1,44 @@
+digraph "com.tsan.chromaynk.Client"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="com.tsan.chromaynk.Client",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node2 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" tokenizer" ];
+  Node2 [label="com.tsan.chromaynk.tokenizer.\lTokenizer",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1Tokenizer.html",tooltip=" "];
+  Node3 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" tokens" ];
+  Node3 [label="List\< com.tsan.chromaynk.tokenizer.\lToken \>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node4 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" context" ];
+  Node4 [label="com.tsan.chromaynk.Context",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classcom_1_1tsan_1_1chromaynk_1_1Context.html",tooltip=" "];
+  Node5 -> Node4 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" controller" ];
+  Node5 [label="com.example.demo1.Interface\lController",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classcom_1_1example_1_1demo1_1_1InterfaceController.html",tooltip=" "];
+  Node6 -> Node5 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" timeline" ];
+  Node6 [label="Timeline",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node7 -> Node5 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" gc" ];
+  Node7 [label="GraphicsContext",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node8 -> Node5 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" drawingPane" ];
+  Node8 [label="Pane",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node9 -> Node5 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" drawingInstructions" ];
+  Node9 [label="List\< String \>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node10 -> Node5 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" speedComboBox" ];
+  Node10 [label="ComboBox\< String \>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node11 -> Node5 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" fastSpeedButton\nloadFileButton\nmediumSpeedButton\nslowSpeedButton\nstepButton" ];
+  Node11 [label="Button",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node12 -> Node5 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" scene" ];
+  Node12 [label="Scene",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node13 -> Node4 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" mainCursor" ];
+  Node13 [label="com.tsan.chromaynk.datatypes.\lCursor",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classcom_1_1tsan_1_1chromaynk_1_1datatypes_1_1Cursor.html",tooltip=" "];
+  Node14 -> Node4 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" returnValue" ];
+  Node14 [label="com.tsan.chromaynk.datatypes.\lVariable",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classcom_1_1tsan_1_1chromaynk_1_1datatypes_1_1Variable.html",tooltip=" "];
+  Node15 -> Node4 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" cursor" ];
+  Node15 [label="Map\< Integer, com.tsan.chromaynk.datatypes.\lCursor \>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node16 -> Node4 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" function" ];
+  Node16 [label="Map\< String, com.tsan.chromaynk.expressions.\lExpression \>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node17 -> Node4 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" variable" ];
+  Node17 [label="Map\< String, com.tsan.chromaynk.datatypes.\lVariable \>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node18 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" parser" ];
+  Node18 [label="com.tsan.chromaynk.parser.\lParser",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classcom_1_1tsan_1_1chromaynk_1_1parser_1_1Parser.html",tooltip=" "];
+  Node19 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" main" ];
+  Node19 [label="com.tsan.chromaynk.expressions.\lExpression",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classcom_1_1tsan_1_1chromaynk_1_1expressions_1_1Expression.html",tooltip=" "];
+}
