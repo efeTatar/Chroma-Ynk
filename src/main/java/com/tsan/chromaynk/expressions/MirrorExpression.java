@@ -34,9 +34,9 @@ public class MirrorExpression extends NonTerminalExpression{
         }
 
         double xCoord = ((Num)(x.getValue(context))).getValue();
-        xCoord = p1 ? context.getController().canvasHeight * xCoord / 100 : xCoord;
+        xCoord = p1 ? context.getController().getWidth() * xCoord / 100 : xCoord;
         double yCoord = ((Num)(y.getValue(context))).getValue();
-        yCoord = p2 ? context.getController().canvasWidth * yCoord / 100 : yCoord;
+        yCoord = p2 ? context.getController().getHeight() * yCoord / 100 : yCoord;
 
         System.out.println("mirror coord: " + xCoord + " and " + yCoord);
 

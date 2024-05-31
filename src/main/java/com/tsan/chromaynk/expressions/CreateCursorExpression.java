@@ -3,8 +3,6 @@ package com.tsan.chromaynk.expressions;
 import com.tsan.chromaynk.Context;
 import com.tsan.chromaynk.datatypes.*;
 
-import com.example.demo1.InterfaceController;
-
 public class CreateCursorExpression extends TerminalExpression{
 
     private Assignable id;

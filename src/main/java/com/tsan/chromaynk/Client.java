@@ -1,7 +1,7 @@
 package com.tsan.chromaynk;
 
 import com.tsan.chromaynk.tokenizer.Tokenizer;
-import com.example.demo1.InterfaceController;
+import com.example.demo1.DrawingAppController;
 import com.tsan.chromaynk.exceptions.ParsingFailedException;
 import com.tsan.chromaynk.expressions.Expression;
 import com.tsan.chromaynk.parser.Parser;
@@ -29,7 +29,7 @@ public class Client {
      * 
      * @param controller
      */
-    public Client(InterfaceController controller){
+    public Client(DrawingAppController controller){
         this.context = new Context(controller);
         this.tokenizer = new Tokenizer();
         this.parser = new Parser();
@@ -65,14 +65,21 @@ public class Client {
     /**
      * Executes the main function
      */
-    public void execute()
+    public void execute(int speed) throws InterruptedException
     {
         if(main == null)
         {
             System.out.println("Execution halted: main function missing");
             return;
         }
-        main.execute(context);
+
+        context.setSpeed(speed);
+
+        Thread drawingThread = new Thread(() -> {
+            this.main.execute(context);
+        });
+        drawingThread.setDaemon(true);
+        drawingThread.start();
         System.out.println("exit value: " + context.getReturnValue());
     }
 

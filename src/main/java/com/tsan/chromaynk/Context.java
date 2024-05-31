@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 import com.tsan.chromaynk.datatypes.Variable;
 import com.tsan.chromaynk.expressions.Expression;
-import com.example.demo1.InterfaceController;
+import com.example.demo1.DrawingAppController;
 import com.tsan.chromaynk.datatypes.Cursor;
 
 /**
@@ -25,7 +25,9 @@ public class Context {
 
     private Cursor mainCursor;
 
-    private InterfaceController controller;
+    private DrawingAppController controller;
+
+    public int speed;
 
     /**
      * 
@@ -36,7 +38,7 @@ public class Context {
      * 
      * @param controller
      */
-    public Context(InterfaceController controller)
+    public Context(DrawingAppController controller)
     {
         this.returnValue = null;
         this.returned = false;
@@ -63,6 +65,7 @@ public class Context {
         c.variable = variable;
         c.cursor = this.cursor;
         c.function = this.function;
+        c.controller = this.controller;
         return c;
     }
 
@@ -72,7 +75,7 @@ public class Context {
      * 
      * @return
      */
-    public InterfaceController getController()
+    public DrawingAppController getController()
     {
         return controller;
     }
@@ -257,6 +260,14 @@ public class Context {
     {
         if(!variable.keySet().contains(variableName)) return null;
         return variable.get(variableName);
+    }
+
+    /**
+     * 
+     * @param speed
+     */
+    public void setSpeed(int speed) {
+        this.speed = speed;
     }
 
 }
