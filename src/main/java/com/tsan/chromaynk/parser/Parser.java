@@ -204,6 +204,12 @@ public class Parser {
                 
                 case "RETURN":
                     return parseReturnExpression(iterator);
+                
+                case "MIMIC":
+                    return parseMimicExpression(iterator);
+                
+                case "MIRROR":
+                    return parseMirrorExpression(iterator);
 
                 default:
                     throw new ParsingFailedException("Parsing error occured during WORD parsing: unnkown word, "+iterator.current().getValue());
@@ -219,6 +225,102 @@ public class Parser {
             throw new ParsingFailedException("Parsing error occured during WORD parsing: parsing failed");
         }
         
+    }
+
+    /**
+     * Parses mimic blocks
+     * 
+     * @param iterator
+     * @return
+     */
+    private Expression parseMimicExpression(TokenIterator iterator) throws ParsingFailedException, SyntaxErrorException
+    {
+        // expected format is:
+        // MIMIC {}
+
+        iterator.next(); // { symbol
+        if(iterator.current().getType() != Token.tokenType.LBRACK)
+            throw new SyntaxErrorException("Parsing error occured in Mimic parsing: body must start with a bracket");
+        
+        iterator.next(); // start of body
+        Expression body = parse(iterator);
+
+        if(iterator.current().getType() != Token.tokenType.RBRACK)
+            throw new SyntaxErrorException("Parsing error occured in Mimic parsing: body must end with a bracket");
+
+        iterator.next(); // out of mimic bounds
+        return new MimicExpression(body);
+    }
+
+    /**
+     * Parses mirror blocks
+     * 
+     * @param iterator
+     * @return
+     * @throws ParsingFailedException
+     * @throws SyntaxErrorException
+     */
+    private Expression parseMirrorExpression(TokenIterator iterator) throws ParsingFailedException, SyntaxErrorException
+    {
+        System.out.println("Parsing: mirror block");
+        boolean p1 = false, p2 = false;
+
+        iterator.next(); // (
+        
+        if(iterator.current().getType() != Token.tokenType.LPAREN) throw new SyntaxErrorException("Parsing error occured in Mirror expression: ( missing");
+
+        iterator.next();
+
+        List<Assignable> list = new ArrayList<Assignable>();
+
+        // initialises parameters to instructions
+        while(iterator.current().getType() != Token.tokenType.LBRACK)
+        {
+            List<Token> parameter = new ArrayList<Token>();
+
+            while(iterator.current().getType() != Token.tokenType.COMA)
+            {
+                // sets percentage booleans
+                if(iterator.current().getType() == Token.tokenType.PERC)
+                {
+                    if(iterator.next().getType() == Token.tokenType.RPAREN)
+                    {
+                        p2 = true;
+                    }
+                    iterator.previous();
+                    if(iterator.next().getType() == Token.tokenType.COMA)
+                    {
+                        p1 = true;
+                    }
+                    iterator.previous();
+                }
+                if(iterator.current().getType() == Token.tokenType.RPAREN)
+                {
+                    if(iterator.next().getType() == Token.tokenType.LBRACK)
+                    {
+                        iterator.previous();
+                        break;
+                    }
+                    iterator.previous();
+                }
+                if(iterator.current().getType() != Token.tokenType.PERC) parameter.add(iterator.current());
+                iterator.next();
+            }
+
+            list.add(parseOperation(new TokenIterator(parameter)));
+            iterator.next();
+        }
+        if(list.size() < 2) throw new SyntaxErrorException("Parsing error occured in Mirror parsing: not enough parameters");
+
+        if(iterator.current().getType() != Token.tokenType.LBRACK) throw new SyntaxErrorException("Parsing error occured in Mirror block: body must start with bracket");
+        iterator.next(); // start of body
+
+        Expression body = parse(iterator);
+
+        if(iterator.current().getType() != Token.tokenType.RBRACK) throw new SyntaxErrorException("Parsing error occured in Mirror block: body must end with bracket");
+
+        iterator.next();
+        return new MirrorExpression(body, list.get(0), list.get(1), p1, p2);
     }
 
     /**
@@ -316,18 +418,21 @@ public class Parser {
     private Expression parseForExpression(TokenIterator iterator) throws ParsingFailedException, SyntaxErrorException
     {
         // FOR ( name [= value] ; value [; value] ) {}
+        // correction: step value is mandatory
         // above is the expected format
 
         System.out.println("Parsing: for expression");
 
+        // look for required left parentheses
         if(iterator.next().getType() != Token.tokenType.LPAREN)
             throw new SyntaxErrorException("Parsing error occured in For loop parsing: excepted format is: FOR ( name [= value] ; value [; value] ) {}");
         
+        // look for required variable name
         if(iterator.next().getType() != Token.tokenType.NAME)
             throw new SyntaxErrorException("Parsing error occured in For loop parsing: excepted format is: FOR ( name [= value] ; value [; value] ) {}");
         
         String name = iterator.current().getValue();
-        Assignable initialValue = new ValueExpression( new Num()); // initial value set to 0
+        Assignable initialValue = new ValueExpression( new Num() ); // initial value set to 0
 
         // checks if variable is initialised
         if(iterator.next().getType() == Token.tokenType.OP)
@@ -337,15 +442,54 @@ public class Parser {
                 iterator.next(); // start of initial value
                 initialValue = parseOperation(iterator);
             }
+            // if value is not initialised, the seperator for For Loops is a semicolon
             else throw new SyntaxErrorException("Parsing error occured in For loop parsing: variable value must be set with the '=' symbol");
         }
 
+        // no matter if the variable is initialised or not, there should be a semicolon token at this point
         if(iterator.current().getType() != Token.tokenType.SEMICOL)
         throw new SyntaxErrorException("Parsing error occured in For loop parsing: variable value must be set with the '=' symbol");
+        // variable initialisation is done
 
         iterator.next(); // start of final value
+        // there might be a third value to parse after the final value
+        // so we can either stop at a semicolon if the program has a 'step value'
+        // or a right paren followed by a left bracket if the value is left as it is
+        // (default step value is 1)
+        // change of plan: step value is mandatory
 
-        return null;
+        Assignable finalValue = parseOperation(iterator);
+        if(iterator.current().getType() != Token.tokenType.SEMICOL)
+        throw new SyntaxErrorException("Parsing error occured in For loop parsing: values must be seperated be ';'");
+
+        iterator.next();
+        // parsing step value
+        List<Token> stepValueTokenList = new ArrayList<Token>();
+
+        while(true)
+        {
+            if(iterator.current().getType() == Token.tokenType.RPAREN)
+            {
+                if(iterator.next().getType() == Token.tokenType.LBRACK)
+                {
+                    break;
+                }
+                iterator.previous();
+            }
+            stepValueTokenList.add(iterator.current());
+            iterator.next();
+        }
+        Assignable stepValue = parseOperation(new TokenIterator(stepValueTokenList));
+
+        iterator.next();
+        Expression body = parse(iterator);
+        
+        if(iterator.current().getType() != Token.tokenType.RBRACK)
+        throw new SyntaxErrorException("Parsing error occured in For loop parsing: body must end with bracket");
+
+        iterator.next();
+
+        return new ForExpression(name, initialValue, finalValue, stepValue, body);
     }
 
     /**

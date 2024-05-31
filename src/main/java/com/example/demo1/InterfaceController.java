@@ -62,6 +62,11 @@ public class InterfaceController {
     private Scene scene;
 
 
+    // dimensions
+    public double canvasHeight;
+    public double canvasWidth;
+
+
     @FXML
     public void initialize() {
         drawingInstructions = new ArrayList<>();
@@ -139,6 +144,9 @@ public class InterfaceController {
         gc = canvas.getGraphicsContext2D();              // Get graphics context for drawing
         gc.setLineWidth(1);
         gc.setStroke(Color.BLACK);
+
+        this.canvasHeight = drawingPane.getHeight();
+        this.canvasWidth = drawingPane.getWidth();
 
         /*if (timeline != null) {
             timeline.stop();
@@ -247,15 +255,12 @@ public class InterfaceController {
     }
 
     //FORWARD function, used in the interpreter
-    public int FWD(Cursor c, double distance, int percent){
+    public int FWD(Context context, double distance){
+        Cursor c = context.getMainCursor();
+        if(c == null) return 0;
+
         System.out.println("FWD CALLED");
-        if(percent != 0 && percent != 1){
-            System.out.println("You must put a number between 0 and 1");
-            return 0;
-        }
-        if(percent == 1){
-             distance = Math.max(drawingPane.getPrefWidth(), drawingPane.getPrefHeight()) * distance / 100;
-        }
+
         double newX = c.getX() + distance * Math.cos(Math.toRadians(c.getRotation()));   // Calculates the new cursor coordinates
         double newY = c.getY() + distance * Math.sin(Math.toRadians(c.getRotation()));
         if( newX > drawingPane.getWidth() ||newX < 0){
@@ -300,7 +305,9 @@ public class InterfaceController {
     }
 
     //TURN function, used in the interpreter
-    public int TURN(Cursor c, double degree){
+    public int TURN(Context context, double degree){
+        Cursor c = context.getMainCursor();
+        if(c == null) return 0;
         c.setRotation((c.getRotation() + degree) % 360);
         return 1;
     }
@@ -318,15 +325,10 @@ public class InterfaceController {
         return 1;
     }
 
-    public int MOV(Cursor c, double x, double y, int percent){
-        if(percent != 0 && percent != 1){
-            System.out.println("You must put a number between 0 and 1");
-            return 0;
-        }
-        if(percent == 1){
-             x = drawingPane.getPrefWidth() * x / 100;
-             y = drawingPane.getPrefHeight() * y / 100;
-        }
+    public int MOV(Context context, double x, double y){
+
+        Cursor c = context.getMainCursor();
+        if(c == null) return 0;
 
         x = c.getX() + x;
         y = c.getY() + y;
@@ -345,32 +347,26 @@ public class InterfaceController {
         return 1;
     }
 
-    public int POS(Cursor c, double x, double y, int percent){
-        if(percent != 0 && percent != 1){
-            System.out.println("You must put a number between 0 and 1");
-            return 0;
-        }
-        if(percent == 1){
-            x = drawingPane.getPrefWidth() * x / 100;
-            y = drawingPane.getPrefHeight() * y / 100;
-        }
+    public int POS(Context context, double x, double y){
+        Cursor c = context.getMainCursor();
+        if(c == null) return 0;
         if( x > drawingPane.getWidth() || x < 0){
-            System.out.println("You are out of borders, you cannot move outside of " + drawingPane.getWidth() + " x: "+x);
+            System.out.println("You are out of borders, you cannot move outside of " + drawingPane.getWidth() + " ,x: "+x);
             return 0;
         }
         if( y > drawingPane.getHeight()  || y < 0){
-            System.out.println("You are out of borders, you cannot move outside of" + drawingPane.getHeight() + " y: "+y);
+            System.out.println("You are out of borders, you cannot move outside of " + drawingPane.getHeight() + " ,y: "+y);
             return 0;
         }
         gc.strokeLine(c.getX(), c.getY(), x, y);
         c.setX(x);                               // New coordinates
         c.setY(y);
         gc.moveTo(x, y);
-        //System.out.println("POS changed");
+
         return 1;
     }
 
-    public int PRESS(Cursor c, double value){
+    public int PRESS(double value){
         if(value < 0 || value > 1){
             System.out.println("You must put a number between 0 and 1");
             return 0;
@@ -379,15 +375,9 @@ public class InterfaceController {
         return 1;
     }
 
-    public int LOOKAT(Cursor c, double x, double y, int percent) {
-        if(percent != 0 && percent != 1){
-            System.out.println("You must put a number between 0 and 1");
-            return 0;
-        }
-        if(percent == 1){
-            x = drawingPane.getPrefWidth() * x / 100;
-            y = drawingPane.getPrefHeight() * y / 100;
-        }
+    public int LOOKAT(Context context, double x, double y) {
+        Cursor c = context.getMainCursor();
+        if(c == null) return 0;
         if(c.getX() == x && c.getY() == y){
             c.setRotation(0);
             return 1;
@@ -399,7 +389,8 @@ public class InterfaceController {
     }
 
     public int LOOKATCursor(Cursor c1, Cursor c2){
-        return LOOKAT(c1, c2.getX(), c2.getY(), 0);
+        //return LOOKAT(c1, c2.getX(), c2.getY(), 0);
+        return 0;
     }
 
     public int THICK(double value){

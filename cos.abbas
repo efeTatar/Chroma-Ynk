@@ -1,5 +1,4 @@
 
-
 DEF power{
     
     IF(argc < 2){
@@ -75,9 +74,9 @@ NUM res;
 
 THICK(5);
 
-WHILE(i < 800){
-    res = cos(i/10);
-    POS(i+100, 200 - res * 20);
+WHILE(i <= 100){
+    res = cos(i/3);
+    POS(i%, 200 - res * 20);
     
     i = i+1;
 }

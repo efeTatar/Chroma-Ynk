@@ -23,8 +23,19 @@ public class InstructionExpression extends TerminalExpression{
         this.percent2 = p2;
     }
 
+    private void dupe(Context context)
+    {
+        
+    }
+
     public void execute(Context context)
     {
+        if(context.getController() == null)
+        {
+            System.out.println("Warning: the interpreter was not presented with an InterfaceController");
+            return;
+        }
+
         List<Variable> variable = new ArrayList<Variable>();
 
         for(int i = 0 ; i < arguments.size() ; i++)
@@ -32,30 +43,49 @@ public class InstructionExpression extends TerminalExpression{
             variable.add(arguments.get(i).getValue(context));
         }
 
+        Num var, var2;
+        double value, value2;
+
         switch (name) {
             case "FWD":
                 if(variable.size() < 1) return;
-                context.getController().FWD(context.getMainCursor(), ((Num)variable.get(0)).getValue(), percent2 ? 1 : 0);
+                var = ((Num)variable.get(0));
+                if(var == null) return;
+                value = percent1 ? context.getController().canvasWidth * var.getValue() / 100 : var.getValue();
+                context.getController().FWD(context, value);
                 break;
             
             case "BWD":
                 if(variable.size() < 1) return;
-                context.getController().FWD(context.getMainCursor(), ((Num)variable.get(0)).getValue(), percent2 ? 1 : 0);
+                var = ((Num)variable.get(0));
+                if(var == null) return;
+                value = percent1 ? context.getController().canvasWidth * var.getValue() / 100 : var.getValue();
+                context.getController().FWD(context, -value);
                 break;
             
             case "MOV":
                 if(variable.size() < 2) return;
-                context.getController().MOV(context.getMainCursor(), ((Num)variable.get(0)).getValue(), ((Num)variable.get(1)).getValue(), percent1&percent2 ? 1 : 0);
+                var = ((Num)variable.get(0));
+                var2 = ((Num)variable.get(0));
+                if(var == null || var2 == null) return;
+                value = percent1 ? context.getController().canvasWidth * var.getValue() / 100 : var.getValue();
+                value2 = percent2 ? context.getController().canvasHeight * var2.getValue() / 100 : var2.getValue();
+                context.getController().MOV(context, value, value2);
                 break;
             
             case "TURN":
                 if(variable.size() < 1) return;
-                context.getController().TURN(context.getMainCursor(), ((Num)variable.get(0)).getValue());
+                context.getController().TURN(context, ((Num)variable.get(0)).getValue());
                 break;
             
             case "POS":
                 if(variable.size() < 2) return;
-                context.getController().POS(context.getMainCursor(), ((Num)variable.get(0)).getValue(), ((Num)variable.get(1)).getValue(), percent1|percent2 ? 1 : 0);
+                var = ((Num)variable.get(0));
+                var2 = ((Num)variable.get(1));
+                if(var == null || var2 == null) return;
+                value = percent1 ? context.getController().canvasWidth * var.getValue() / 100 : var.getValue();
+                value2 = percent2 ? context.getController().canvasHeight * var2.getValue() / 100 : var2.getValue();
+                context.getController().POS(context, value, value2);
                 break;
             
             case "HIDE":
@@ -66,7 +96,7 @@ public class InstructionExpression extends TerminalExpression{
             
             case "PRESS":
                 if(variable.size() < 1) return;
-                context.getController().PRESS(context.getMainCursor(), ((Num)variable.get(0)).getValue());
+                context.getController().PRESS(((Num)variable.get(0)).getValue());
                 break;
             
             case "COLOR":
@@ -81,7 +111,12 @@ public class InstructionExpression extends TerminalExpression{
             
             case "LOOKAT":
                 if(variable.size() < 2) return;
-                context.getController().LOOKAT(context.getMainCursor(), ((Num)variable.get(0)).getValue(), ((Num)variable.get(1)).getValue(), percent1 & percent2 ? 1 : 0);
+                var = ((Num)variable.get(0));
+                var2 = ((Num)variable.get(0));
+                if(var == null || var2 == null) return;
+                value = percent1 ? context.getController().canvasWidth * var.getValue() / 100 : var.getValue();
+                value2 = percent2 ? context.getController().canvasHeight * var2.getValue() / 100 : var2.getValue();
+                context.getController().LOOKAT(context, value, value2);
                 break;
 
             default:
