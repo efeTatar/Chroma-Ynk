@@ -1,0 +1,27 @@
+\hypertarget{classcom_1_1example_1_1demo1_1_1DrawingApp}{}\doxysection{com.\+example.\+demo1.\+Drawing\+App Class Reference}
+\label{classcom_1_1example_1_1demo1_1_1DrawingApp}\index{com.example.demo1.DrawingApp@{com.example.demo1.DrawingApp}}
+
+
+Inheritance diagram for com.\+example.\+demo1.\+Drawing\+App\+:
+% FIG 0
+
+
+Collaboration diagram for com.\+example.\+demo1.\+Drawing\+App\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classcom_1_1example_1_1demo1_1_1DrawingApp_aeaca6187df64bf87f3e84bc096ad3de6}\label{classcom_1_1example_1_1demo1_1_1DrawingApp_aeaca6187df64bf87f3e84bc096ad3de6}} 
+void {\bfseries start} (Stage primary\+Stage)  throws Exception 
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classcom_1_1example_1_1demo1_1_1DrawingApp_a1023c5d0785e98c856a885f6471c72e7}\label{classcom_1_1example_1_1demo1_1_1DrawingApp_a1023c5d0785e98c856a885f6471c72e7}} 
+static void {\bfseries main} (String\mbox{[}$\,$\mbox{]} args)
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/com/example/demo1/Drawing\+App.\+java\end{DoxyCompactItemize}

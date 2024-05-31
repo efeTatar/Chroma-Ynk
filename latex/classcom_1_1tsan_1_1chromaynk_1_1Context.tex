@@ -7,11 +7,11 @@ Collaboration diagram for com.\+tsan.\+chromaynk.\+Context\+:
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1Context_a3cdaad5b822c8fa659dfc0cc37a9b0c2}{Context}} (\mbox{\hyperlink{classcom_1_1example_1_1demo1_1_1InterfaceController}{Interface\+Controller}} controller)
+\mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1Context_a5f6c18419ffc33de6b32530cc4ad9008}{Context}} (\mbox{\hyperlink{classcom_1_1example_1_1demo1_1_1DrawingAppController}{Drawing\+App\+Controller}} controller)
 \item 
 \mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1Context}{Context}} \mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1Context_a63e8a0bbd8f70eb21d759021625cfb36}{derive\+Context}} (Map$<$ String, \mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1datatypes_1_1Variable}{Variable}} $>$ variable)
 \item 
-\mbox{\hyperlink{classcom_1_1example_1_1demo1_1_1InterfaceController}{Interface\+Controller}} \mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1Context_a035ad8f60d367fb6554baf71e8ce51f0}{get\+Controller}} ()
+\mbox{\hyperlink{classcom_1_1example_1_1demo1_1_1DrawingAppController}{Drawing\+App\+Controller}} \mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1Context_a8f27af58b81b3a7d66213922a975571b}{get\+Controller}} ()
 \item 
 \mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1datatypes_1_1Cursor}{Cursor}} \mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1Context_a6ab73c9a8e969b1e205f9bed4a7e1688}{get\+Main\+Cursor}} ()
 \item 
@@ -40,6 +40,14 @@ boolean \mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1Context_a5098e1d0ac243
 boolean \mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1Context_a5dde19d6a6812a9c0c1f4a18da8d6a19}{delete\+Variable}} (String name)
 \item 
 \mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1datatypes_1_1Variable}{Variable}} \mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1Context_a664a1ea869b01d69ab9baa8728f56d55}{get\+Variable}} (String variable\+Name)
+\item 
+void \mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1Context_a273159a34dc65a38a7b1c73c7e0f02ec}{set\+Speed}} (int speed)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classcom_1_1tsan_1_1chromaynk_1_1Context_a8e2ac3b0778b48b50a7e5eccfd5000f7}\label{classcom_1_1tsan_1_1chromaynk_1_1Context_a8e2ac3b0778b48b50a7e5eccfd5000f7}} 
+int {\bfseries speed}
 \end{DoxyCompactItemize}
 \doxysubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
@@ -62,8 +70,8 @@ boolean {\bfseries returned} = false
 \mbox{\Hypertarget{classcom_1_1tsan_1_1chromaynk_1_1Context_a63778a78ecf5aac52cd44d8e761d6e39}\label{classcom_1_1tsan_1_1chromaynk_1_1Context_a63778a78ecf5aac52cd44d8e761d6e39}} 
 \mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1datatypes_1_1Cursor}{Cursor}} {\bfseries main\+Cursor}
 \item 
-\mbox{\Hypertarget{classcom_1_1tsan_1_1chromaynk_1_1Context_aef2bde71b170f0d02fd67bda683be967}\label{classcom_1_1tsan_1_1chromaynk_1_1Context_aef2bde71b170f0d02fd67bda683be967}} 
-\mbox{\hyperlink{classcom_1_1example_1_1demo1_1_1InterfaceController}{Interface\+Controller}} {\bfseries controller}
+\mbox{\Hypertarget{classcom_1_1tsan_1_1chromaynk_1_1Context_afd42368e92fd255e0630f02517bc7b16}\label{classcom_1_1tsan_1_1chromaynk_1_1Context_afd42368e92fd255e0630f02517bc7b16}} 
+\mbox{\hyperlink{classcom_1_1example_1_1demo1_1_1DrawingAppController}{Drawing\+App\+Controller}} {\bfseries controller}
 \end{DoxyCompactItemize}
 
 
@@ -75,11 +83,11 @@ It contains variables, cursors, functions and the return value.~\newline
  It also has access to the canvas if the interpreter has to execute instructions 
 
 \doxysubsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{classcom_1_1tsan_1_1chromaynk_1_1Context_a3cdaad5b822c8fa659dfc0cc37a9b0c2}\label{classcom_1_1tsan_1_1chromaynk_1_1Context_a3cdaad5b822c8fa659dfc0cc37a9b0c2}} 
+\mbox{\Hypertarget{classcom_1_1tsan_1_1chromaynk_1_1Context_a5f6c18419ffc33de6b32530cc4ad9008}\label{classcom_1_1tsan_1_1chromaynk_1_1Context_a5f6c18419ffc33de6b32530cc4ad9008}} 
 \index{com.tsan.chromaynk.Context@{com.tsan.chromaynk.Context}!Context@{Context}}
 \index{Context@{Context}!com.tsan.chromaynk.Context@{com.tsan.chromaynk.Context}}
 \doxysubsubsection{\texorpdfstring{Context()}{Context()}}
-{\footnotesize\ttfamily com.\+tsan.\+chromaynk.\+Context.\+Context (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcom_1_1example_1_1demo1_1_1InterfaceController}{Interface\+Controller}}}]{controller }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily com.\+tsan.\+chromaynk.\+Context.\+Context (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcom_1_1example_1_1demo1_1_1DrawingAppController}{Drawing\+App\+Controller}}}]{controller }\end{DoxyParamCaption})}
 
 \mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1Context}{Context}} constructor
 
@@ -178,11 +186,11 @@ method intended to be used for function calls
 \begin{DoxyReturn}{Returns}
 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classcom_1_1tsan_1_1chromaynk_1_1Context_a035ad8f60d367fb6554baf71e8ce51f0}\label{classcom_1_1tsan_1_1chromaynk_1_1Context_a035ad8f60d367fb6554baf71e8ce51f0}} 
+\mbox{\Hypertarget{classcom_1_1tsan_1_1chromaynk_1_1Context_a8f27af58b81b3a7d66213922a975571b}\label{classcom_1_1tsan_1_1chromaynk_1_1Context_a8f27af58b81b3a7d66213922a975571b}} 
 \index{com.tsan.chromaynk.Context@{com.tsan.chromaynk.Context}!getController@{getController}}
 \index{getController@{getController}!com.tsan.chromaynk.Context@{com.tsan.chromaynk.Context}}
 \doxysubsubsection{\texorpdfstring{getController()}{getController()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classcom_1_1example_1_1demo1_1_1InterfaceController}{Interface\+Controller}} com.\+tsan.\+chromaynk.\+Context.\+get\+Controller (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{classcom_1_1example_1_1demo1_1_1DrawingAppController}{Drawing\+App\+Controller}} com.\+tsan.\+chromaynk.\+Context.\+get\+Controller (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 Returns controller
 
@@ -322,6 +330,17 @@ sets function state to returned \mbox{\Hypertarget{classcom_1_1tsan_1_1chromaynk
 
 \begin{DoxyParams}{Parameters}
 {\em value} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classcom_1_1tsan_1_1chromaynk_1_1Context_a273159a34dc65a38a7b1c73c7e0f02ec}\label{classcom_1_1tsan_1_1chromaynk_1_1Context_a273159a34dc65a38a7b1c73c7e0f02ec}} 
+\index{com.tsan.chromaynk.Context@{com.tsan.chromaynk.Context}!setSpeed@{setSpeed}}
+\index{setSpeed@{setSpeed}!com.tsan.chromaynk.Context@{com.tsan.chromaynk.Context}}
+\doxysubsubsection{\texorpdfstring{setSpeed()}{setSpeed()}}
+{\footnotesize\ttfamily void com.\+tsan.\+chromaynk.\+Context.\+set\+Speed (\begin{DoxyParamCaption}\item[{int}]{speed }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em speed} & \\
 \hline
 \end{DoxyParams}
 

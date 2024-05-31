@@ -1,0 +1,50 @@
+
+DEF expF{		// this function computes the taylor series for the exponential function exp(x)
+
+    IF(argc < 1){RETURN 0-1;}
+
+    NUM x = arg0;	// x value in exp(x)
+
+    NUM n = 1;		// incrementer of taylor series, first term (n = 0) already counted in
+    NUM exp = 1;	// first term (n = 0) in taylor series, n starts from 1
+    NUM fact = 1;	// factorial variable starts at one and multiplied at each incrementation
+    NUM s = 1;		// x to the power of n
+
+    WHILE(n < 100){
+        s = s * x;
+        fact = fact * n;
+        exp = exp + s / fact;
+        n = n + 1;
+    }
+
+    RETURN(exp);	// return exp(x)
+}
+
+NUM retvalue;
+retvalue = expF(2);
+
+CURSOR 1;
+SELECT 1;
+
+PRESS(0);
+POS(50%,50%);
+PRESS(1);
+
+NUM red;
+THICK(3);
+
+NUM i = 0;
+WHILE(i<360){
+	FWD(1);
+	TURN(1);
+    COLOR(i*250/360,0,0);
+	i = i+1;
+}
+
+
+
+RETURN 3;
+
+
+
+

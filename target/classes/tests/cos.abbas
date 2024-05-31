@@ -71,14 +71,18 @@ SELECT 1;
 
 NUM i = 0;
 NUM res;
+NUM red = 0;
 
-THICK(5);
+THICK(1);
 
-WHILE(i <= 100){
+POS(0, 180);
+
+WHILE(i < 100){
     res = cos(i/3);
     POS(i%, 200 - res * 20);
-    
+    COLOR(i * 250 / 100, 0, 0);
     i = i+1;
 }
+
 
 RETURN(1);

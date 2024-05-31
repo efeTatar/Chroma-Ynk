@@ -1,0 +1,10 @@
+
+
+CURSOR 1;
+SELECT 1;
+
+
+FOR( name ; 10+2*4 ; 2/2+3 )
+{
+    PRINT(name);
+}

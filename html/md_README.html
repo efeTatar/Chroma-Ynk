@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>My Project: Chroma-Ynk</title>
+<title>My Project: Chromat-Ynk</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -62,10 +62,71 @@ $(function() {
 </div><!-- top -->
 <div class="PageDoc"><div class="header">
   <div class="headertitle">
-<div class="title">Chroma-Ynk </div>  </div>
+<div class="title">Chromat-Ynk </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"></div></div><!-- contents -->
+<div class="textblock"><p>Implementation of the Chromat-Ynk project by Efe Tatar, Nathan Signoud, Alize Fortunel, Francois Bretagne. The concept behind the project belongs to Cy Tech who charged the authors with its implementation.</p>
+<p>This project is composed of two modules, the language interpreter and the interface.</p>
+<h1><a class="anchor" id="autotoc_md1"></a>
+Interpreter</h1>
+<p>The Abbas language interpreter takes in a .abbas file and interprets it. It implements variables, functions, arithmetic operations and boolean operations. Although the language is standalone, it has additionnal features when linked to an interface. Theses features include managing cursors enabling the user to draw lines on a canvas. Because of the nature of the interpreter, the user can manage to draw smooth shapes such circles, squares, sinusoidal curves and much more.</p>
+<h2><a class="anchor" id="autotoc_md2"></a>
+A simple guide to the abbas language</h2>
+<p>All files must end with the .abbas extention.<br  />
+<br  />
+</p>
+<p>Declaring variables:<br  />
+ There are 3 types available: NUM, STR, BOOL<br  />
+ {type} {name} [ = {value} ] ;<br  />
+<br  />
+</p>
+<p>Declaring loops:<br  />
+ There are 3 loops available: IF, WHILE, FOR<br  />
+ {type} condition { body }<br  />
+<br  />
+</p>
+<p>Declaring functions:<br  />
+ DEF {name} { body }<br  />
+<br  />
+</p>
+<p>Calling functions:<br  />
+ functions do not pocess strict parameters but take arguments instead. Let exp be a function, in order to call exp, one must:<br  />
+ exp(operation, operation, operation, ...);<br  />
+ There parameters will be available to the user as arg0, arg1, ...<br  />
+ The variable argc is automatically created and stores the number of arguments&lt;br&gt;<br  />
+</p>
+<p>Return values<br  />
+ Function can return values at any given moment with the keyword RETURN<br  />
+ the implicit main function can infact return a value.<br  />
+<br  />
+</p>
+<p>How to draw ?<br  />
+ The user has access to the following instructions:<br  />
+ FWD value [%]<br  />
+ BWD value [%]<br  />
+ TURN value<br  />
+ MOV x [%], y [%]<br  />
+ POS x [%], y [%]<br  />
+ HIDE<br  />
+ SHOW<br  />
+ PRESS value [%]<br  />
+ COLOR #RRGGBB<br  />
+ COLOR red, green,blue<br  />
+ THICK value<br  />
+ LOOKAT cursorID<br  />
+ LOOKAT x [%], y [%]<br  />
+ CURSOR cursorID<br  />
+ SELECT cursorID<br  />
+ Note that these instruction must be called as if they were functions.<br  />
+<br  />
+</p>
+<h1><a class="anchor" id="autotoc_md3"></a>
+Interface</h1>
+<p>The Interface enables the user to interpret .abbas files and visualise outputs. The user can choose to visualise the drawing process either step by step or in a constant speed.</p>
+<h1><a class="anchor" id="autotoc_md4"></a>
+Acknowledgement</h1>
+<p>We thank our professors charged with the supervision of this project who helped us very much during the development process. </p>
+</div></div><!-- contents -->
 </div><!-- PageDoc -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

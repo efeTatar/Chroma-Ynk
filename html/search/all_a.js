@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['next_43',['next',['../classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1TokenIterator.html#ae992673a4c7fd4e9827b89a585ef560f',1,'com::tsan::chromaynk::tokenizer::TokenIterator']]],
-  ['nonterminalexpression_44',['NonTerminalExpression',['../classcom_1_1tsan_1_1chromaynk_1_1expressions_1_1NonTerminalExpression.html',1,'com::tsan::chromaynk::expressions']]],
-  ['num_45',['Num',['../classcom_1_1tsan_1_1chromaynk_1_1datatypes_1_1Num.html',1,'com::tsan::chromaynk::datatypes']]]
+  ['mimicexpression_43',['MimicExpression',['../classcom_1_1tsan_1_1chromaynk_1_1expressions_1_1MimicExpression.html',1,'com::tsan::chromaynk::expressions']]],
+  ['mirrorexpression_44',['MirrorExpression',['../classcom_1_1tsan_1_1chromaynk_1_1expressions_1_1MirrorExpression.html',1,'com::tsan::chromaynk::expressions']]]
 ];

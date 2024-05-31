@@ -1,0 +1,60 @@
+Implementation of the Chromat-\/\+Ynk project by Efe Tatar, Nathan Signoud, Alize Fortunel, Francois Bretagne. The concept behind the project belongs to Cy Tech who charged the authors with its implementation.
+
+This project is composed of two modules, the language interpreter and the interface.\hypertarget{md_README_autotoc_md1}{}\doxysection{Interpreter}\label{md_README_autotoc_md1}
+The Abbas language interpreter takes in a .abbas file and interprets it. It implements variables, functions, arithmetic operations and boolean operations. Although the language is standalone, it has additionnal features when linked to an interface. Theses features include managing cursors enabling the user to draw lines on a canvas. Because of the nature of the interpreter, the user can manage to draw smooth shapes such circles, squares, sinusoidal curves and much more.\hypertarget{md_README_autotoc_md2}{}\doxysubsection{A simple guide to the abbas language}\label{md_README_autotoc_md2}
+All files must end with the .abbas extention.~\newline
+~\newline
+
+
+Declaring variables\+:~\newline
+ There are 3 types available\+: NUM, STR, BOOL~\newline
+ \{type\} \{name\} \mbox{[} = \{value\} \mbox{]} ;~\newline
+~\newline
+
+
+Declaring loops\+:~\newline
+ There are 3 loops available\+: IF, WHILE, FOR~\newline
+ \{type\} condition \{ body \}~\newline
+~\newline
+
+
+Declaring functions\+:~\newline
+ DEF \{name\} \{ body \}~\newline
+~\newline
+
+
+Calling functions\+:~\newline
+ functions do not pocess strict parameters but take arguments instead. Let exp be a function, in order to call exp, one must\+:~\newline
+ exp(operation, operation, operation, ...);~\newline
+ There parameters will be available to the user as arg0, arg1, ...~\newline
+ The variable argc is automatically created and stores the number of arguments$<$br$>$~\newline
+
+
+Return values~\newline
+ Function can return values at any given moment with the keyword RETURN~\newline
+ the implicit main function can infact return a value.~\newline
+~\newline
+
+
+How to draw ?~\newline
+ The user has access to the following instructions\+:~\newline
+ FWD value \mbox{[}\%\mbox{]}~\newline
+ BWD value \mbox{[}\%\mbox{]}~\newline
+ TURN value~\newline
+ MOV x \mbox{[}\%\mbox{]}, y \mbox{[}\%\mbox{]}~\newline
+ POS x \mbox{[}\%\mbox{]}, y \mbox{[}\%\mbox{]}~\newline
+ HIDE~\newline
+ SHOW~\newline
+ PRESS value \mbox{[}\%\mbox{]}~\newline
+ COLOR \#\+RRGGBB~\newline
+ COLOR red, green,blue~\newline
+ THICK value~\newline
+ LOOKAT cursor\+ID~\newline
+ LOOKAT x \mbox{[}\%\mbox{]}, y \mbox{[}\%\mbox{]}~\newline
+ CURSOR cursor\+ID~\newline
+ SELECT cursor\+ID~\newline
+ Note that these instruction must be called as if they were functions.~\newline
+~\newline
+\hypertarget{md_README_autotoc_md3}{}\doxysection{Interface}\label{md_README_autotoc_md3}
+The Interface enables the user to interpret .abbas files and visualise outputs. The user can choose to visualise the drawing process either step by step or in a constant speed.\hypertarget{md_README_autotoc_md4}{}\doxysection{Acknowledgement}\label{md_README_autotoc_md4}
+We thank our professors charged with the supervision of this project who helped us very much during the development process. 

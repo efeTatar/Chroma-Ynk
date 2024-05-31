@@ -160,7 +160,7 @@ public class DrawingAppController {
         Cursor c = context.getMainCursor();
         if(c == null) return 0;
 
-        System.out.println("FWD CALLED");
+        //System.out.println("FWD CALLED");
 
         double newX = c.getX() + distance * Math.cos(Math.toRadians(c.getRotation()));   // Calculates the new cursor coordinates
         double newY = c.getY() + distance * Math.sin(Math.toRadians(c.getRotation()));
@@ -172,9 +172,9 @@ public class DrawingAppController {
             System.out.println("You are out of borders, you cannot draw more than " + canvas.getHeight() + " pixels");
             return 0;
         }
-        System.out.println("Forwarding ... "+"newX = " + newX + ", newY = " + newY);
+        //System.out.println("Forwarding ... "+"newX = " + newX + ", newY = " + newY);
         gc.strokeLine(c.getX(), c.getY(), newX, newY);        // Draw line from current position to new position
-        System.out.println(c.getX() + " " + c.getY());
+        //System.out.println(c.getX() + " " + c.getY());
         c.setX(newX);                               // New coordinates
         c.setY(newY);
         return 1;
@@ -221,7 +221,7 @@ public class DrawingAppController {
 
     public int COLORRGB(double red, double green, double blue){
 
-        Color color = Color.color(red%250 / 255, green, blue);;  // Take the second element as a hexadecimal code or colour name
+        Color color = Color.color(red >= 255 ? 1 : red / 255, green >= 255 ? 1 : green / 255, blue >= 255 ? 1 : blue / 255);  // Take the second element as a hexadecimal code or colour name
         gc.setStroke(color);
         return 1;
     }

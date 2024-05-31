@@ -107,6 +107,7 @@ public class InstructionExpression extends TerminalExpression{
 		    
 		    case "COLOR":
 		        if(variable.size() < 3) return;
+				//System.out.println(((Num)variable.get(0)).getValue());
 		        context.getController().COLORRGB(((Num)variable.get(0)).getValue(), ((Num)variable.get(1)).getValue(), ((Num)variable.get(2)).getValue());
 		        break;
 		    

@@ -1,0 +1,88 @@
+
+DEF power{
+    
+    IF(argc < 2){
+        RETURN(0-1);
+    }
+
+    NUM x = arg0;
+    NUM n = arg1;
+    NUM pwr = 1;
+
+    IF(n == 0)
+    {
+        RETURN(1);
+    }
+
+    NUM i = 1;
+
+    WHILE(i <= n){
+        pwr = pwr * x;
+        i = i + 1;
+    }
+    RETURN(pwr);
+}
+
+DEF fact{
+
+    IF(argc < 1){
+        RETURN(0-1);
+    }
+
+    NUM i = 1;
+    NUM fact = 1;
+
+    WHILE(i <= arg0){
+        fact = fact * i;
+        i = i+1;
+    }
+    RETURN(fact);
+}
+
+DEF cos{
+
+    IF(argc < 1){
+        RETURN(0-2);
+    }
+
+    NUM x = arg0;
+
+    NUM pwr;
+    NUM poly;
+    NUM fact;
+
+    NUM sum = 1;
+
+    NUM n = 1;
+
+    WHILE(n < 100){
+        pwr = power( (0-1), n );
+        poly = power(x, 2*n);
+        fact = fact(2 * n);
+        sum = sum + pwr * poly / fact;
+        n = n + 1;
+    }
+
+    RETURN sum;
+}
+
+CURSOR 1;
+SELECT 1;
+
+NUM i = 0;
+NUM res;
+NUM red = 0;
+
+THICK(1);
+
+POS(0, 180);
+
+WHILE(i < 100){
+    res = cos(i/3);
+    POS(i%, 200 - res * 20);
+    COLOR(i * 250 / 100, 0, 0);
+    i = i+1;
+}
+
+
+RETURN(1);

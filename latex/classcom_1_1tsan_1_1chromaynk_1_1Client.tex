@@ -7,13 +7,13 @@ Collaboration diagram for com.\+tsan.\+chromaynk.\+Client\+:
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1Client_a9f449697bdb8ee7d7691ebb6e7bce1e5}{Client}} (\mbox{\hyperlink{classcom_1_1example_1_1demo1_1_1InterfaceController}{Interface\+Controller}} controller)
+\mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1Client_a066a4c742a6527ba616f3e2927ceda60}{Client}} (\mbox{\hyperlink{classcom_1_1example_1_1demo1_1_1DrawingAppController}{Drawing\+App\+Controller}} controller)
 \item 
 void \mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1Client_af60741e665443df9aac7a67c487f361e}{tokenize}} (String file)
 \item 
 void \mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1Client_a01f22049ae452fb575601fec51ead893}{parse}} ()
 \item 
-void \mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1Client_a995a330f7f979342e63608ada69a700c}{execute}} ()
+void \mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1Client_a76a52fbb7dea5b507b607be1aaf2bbad}{execute}} (int speed)  throws Interrupted\+Exception     
 \item 
 void \mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1Client_abac15dddc2b5a5618d56c4fbb77d5db2}{display}} ()
 \end{DoxyCompactItemize}
@@ -42,11 +42,11 @@ It encompasses a tokenizer, a parser and a context for the main function.~\newli
  The context remains so each interpretation requires a new client. 
 
 \doxysubsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{classcom_1_1tsan_1_1chromaynk_1_1Client_a9f449697bdb8ee7d7691ebb6e7bce1e5}\label{classcom_1_1tsan_1_1chromaynk_1_1Client_a9f449697bdb8ee7d7691ebb6e7bce1e5}} 
+\mbox{\Hypertarget{classcom_1_1tsan_1_1chromaynk_1_1Client_a066a4c742a6527ba616f3e2927ceda60}\label{classcom_1_1tsan_1_1chromaynk_1_1Client_a066a4c742a6527ba616f3e2927ceda60}} 
 \index{com.tsan.chromaynk.Client@{com.tsan.chromaynk.Client}!Client@{Client}}
 \index{Client@{Client}!com.tsan.chromaynk.Client@{com.tsan.chromaynk.Client}}
 \doxysubsubsection{\texorpdfstring{Client()}{Client()}}
-{\footnotesize\ttfamily com.\+tsan.\+chromaynk.\+Client.\+Client (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcom_1_1example_1_1demo1_1_1InterfaceController}{Interface\+Controller}}}]{controller }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily com.\+tsan.\+chromaynk.\+Client.\+Client (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcom_1_1example_1_1demo1_1_1DrawingAppController}{Drawing\+App\+Controller}}}]{controller }\end{DoxyParamCaption})}
 
 Constructor for \mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1Client}{Client}} class Feed in null if interpreter used with no interface
 
@@ -65,11 +65,11 @@ Constructor for \mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1Client}{Client
 {\footnotesize\ttfamily void com.\+tsan.\+chromaynk.\+Client.\+display (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 Displays tokens~\newline
- debugging function \mbox{\Hypertarget{classcom_1_1tsan_1_1chromaynk_1_1Client_a995a330f7f979342e63608ada69a700c}\label{classcom_1_1tsan_1_1chromaynk_1_1Client_a995a330f7f979342e63608ada69a700c}} 
+ debugging function \mbox{\Hypertarget{classcom_1_1tsan_1_1chromaynk_1_1Client_a76a52fbb7dea5b507b607be1aaf2bbad}\label{classcom_1_1tsan_1_1chromaynk_1_1Client_a76a52fbb7dea5b507b607be1aaf2bbad}} 
 \index{com.tsan.chromaynk.Client@{com.tsan.chromaynk.Client}!execute@{execute}}
 \index{execute@{execute}!com.tsan.chromaynk.Client@{com.tsan.chromaynk.Client}}
 \doxysubsubsection{\texorpdfstring{execute()}{execute()}}
-{\footnotesize\ttfamily void com.\+tsan.\+chromaynk.\+Client.\+execute (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void com.\+tsan.\+chromaynk.\+Client.\+execute (\begin{DoxyParamCaption}\item[{int}]{speed }\end{DoxyParamCaption}) throws Interrupted\+Exception}
 
 Executes the main function \mbox{\Hypertarget{classcom_1_1tsan_1_1chromaynk_1_1Client_a01f22049ae452fb575601fec51ead893}\label{classcom_1_1tsan_1_1chromaynk_1_1Client_a01f22049ae452fb575601fec51ead893}} 
 \index{com.tsan.chromaynk.Client@{com.tsan.chromaynk.Client}!parse@{parse}}

@@ -14,6 +14,10 @@
 \item 
 \mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1expressions_1_1Expression}{Expression}} \mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1parser_1_1Parser_aa41ddf5e952ef7def004db64a329998d}{parse\+Word}} (\mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1TokenIterator}{Token\+Iterator}} iterator)  throws Parsing\+Failed\+Exception     
 \item 
+\mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1expressions_1_1Expression}{Expression}} \mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1parser_1_1Parser_a00037dc7fe8b3cc8b030153672c96cde}{parse\+Mimic\+Expression}} (\mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1TokenIterator}{Token\+Iterator}} iterator)  throws Parsing\+Failed\+Exception, Syntax\+Error\+Exception     
+\item 
+\mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1expressions_1_1Expression}{Expression}} \mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1parser_1_1Parser_aa322dff43414d1e6e93716afc5660988}{parse\+Mirror\+Expression}} (\mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1TokenIterator}{Token\+Iterator}} iterator)  throws Parsing\+Failed\+Exception, Syntax\+Error\+Exception     
+\item 
 \mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1expressions_1_1Expression}{Expression}} \mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1parser_1_1Parser_a26af9c751d85e015ddf4014c0610fdab}{parse\+Cursor\+Selection}} (\mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1TokenIterator}{Token\+Iterator}} iterator)  throws Parsing\+Failed\+Exception, Syntax\+Error\+Exception     
 \item 
 \mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1expressions_1_1Expression}{Expression}} \mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1parser_1_1Parser_a6b5f0ebc00f9635fd854aa8c4a3cba9a}{parse\+Cursor\+Deletion}} (\mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1TokenIterator}{Token\+Iterator}} iterator)  throws Parsing\+Failed\+Exception, Syntax\+Error\+Exception     
@@ -345,6 +349,45 @@ Parses if blocks~\newline
 {\footnotesize\ttfamily \mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1expressions_1_1Expression}{Expression}} com.\+tsan.\+chromaynk.\+parser.\+Parser.\+parse\+Instruction (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1TokenIterator}{Token\+Iterator}}}]{iterator }\end{DoxyParamCaption}) throws \mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1exceptions_1_1ParsingFailedException}{Parsing\+Failed\+Exception}}, \mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1exceptions_1_1SyntaxErrorException}{Syntax\+Error\+Exception}}\hspace{0.3cm}{\ttfamily [private]}}
 
 Parses instruction calls
+
+
+\begin{DoxyParams}{Parameters}
+{\em iterator} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Parsing\+Failed\+Exception} & \\
+\hline
+{\em Syntax\+Error\+Exception} & \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{classcom_1_1tsan_1_1chromaynk_1_1parser_1_1Parser_a00037dc7fe8b3cc8b030153672c96cde}\label{classcom_1_1tsan_1_1chromaynk_1_1parser_1_1Parser_a00037dc7fe8b3cc8b030153672c96cde}} 
+\index{com.tsan.chromaynk.parser.Parser@{com.tsan.chromaynk.parser.Parser}!parseMimicExpression@{parseMimicExpression}}
+\index{parseMimicExpression@{parseMimicExpression}!com.tsan.chromaynk.parser.Parser@{com.tsan.chromaynk.parser.Parser}}
+\doxysubsubsection{\texorpdfstring{parseMimicExpression()}{parseMimicExpression()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1expressions_1_1Expression}{Expression}} com.\+tsan.\+chromaynk.\+parser.\+Parser.\+parse\+Mimic\+Expression (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1TokenIterator}{Token\+Iterator}}}]{iterator }\end{DoxyParamCaption}) throws \mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1exceptions_1_1ParsingFailedException}{Parsing\+Failed\+Exception}}, \mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1exceptions_1_1SyntaxErrorException}{Syntax\+Error\+Exception}}\hspace{0.3cm}{\ttfamily [private]}}
+
+Parses mimic blocks
+
+
+\begin{DoxyParams}{Parameters}
+{\em iterator} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcom_1_1tsan_1_1chromaynk_1_1parser_1_1Parser_aa322dff43414d1e6e93716afc5660988}\label{classcom_1_1tsan_1_1chromaynk_1_1parser_1_1Parser_aa322dff43414d1e6e93716afc5660988}} 
+\index{com.tsan.chromaynk.parser.Parser@{com.tsan.chromaynk.parser.Parser}!parseMirrorExpression@{parseMirrorExpression}}
+\index{parseMirrorExpression@{parseMirrorExpression}!com.tsan.chromaynk.parser.Parser@{com.tsan.chromaynk.parser.Parser}}
+\doxysubsubsection{\texorpdfstring{parseMirrorExpression()}{parseMirrorExpression()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1expressions_1_1Expression}{Expression}} com.\+tsan.\+chromaynk.\+parser.\+Parser.\+parse\+Mirror\+Expression (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1tokenizer_1_1TokenIterator}{Token\+Iterator}}}]{iterator }\end{DoxyParamCaption}) throws \mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1exceptions_1_1ParsingFailedException}{Parsing\+Failed\+Exception}}, \mbox{\hyperlink{classcom_1_1tsan_1_1chromaynk_1_1exceptions_1_1SyntaxErrorException}{Syntax\+Error\+Exception}}\hspace{0.3cm}{\ttfamily [private]}}
+
+Parses mirror blocks
 
 
 \begin{DoxyParams}{Parameters}
