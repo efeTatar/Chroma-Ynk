@@ -1,0 +1,17 @@
+
+CURSOR 1;
+SELECT 1;
+CURSOR 2;
+
+PRESS(0);
+
+POS(50%, 50%);
+PRESS(1);
+
+NUM i;
+
+WHILE(i < 300){
+    FWD(i);
+    TURN(i);
+    i = i + 1;
+}

@@ -1,0 +1,17 @@
+
+// spiral program 2
+
+CURSOR 1;
+SELECT 1;
+
+PRESS(0);
+POS(50%, 50%);
+PRESS(1);
+
+NUM i;
+WHILE(i < 360){
+    COLOR(i*250/360, 0, 0);
+    FWD(i/10);
+    TURN(10);
+    i = i + 1;
+}
